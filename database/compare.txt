@@ -1,0 +1,2 @@
+'Week 1 Key-run 1\nSat 2017-06-24\nscheduled\nStep: "Warm up"  id = 0\ntype - body  pace - 0:10:00 min per mile\nTime - 0:15:00\nStep: "Intervals"  id = 1\ntype - repeat  repeat - 8\nStep: "Fast"  id = 2\ntype - body  pace - 0:08:00 min per mile\nDistance - 400.0 m\nStep: "Rest"  id = 3\ntype - body  pace - 0:10:00 min per mile\nDistance - 400.0 m\nStep: "Cool down"  id = 4\ntype - body  pace - 0:10:00 min per mile\nTime - 0:10:00\nTotals: distance = 6.48 miles   duration = 60.79 minutes\n'
+'Week 1 Key-run 1\n  Sat 2017-06-24\n  scheduled\n'

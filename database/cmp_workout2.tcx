@@ -1,0 +1,85 @@
+<Workout Sport="Running">
+  <Name>Week 1 Keyrun 2</Name>
+  <Step xsi:type="Step_t">
+    <StepId>5</StepId>
+    <Name>warmup</Name>
+    <Duration xsi:type="Time_t">
+      <Seconds>900</Seconds>
+    </Duration>
+    <Intensity>Active</Intensity>
+    <Target xsi:type="Speed_t">
+      <SpeedZone xsi:type="CustomSpeedZone_t">
+      <LowInMetersPerSecond>2.8333521</LowInMetersPerSecond>
+      <HighInMetersPerSecond>2.8841290</HighInMetersPerSecond>
+    </SpeedZone>
+    </Target>
+  </Step>
+  <Step xsi:type="Repeat_t">
+    <StepId>6</StepId>
+    <Name>repeat X 3</Name>
+    <Repetitions>3</Repetitions>
+    <Child xsi:type="Step_t">
+      <StepId>7</StepId>
+      <Name>1600m</Name>
+      <Duration xsi:type="Distance_t">
+        <Meters>1600</Meters>
+      </Duration>
+      <Intensity>Active</Intensity>
+      <Target xsi:type="Speed_t">
+        <SpeedZone xsi:type="CustomSpeedZone_t">
+        <LowInMetersPerSecond>3.6328307</LowInMetersPerSecond>
+        <HighInMetersPerSecond>3.7167298</HighInMetersPerSecond>
+      </SpeedZone>
+      </Target>
+    </Child>
+    <Child xsi:type="Repeat_t">
+      <StepId>8</StepId>
+      <Name>repeat X 4</Name>
+      <Repetitions>4</Repetitions>
+      <Child xsi:type="Step_t">
+        <StepId>9</StepId>
+        <Name>200 m@RI</Name>
+        <Duration xsi:type="Distance_t">
+          <Meters>200</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+          <LowInMetersPerSecond>2.8333521</LowInMetersPerSecond>
+          <HighInMetersPerSecond>2.8841290</HighInMetersPerSecond>
+        </SpeedZone>
+        </Target>
+      </Child>
+    </Child>
+    <Child xsi:type="Step_t">
+      <StepId>10</StepId>
+      <Name>800m</Name>
+      <Duration xsi:type="Distance_t">
+        <Meters>800</Meters>
+      </Duration>
+      <Intensity>Active</Intensity>
+      <Target xsi:type="Speed_t">
+        <SpeedZone xsi:type="CustomSpeedZone_t">
+        <LowInMetersPerSecond>3.7866918</LowInMetersPerSecond>
+        <HighInMetersPerSecond>3.8779373</HighInMetersPerSecond>
+      </SpeedZone>
+      </Target>
+    </Child>
+  </Step>
+  <Step xsi:type="Step_t">
+    <StepId>11</StepId>
+    <Name>cooldown</Name>
+    <Duration xsi:type="Time_t">
+      <Seconds>600</Seconds>
+    </Duration>
+    <Intensity>Active</Intensity>
+    <Target xsi:type="Speed_t">
+      <SpeedZone xsi:type="CustomSpeedZone_t">
+      <LowInMetersPerSecond>2.8333521</LowInMetersPerSecond>
+      <HighInMetersPerSecond>2.8841290</HighInMetersPerSecond>
+    </SpeedZone>
+    </Target>
+  </Step>
+  <ScheduledOn>2017-08-21</ScheduledOn>
+  <Notes>warmup#3x(1600m#4x(200 m@RI)800m)cooldown</Notes>
+</Workout>

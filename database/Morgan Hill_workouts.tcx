@@ -1,0 +1,3024 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
+
+  <Folders>
+    <Workouts>
+      <Running Name="Running"/>
+      <Biking Name="Biking"/>
+      <Other Name="Morgan Hill">
+        <WorkoutNameRef>
+          <Id>MHw01kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw01kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw01kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw02kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw02kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw02kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw03kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw03kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw03kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw04kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw04kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw04kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw05kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw05kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw05kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw06kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw06kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw06kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw07kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw07kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw07kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw08kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw08kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw08kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw09kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw09kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw09kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw10kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw10kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw10kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw11kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw11kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw11kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw12kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw12kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw12kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw13kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw13kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw13kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw14kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw14kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw14kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw15kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw15kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw15kr3</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw16kr1</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw16kr2</Id>
+        </WorkoutNameRef>
+        <WorkoutNameRef>
+          <Id>MHw16kr3Final</Id>
+        </WorkoutNameRef>
+      </Other>
+    </Workouts>
+  </Folders>
+
+  <Workouts>
+    <Workout Sport="Running">
+      <Name>MHw01kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>3</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>1593</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>6</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>60</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-10</ScheduledOn>
+      <Notes>warmup
+3 x (1600 +1 min@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw01kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>5</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-12</ScheduledOn>
+      <Notes>2 @ RI
+2 @ ST
+2 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw01kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>20921</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.9260800</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.8945036</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-14</ScheduledOn>
+      <Notes>13 @ MP+30</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw02kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>4</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>804</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>9</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>120</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-17</ScheduledOn>
+      <Notes>warmup
+4 x (800 +2 min@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw02kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>8046</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-19</ScheduledOn>
+      <Notes>1 @ RI
+5 @ MP
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw02kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>24140</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-21</ScheduledOn>
+      <Notes>15 @ RI (MP+45)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw03kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1207</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>7</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>193</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>4</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>997</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>8</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>209</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>6</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>804</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>9</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>7</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>193</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>8</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>595</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>3.8317714</LowInMetersPerSecond>
+            <HighInMetersPerSecond>3.8136113</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>9</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>209</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>10</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>10</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>11</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>193</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>12</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>193</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>10</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>13</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-24</ScheduledOn>
+      <Notes>warmup
+1200, 1000, 800, 600@7:01, 400, 200 with 200@RI between each
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw03kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>8046</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>3</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-26</ScheduledOn>
+      <Notes>1 @ RI
+5 @ LT
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw03kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>27358</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-28</ScheduledOn>
+      <Notes>17 @ RI (MP+45)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw04kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>5</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>997</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>8</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-07-31</ScheduledOn>
+      <Notes>warmup
+5 x (1000 +400@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw04kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>6437</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>4</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-02</ScheduledOn>
+      <Notes>1 @ RI
+4 @ MT
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw04kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>32186</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.7747309</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.7463207</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-04</ScheduledOn>
+      <Notes>20 @ MP+60 (9:43)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw05kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>3</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>1593</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>6</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>60</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-07</ScheduledOn>
+      <Notes>warmup
+3 x (1600 +1 min@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw05kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>4828</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>5</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-09</ScheduledOn>
+      <Notes>2 @ RI
+3 @ ST
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw05kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>28968</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-11</ScheduledOn>
+      <Notes>18 @ RI (MP+45)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw06kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>2</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>1207</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>7</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>120</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>7</StepId>
+        <Repetitions>4</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>5</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>804</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>9</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>6</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>120</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>8</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-14</ScheduledOn>
+      <Notes>warmup
+2 x (1200 + 2 min@RI)
+4 x (800 + 2 min@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw06kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>8046</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>4</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-16</ScheduledOn>
+      <Notes>5 @ MT</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw06kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>33796</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-18</ScheduledOn>
+      <Notes>20 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw07kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>6</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>804</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>9</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>90</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-21</ScheduledOn>
+      <Notes>warmup
+6 x (800 +1:30 min@RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw07kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>9656</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>3</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-23</ScheduledOn>
+      <Notes>1 @ RI
+6 @ LT
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw07kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>21098</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-25</ScheduledOn>
+      <Notes>13 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw08kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>6</StepId>
+        <Repetitions>2</Repetitions>
+        <Child xsi:type="Repeat_t">
+          <StepId>4</StepId>
+          <Repetitions>6</Repetitions>
+          <Child xsi:type="Step_t">
+            <StepId>2</StepId>
+            <Duration xsi:type="Distance_t">
+              <Meters>402</Meters>
+            </Duration>
+            <Intensity>Active</Intensity>
+            <Target xsi:type="Speed_t">
+              <SpeedZone xsi:type="PredefinedSpeedZone_t">
+                <Number>10</Number>
+              </SpeedZone>
+            </Target>
+          </Child>
+          <Child xsi:type="Step_t">
+            <StepId>3</StepId>
+            <Duration xsi:type="Time_t">
+              <Seconds>90</Seconds>
+            </Duration>
+            <Intensity>Resting</Intensity>
+            <Target xsi:type="Speed_t">
+              <SpeedZone xsi:type="PredefinedSpeedZone_t">
+                <Number>1</Number>
+              </SpeedZone>
+            </Target>
+          </Child>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>5</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>150</Seconds>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>7</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-28</ScheduledOn>
+      <Notes>warmup
+2 x [
+ 6 x (400 +1:30 min@RI)
+ + 2:30@RI]
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw08kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>4828</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>5</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-08-30</ScheduledOn>
+      <Notes>2 @ RI
+3 @ ST
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw08kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>28968</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.9260800</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.8945036</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-01</ScheduledOn>
+      <Notes>18 @ MP+30 (9:13)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw09kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>6</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>4</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>3.4834285</LowInMetersPerSecond>
+            <HighInMetersPerSecond>3.4387693</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>804</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>8</StepId>
+        <Repetitions>2</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>6</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>804</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>9</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>7</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>9</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-04</ScheduledOn>
+      <Notes>warmup
+1600 + 400 @ RI
+2 mi @ 7:45 + 800 @ RI
+2 x (800 + 400 @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw09kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>6437</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>4</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-06</ScheduledOn>
+      <Notes>1 @ RI
+4 @ MT
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw09kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>35405</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.9260800</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.8945036</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-08</ScheduledOn>
+      <Notes>22 @ MP+30 (9:13)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw10kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>6</StepId>
+        <Repetitions>3</Repetitions>
+        <Child xsi:type="Repeat_t">
+          <StepId>4</StepId>
+          <Repetitions>2</Repetitions>
+          <Child xsi:type="Step_t">
+            <StepId>2</StepId>
+            <Duration xsi:type="Distance_t">
+              <Meters>1207</Meters>
+            </Duration>
+            <Intensity>Active</Intensity>
+            <Target xsi:type="Speed_t">
+              <SpeedZone xsi:type="PredefinedSpeedZone_t">
+                <Number>7</Number>
+              </SpeedZone>
+            </Target>
+          </Child>
+          <Child xsi:type="Step_t">
+            <StepId>3</StepId>
+            <Duration xsi:type="Time_t">
+              <Seconds>120</Seconds>
+            </Duration>
+            <Intensity>Resting</Intensity>
+            <Target xsi:type="Speed_t">
+              <SpeedZone xsi:type="PredefinedSpeedZone_t">
+                <Number>1</Number>
+              </SpeedZone>
+            </Target>
+          </Child>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>5</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>240</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>7</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-11</ScheduledOn>
+      <Notes>warmup
+3x [
+ 2 x (1200 + 2 min @ RI)
+ + 4 min @ RI]
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw10kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>16093</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-13</ScheduledOn>
+      <Notes>10 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw10kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>24140</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.9802666</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.9475164</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-15</ScheduledOn>
+      <Notes>15 @ MP+20 (9:03)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw11kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>997</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>8</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>4</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1995</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>3.6493061</LowInMetersPerSecond>
+            <HighInMetersPerSecond>3.6003222</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>6</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>997</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>8</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>7</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>8</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>997</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>8</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>9</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>402</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>10</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-18</ScheduledOn>
+      <Notes>warmup
+1000 + 400 @ RI
+2000 @ 7:24 + 400 @ RI
+1000 + 400 @ RI
+1000 + 400 @ RI
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw11kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>1609</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>8046</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-20</ScheduledOn>
+      <Notes>1 @ RI
+5 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw11kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>37014</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>2.9260800</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.8945036</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-22</ScheduledOn>
+      <Notes>20 @ MP+30 (9:13)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw12kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>3</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>1593</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>6</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-25</ScheduledOn>
+      <Notes>warmup
+3 x (1600 +400 @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw12kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>16093</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-27</ScheduledOn>
+      <Notes>10 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw12kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>24140</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>3.0364981</LowInMetersPerSecond>
+            <HighInMetersPerSecond>3.0025074</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-09-29</ScheduledOn>
+      <Notes>15 @ MP+10 (8:53)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw13kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>10</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>10</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-02</ScheduledOn>
+      <Notes>warmup
+10 x (400 +400 @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw13kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>12874</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-04</ScheduledOn>
+      <Notes>8 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw13kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>38624</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="CustomSpeedZone_t">
+            <ViewAs>Pace</ViewAs>
+            <LowInMetersPerSecond>3.0081196</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.9747579</HighInMetersPerSecond>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-06</ScheduledOn>
+      <Notes>20 @ MP+15 (8:58)</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw14kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>8</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>804</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>9</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Time_t">
+            <Seconds>90</Seconds>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-09</ScheduledOn>
+      <Notes>warmup
+8 x (800 +1:30 @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw14kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>8046</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>4</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-11</ScheduledOn>
+      <Notes>5 @ MT</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw14kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>20921</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-13</ScheduledOn>
+      <Notes>13 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw15kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>5</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>997</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>8</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-16</ScheduledOn>
+      <Notes>warmup
+5 x (1000 +400 @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw15kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>2</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>4828</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>5</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>3</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>3218</Meters>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-18</ScheduledOn>
+      <Notes>2 @ RI
+3 @ ST
+1 @ RI</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw15kr3</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>16093</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-20</ScheduledOn>
+      <Notes>10 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw16kr1</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Name>warmup</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>900</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <Step xsi:type="Repeat_t">
+        <StepId>4</StepId>
+        <Repetitions>6</Repetitions>
+        <Child xsi:type="Step_t">
+          <StepId>2</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Active</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>10</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+        <Child xsi:type="Step_t">
+          <StepId>3</StepId>
+          <Duration xsi:type="Distance_t">
+            <Meters>402</Meters>
+          </Duration>
+          <Intensity>Resting</Intensity>
+          <Target xsi:type="Speed_t">
+            <SpeedZone xsi:type="PredefinedSpeedZone_t">
+              <Number>1</Number>
+            </SpeedZone>
+          </Target>
+        </Child>
+      </Step>
+      <Step xsi:type="Step_t">
+        <StepId>5</StepId>
+        <Name>cooldown</Name>
+        <Duration xsi:type="Time_t">
+          <Seconds>600</Seconds>
+        </Duration>
+        <Intensity>Resting</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>1</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-23</ScheduledOn>
+      <Notes>warmup
+6 x (400 +400m @ RI)
+cooldown</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw16kr2</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>4828</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-25</ScheduledOn>
+      <Notes>3 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+    <Workout Sport="Running">
+      <Name>MHw16kr3Final</Name>
+      <Step xsi:type="Step_t">
+        <StepId>1</StepId>
+        <Duration xsi:type="Distance_t">
+          <Meters>42196</Meters>
+        </Duration>
+        <Intensity>Active</Intensity>
+        <Target xsi:type="Speed_t">
+          <SpeedZone xsi:type="PredefinedSpeedZone_t">
+            <Number>2</Number>
+          </SpeedZone>
+        </Target>
+      </Step>
+      <ScheduledOn>2012-10-28</ScheduledOn>
+      <Notes>26.2 @ MP</Notes>
+      <Creator xsi:type="Application_t">
+        <Name>Garmin Training Center(r)</Name>
+        <Build>
+          <Version>
+            <VersionMajor>3</VersionMajor>
+            <VersionMinor>6</VersionMinor>
+            <BuildMajor>5</BuildMajor>
+            <BuildMinor>0</BuildMinor>
+          </Version>
+          <Type>Release</Type>
+          <Time>Aug 17 2011, 11:13:24</Time>
+          <Builder>sqa</Builder>
+        </Build>
+        <LangID>EN</LangID>
+        <PartNumber>006-A0119-00</PartNumber>
+      </Creator>
+    </Workout>
+  </Workouts>
+
+  <Author xsi:type="Application_t">
+    <Name>Garmin Training Center(r)</Name>
+    <Build>
+      <Version>
+        <VersionMajor>3</VersionMajor>
+        <VersionMinor>6</VersionMinor>
+        <BuildMajor>5</BuildMajor>
+        <BuildMinor>0</BuildMinor>
+      </Version>
+      <Type>Release</Type>
+      <Time>Aug 17 2011, 11:13:24</Time>
+      <Builder>sqa</Builder>
+    </Build>
+    <LangID>EN</LangID>
+    <PartNumber>006-A0119-00</PartNumber>
+  </Author>
+
+</TrainingCenterDatabase>

@@ -6,7 +6,7 @@ from first_utils import FirstUtils
 class FirstRunner(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name, age=None, gender=None, email=None, length_unit='mile'):
+    def __init__(self, name: str, age: int =None, gender: str =None, email: str =None, length_unit: str ='mile'):
 
         """
         Constructor
@@ -22,29 +22,20 @@ class FirstRunner(object):
         :param length_unit: preferred and valid length unit
         :type length_unit: str
         """
-        where_am_i = 'FirstRunner.__init__'
-        if not isinstance(name, str):
-            raise TypeError(where_am_i + ' - name must be a string')
-        if age is not None:
-            if not isinstance(age, int):
-                raise TypeError(where_am_i + ' - age must be an integer')
-            if age <= 0:
-                raise ValueError(where_am_i + ' - age must be positive')
-        if gender is not None:
-            if not isinstance(gender, str):
-                raise TypeError(where_am_i + ' - gender must be a string')
-            # for now no limit on gender but if the plan has gender related instructions then we might post a warning
-            # when a gender is not recognized by the plan
-        if not isinstance(length_unit, str):
-            raise TypeError(where_am_i + ' - length_unit is expected to be a string')
-        if not FirstDistance.is_valid_unit(length_unit):
-            raise ValueError(where_am_i + ' - length unit not recognized')
+        if name is None:
+            raise ValueError('name is required')
+        if age is not None and age <= 0:
+                raise ValueError('age must be positive')
+        # for now no limit on gender but if the plan has gender related instructions then we might post a warning
+        # when a gender is not recognized by the plan
+        if not FirstDistance.is_valid_unit(unit=length_unit):
+            raise ValueError('length unit not recognized')
 
         if FirstUtils.is_internet_on():
             from validate_email import validate_email
 
             if email is not None and not validate_email(email=email):
-                raise ValueError(where_am_i + ' - invalid email address')
+                raise ValueError('invalid email address')
 
         self.name = name
         self.age = age
@@ -52,7 +43,7 @@ class FirstRunner(object):
         self.email = email
         self.length_unit = length_unit
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         out_string = 'Name - ' + self.name + '\n'
         if self.age is not None:
@@ -64,7 +55,7 @@ class FirstRunner(object):
 
         return out_string
 
-    def details(self, level=0, indent=''):
+    def details(self, level=0, indent='') -> str:
 
         """
         Generate a detailed text report

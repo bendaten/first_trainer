@@ -23,7 +23,8 @@ class TestFirstPlan(unittest.TestCase):
 
         try:  # name only
             p1 = FirstPlan(name='My first marathon training plan', weekly_schedule=ws1)
-            self.assertEqual('Training Plan:\nName - "My first marathon training plan"\nWorkout days: Mon, Wed, Sat\n', str(p1))
+            self.assertEqual('Training Plan:\nName - "My first marathon training plan"\nWorkout days: Mon, Wed, Sat\n',
+                             str(p1))
 
             file_name = expanduser('~/PycharmProjects/first/database/cmp_plan1.tcx')
             # to_file = open(file_name, 'w')
@@ -54,19 +55,19 @@ class TestFirstPlan(unittest.TestCase):
             self.fail(str(vex))
 
         try:  # bad name type
-            p3 = FirstPlan(name=123, weekly_schedule=ws3)
+            _ = FirstPlan(name=123, weekly_schedule=ws3)
             self.fail('Should not get here with bad name type')
         except TypeError as ex:
             self.assertEqual('FirstPlan.__init__ - name must be a string', str(ex))
 
         try:  # bad race type
-            p3 = FirstPlan(name='Test', weekly_schedule=ws3, race='marathon')
+            _ = FirstPlan(name='Test', weekly_schedule=ws3, race='marathon')
             self.fail('Should not get here with bad race type')
         except TypeError as ex:
             self.assertEqual('FirstPlan.__init__ - race must be an instance of FirstRace', str(ex))
 
         try:  # bad runner type
-            p3 = FirstPlan(name='Test', weekly_schedule=ws3, runner=345)
+            _ = FirstPlan(name='Test', weekly_schedule=ws3, runner=345)
             self.fail('Should not get here with bad runner type')
         except TypeError as ex:
             self.assertEqual('FirstPlan.__init__ - runner must be an instance of FirstRunner', str(ex))
@@ -224,6 +225,7 @@ class TestFirstPlan(unittest.TestCase):
             self.fail(str(vex))
         except TypeError as tex:
             self.fail(str(tex))
+
 
 if __name__ == '__main__':
     unittest.main()

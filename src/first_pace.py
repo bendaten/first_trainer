@@ -65,7 +65,7 @@ class FirstPace(object):
         """
         factor = distance.convert_to(unit=self.length_unit)
         seconds = self.time.total_seconds() * factor
-        result_time = FirstTime(seconds=seconds)
+        result_time = FirstTime(seconds=int(seconds))
         return result_time.convert_to(unit=unit)
 
     def to_distance(self, time, unit):
@@ -102,7 +102,7 @@ class FirstPace(object):
         factor = distance.convert_to(unit=unit)  # 400m with unit = mile will become ~0.25
         seconds = time.total_seconds() / factor  # 2 minutes for 400m will give ~(2*60)/0.25
 
-        return cls(minutes=seconds//60, seconds=round(seconds % 60), length_unit=unit)
+        return cls(minutes=int(seconds//60), seconds=round(seconds % 60), length_unit=unit)
 
     def increment(self, seconds):
 

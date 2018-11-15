@@ -23,7 +23,7 @@ class FirstRunner(object):
         :type length_unit: str
         """
         where_am_i = 'FirstRunner.__init__'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name must be a string')
         if age is not None:
             if not isinstance(age, int):
@@ -31,11 +31,11 @@ class FirstRunner(object):
             if age <= 0:
                 raise ValueError(where_am_i + ' - age must be positive')
         if gender is not None:
-            if not isinstance(gender, basestring):
+            if not isinstance(gender, str):
                 raise TypeError(where_am_i + ' - gender must be a string')
             # for now no limit on gender but if the plan has gender related instructions then we might post a warning
             # when a gender is not recognized by the plan
-        if not isinstance(length_unit, basestring):
+        if not isinstance(length_unit, str):
             raise TypeError(where_am_i + ' - length_unit is expected to be a string')
         if not FirstDistance.is_valid_unit(length_unit):
             raise ValueError(where_am_i + ' - length unit not recognized')

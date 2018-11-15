@@ -30,69 +30,69 @@ class TestFirstData(unittest.TestCase):
             self.fail(str(ioex))
 
         try:  # bad race name
-            index = data.race_type_index_by_name('lulu')
+            _ = data.race_type_index_by_name('lulu')
             self.fail('Should not get here with a bad race type name')
         except ValueError as ex:
             self.assertEqual('FirstSegment.race_type_index_by_name - Race type lulu not found', str(ex))
 
         try:  # time not found high
             from_time = FirstTime.from_string('4:49:59')
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
             self.fail('Should not get here with time not found')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - time is longer than the highest database time', str(ex))
 
         try:  # time not found low
             from_time = FirstTime.from_string('0:49:59')
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
             self.fail('Should not get here with time not found')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - time is shorter than the lowest database time', str(ex))
 
         try:  # bad time type
-            equivalent_time = data.equivalent_time(time_from='abc', race_index_from=0, race_index_to=1)
+            _ = data.equivalent_time(time_from='abc', race_index_from=0, race_index_to=1)
             self.fail('Should not get here with bad time type')
         except TypeError as ex:
             self.assertEqual('FirstData.equivalent_time - time_from must be an instance of FirstTime', str(ex))
 
         try:  # bad index type
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from='abc', race_index_to=2)
+            _ = data.equivalent_time(time_from=from_time, race_index_from='abc', race_index_to=2)
             self.fail('Should not get here with bad index')
         except TypeError as ex:
             self.assertEqual('FirstData.equivalent_time - race_index_from must be an int', str(ex))
 
         try:  # bad index type
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=0, race_index_to='abc')
+            _ = data.equivalent_time(time_from=from_time, race_index_from=0, race_index_to='abc')
             self.fail('Should not get here with bad index')
         except TypeError as ex:
             self.assertEqual('FirstData.equivalent_time - race_index_to must be an int', str(ex))
 
         try:  # index out of range
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=-1, race_index_to=2)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=-1, race_index_to=2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=4, race_index_to=2)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=4, race_index_to=2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=-2)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=-2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
-            equivalent_time = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=55)
+            _ = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=55)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
             self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
 
         try:  # bad database file
-            bad_data = FirstData(xml_path='lulu')
+            _ = FirstData(xml_path='lulu')
             self.fail('Should not get here with bad file name')
         except IOError as ioex:
             self.assertEqual("[Errno 2] No such file or directory: 'lulu'", str(ioex))

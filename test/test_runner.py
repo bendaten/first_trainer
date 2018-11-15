@@ -26,25 +26,25 @@ class TestFirstRunner(unittest.TestCase):
             self.fail(str(vex))
 
         try:  # no name
-            r3 = FirstRunner(name=None, age=34, gender='female')
+            _ = FirstRunner(name=None, age=34, gender='female')
             self.fail('Should not get here with no name')
         except TypeError as ex:
             self.assertEqual('FirstRunner.__init__ - name must be a string', str(ex))
 
         try:  # bad type for age
-            r3 = FirstRunner(name='Forest Gump', age='thirty four')
+            _ = FirstRunner(name='Forest Gump', age='thirty four')
             self.fail('Should not get here with string for age')
         except TypeError as ex:
             self.assertEqual('FirstRunner.__init__ - age must be an integer', str(ex))
 
         try:  # negative age
-            r3 = FirstRunner(name='Forest Gump', age=-34)
+            _ = FirstRunner(name='Forest Gump', age=-34)
             self.fail('Should not get here with negative age')
         except ValueError as ex:
             self.assertEqual('FirstRunner.__init__ - age must be positive', str(ex))
 
         try:  # bad type for gender
-            r3 = FirstRunner(name='Forest Gump', gender=0)
+            _ = FirstRunner(name='Forest Gump', gender=0)
             self.fail('Should not get here with number for gender')
         except TypeError as ex:
             self.assertEqual('FirstRunner.__init__ - gender must be a string', str(ex))
@@ -52,7 +52,7 @@ class TestFirstRunner(unittest.TestCase):
         # TODO don't run this when not connected to the network
         if FirstUtils.is_internet_on():
             try:  # bad email
-                r3 = FirstRunner(name='Forest Gump', email='doesnt#have.symbol.at')
+                _ = FirstRunner(name='Forest Gump', email='doesnt#have.symbol.at')
                 self.fail('Should not get here with a bad email')
             except ValueError as ex:
                 self.assertEqual('FirstRunner.__init__ - invalid email address', str(ex))

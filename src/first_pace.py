@@ -6,7 +6,7 @@ from first_distance import FirstDistance
 
 class FirstPace(object):
 
-    def __init__(self, minutes=0, seconds=0, length_unit='mile'):
+    def __init__(self, minutes: int =0, seconds: int =0, length_unit: str ='mile'):
 
         """
         Constructor
@@ -20,9 +20,8 @@ class FirstPace(object):
         :return: instance of FirstPace
         :rtype: FirstPace
         """
-        where_am_i = 'FirstPace.__init__'
-        if not FirstDistance.is_valid_unit(length_unit):
-            raise ValueError(where_am_i + ' - "%1s" is not a valid length unit' % length_unit)
+        if not FirstDistance.is_valid_unit(unit=length_unit):
+            raise ValueError('"{}" is not a valid length unit'.format(length_unit))
         self.time = FirstTime(minutes=minutes, seconds=seconds)
         self.length_unit = length_unit
 
@@ -31,7 +30,7 @@ class FirstPace(object):
         return str(self.time) + ' min per ' + self.length_unit
 
     @classmethod
-    def from_string(cls, str_input):
+    def from_string(cls, str_input: str):
 
         """
         Constructor: Instantiate FirstPace from a string input
@@ -41,25 +40,25 @@ class FirstPace(object):
         :return: instance of FirstPace
         :rtype: FirstPace
         """
-        where_am_i = 'FirstPace.from_string'
         tokens = str_input.split()
 
-        p_time = FirstTime.from_string(tokens[0])  # pass the exception on
+        p_time = FirstTime.from_string(string=tokens[0])  # pass the exception on
         length_unit = tokens[-1]
 
         if not FirstDistance.is_valid_unit(unit=tokens[-1]):
-            raise ValueError(where_am_i + ' - "%1s" is not a valid length unit' % length_unit)
+            raise ValueError('"{}" is not a valid length unit'.format(length_unit))
 
         return cls(minutes=p_time.seconds//60, seconds=p_time.seconds % 60, length_unit=length_unit)
 
-    def to_time(self, distance, unit):
+    def to_time(self, distance: FirstDistance, unit: str) -> float:
 
         """
         How much time will take to run a given distance with this pace
-        
-        :type distance: FirstDistance
+
         :param distance: the distance
+        :type distance: FirstDistance
         :param unit: the desired unit of the result
+        :type unit: str
         :return: the time value for this unit
         :rtype: float
         """
@@ -68,13 +67,15 @@ class FirstPace(object):
         result_time = FirstTime(seconds=int(seconds))
         return result_time.convert_to(unit=unit)
 
-    def to_distance(self, time, unit):
+    def to_distance(self, time: FirstTime, unit: str) -> float:
 
         """
         How far you run given duration with this pace
         
         :param time: the duration
+        :type time: FirstTime
         :param unit: the desired unit of the result
+        :type unit: str
         :return: the distance value for this unit
         :rtype: float
         """
@@ -83,7 +84,7 @@ class FirstPace(object):
         return result_distance.convert_to(unit=unit)
 
     @classmethod
-    def from_time_distance(cls, time, distance, unit=None):
+    def from_time_distance(cls, time: FirstTime, distance: FirstDistance, unit: str =None):
 
         """
         Constructor: Initiate FirstPace from time/distance
@@ -104,27 +105,26 @@ class FirstPace(object):
 
         return cls(minutes=int(seconds//60), seconds=round(seconds % 60), length_unit=unit)
 
-    def increment(self, seconds):
+    def increment(self, seconds: int) -> None:
 
         """
         Increment the pace by number of seconds - for instructions like 'RP+15'
+
         :param seconds:
         :type seconds: int
         """
         self.time += timedelta(seconds=seconds)
 
-    def meters_per_second_delta(self, delta_in_seconds):
+    def meters_per_second_delta(self, delta_in_seconds: int) -> float:
 
         """
         Convert to speed in m/s for tcx with delta for tolerance
+
         :param delta_in_seconds:
         :type delta_in_seconds: int
-        :return:
+        :return: calculated speed in m/s
+        :rtype: float
         """
-        where_am_i = 'FirstPace.meters_per_second_delta'
-        if not isinstance(delta_in_seconds, int):
-            raise ValueError(where_am_i + ' - delta_in_seconds must be an integer')
-
         seconds = self.time.total_seconds() + delta_in_seconds
         meters = FirstDistance(distance=1.0, unit=self.length_unit).convert_to(unit='m')
 

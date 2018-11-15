@@ -1,4 +1,5 @@
-import xml.etree.ElementTree as ET
+# from xml.etree.ElementTree import parse
+from xml.etree import ElementTree
 from datetime import timedelta
 
 from first_distance import FirstDistance
@@ -28,7 +29,7 @@ class FirstData(object):
         self.segments_paces = []
         self.plan_instructions = []
 
-        root = ET.parse(source=xml_path).getroot()
+        root = ElementTree.parse(source=xml_path).getroot()
 
         for child in root:
 
@@ -182,7 +183,7 @@ class FirstData(object):
         :rtype: int
         """
         where_am_i = 'FirstSegment.race_type_index_by_name'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name is expected to be a string')
         for index in range(len(self.race_types)):
             if self.race_types[index].name == name:
@@ -202,7 +203,7 @@ class FirstData(object):
         :rtype: FirstRaceType
         """
         where_am_i = 'FirstSegment.get_race_type_by_name'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name is expected to be a string')
         for race_type in self.race_types:
             if race_type.name == name:
@@ -281,13 +282,13 @@ class FirstSegment(object):
         :rtype: FirstSegment
         """
         where_am_i = 'FirstSegment.__init__'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name must be a string')
         if distance is not None and not isinstance(distance, FirstDistance):
             raise TypeError(where_am_i + ' - distance must be an instance of FirstDistance')
         if duration is not None and not isinstance(duration, FirstTime):
             raise TypeError(where_am_i + ' - duration must be an instance of FirstTime')
-        if ref_pace_name is not None and not isinstance(ref_pace_name, basestring):
+        if ref_pace_name is not None and not isinstance(ref_pace_name, str):
             raise TypeError(where_am_i + ' - ref_pace_name must be a string')
 
         self.name = name

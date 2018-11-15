@@ -26,7 +26,7 @@ class TestFirstPace(unittest.TestCase):
             self.fail(str(ex))
 
         try:
-            p4 = FirstPace(minutes=3, length_unit='lulu')
+            _ = FirstPace(minutes=3, length_unit='lulu')
             self.fail('Should not get here with unit = lulu')
         except ValueError as ex:
             self.assertEqual('FirstPace.__init__ - "lulu" is not a valid length unit', str(ex))

@@ -163,7 +163,7 @@ class TestFirstWorkout(unittest.TestCase):
             self.fail(str(tex))
 
         try:  # wrong type
-            dummy = FirstWorkout(name='Week 1 Key-run 1', workout_date=123)
+            _ = FirstWorkout(name='Week 1 Key-run 1', workout_date=123)
             self.fail('Should not get here with a wrong type for date')
         except TypeError as ex:
             self.assertEqual('FirstWorkout.__init__ - date must be a datetime', str(ex))
@@ -322,8 +322,8 @@ class TestFirstWorkout(unittest.TestCase):
 
         instructions = '1 1 warmup#3x(1600m#200 m@RI#cooldown'
         try:  # unbalanced parentheses
-            dummy = FirstWorkout.from_instructions(instructions=instructions, wo_date=wo_date,
-                                                   data=data, time_index=ti, race_pace=rp)
+            _ = FirstWorkout.from_instructions(instructions=instructions, wo_date=wo_date,
+                                               data=data, time_index=ti, race_pace=rp)
         except ValueError as ex:
             self.assertEqual('FirstWorkout.__parse_steps - Unbalanced parentheses', str(ex))
 

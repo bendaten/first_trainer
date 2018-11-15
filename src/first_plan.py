@@ -27,7 +27,7 @@ class FirstPlan(object):
         :rtype: FirstPlan
         """
         where_am_i = 'FirstPlan.__init__'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name must be a string')
         if not isinstance(weekly_schedule, list):
             raise TypeError(where_am_i + ' - weekly_schedule must be a list')
@@ -183,7 +183,7 @@ class FirstPlan(object):
         index = data.race_type_index_by_name(self.race.race_type.name)
         plan_instructions = data.plan_instructions[index]
         time_index = data.pace_index_by_race_time(race_time=self.race.target_time, race_name=self.race.race_type.name)
-        # TODO for now all plans have 3 weekly keyruns. Add a parameter num_weekly_runs to generalize
+        # TODO for now all plans have 3 weekly key-runs. Add a parameter num_weekly_runs to generalize
         num_weekly_runs = 3
         num_weeks = len(plan_instructions.instructions) / num_weekly_runs
         start_date = self.race.race_date - timedelta(weeks=(num_weeks-1))

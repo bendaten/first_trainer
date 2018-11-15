@@ -54,7 +54,7 @@ class FirstRace(object):
         where_am_i = 'FirstRace.__init__'
         if not isinstance(race_type, FirstRaceType):
             raise TypeError(where_am_i + ' - race type must be an instance of FirstRaceType')
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name must be a string')
         if not isinstance(race_date, datetime.date):
             raise TypeError(where_am_i + ' - race_date must be an instance of datetime.date')
@@ -80,7 +80,7 @@ class FirstRace(object):
         :type status: str
         """
         where_am_i = 'FirstRace.set_status'
-        if not isinstance(status, basestring):
+        if not isinstance(status, str):
             raise TypeError(where_am_i + ' - status must be a string')
 
         if status in self.statuses:

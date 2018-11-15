@@ -90,37 +90,37 @@ class TestFirstStepNew(unittest.TestCase):
             self.fail(str(vex))
 
         try:  # bad name type
-            dummy = FirstStepBody(name=123, pace=p1, time=t1)
+            _ = FirstStepBody(name=123, pace=p1, time=t1)
             self.fail('Should not get here with bad name')
         except TypeError as ex:
             self.assertEqual('FirstStepBase.__init__ - name must be a string', str(ex))
 
         try:  # bad pace
-            dummy = FirstStepBody(name='dummy', pace='bad pace type', time=t1)
+            _ = FirstStepBody(name='dummy', pace='bad pace type', time=t1)
             self.fail('Should not get here with bad pace')
         except TypeError as ex:
             self.assertEqual('FirstStepBody.__init__ - pace must be an instance of FirstPace', str(ex))
 
         try:  # no distance and no time
-            dummy = FirstStepBody(name='dummy', pace=p1)
+            _ = FirstStepBody(name='dummy', pace=p1)
             self.fail('Should not get here with neither distance nor duration')
         except ValueError as ex:
             self.assertEqual('FirstStepBody.__init__ - Either distance or time must have a value', str(ex))
 
         try:  # bad distance
-            dummy = FirstStepBody(name='dummy', pace=p1, distance=123.45)
+            _ = FirstStepBody(name='dummy', pace=p1, distance=123.45)
             self.fail('Should not get here with bad distance')
         except TypeError as ex:
             self.assertEqual('FirstStepBody.__init__ - distance must be an instance of FirstDistance', str(ex))
 
         try:  # bad time
-            dummy = FirstStepBody(name='dummy', pace=p1, time=987.65)
+            _ = FirstStepBody(name='dummy', pace=p1, time=987.65)
             self.fail('Should not get here with bad time')
         except TypeError as ex:
             self.assertEqual('FirstStepBody.__init__ - time must be an instance of FirstTime', str(ex))
 
         try:  # both distance and time
-            dummy = FirstStepBody(name='dummy', pace=p1, distance=d1, time=t1)
+            _ = FirstStepBody(name='dummy', pace=p1, distance=d1, time=t1)
             self.fail('Should not get here with both distance and time')
         except ValueError as ex:
             self.assertEqual('FirstStepBody.__init__ - cannot set both distance and duration in the same step', str(ex))
@@ -205,13 +205,13 @@ class TestFirstStepNew(unittest.TestCase):
             self.fail(str(vex))
 
         try:  # bad repeat type
-            dummy = FirstStepRepeat(name='bla', repeat='3')
+            _ = FirstStepRepeat(name='bla', repeat='3')
             self.fail('Should not get here with bad repeat type')
         except TypeError as ex:
             self.assertEqual('FirstStepRepeat.__init__ - repeat must be an integer', str(ex))
 
         try:  # negative repeat
-            dummy = FirstStepRepeat(name='bla', repeat=-3)
+            _ = FirstStepRepeat(name='bla', repeat=-3)
             self.fail('Should not get here with negative repeat value')
         except ValueError as ex:
             self.assertEqual('FirstStepRepeat.__init__ - repeat must be greater than 0', str(ex))
@@ -227,7 +227,7 @@ class TestFirstStepNew(unittest.TestCase):
         FirstStepBase.reset_global_id()
 
         try:
-            s0 = FirstStepRepeat(name='before reset', repeat=1)  # id = 0
+            _ = FirstStepRepeat(name='before reset', repeat=1)  # id = 0
             s1 = FirstStepRepeat(name='before reset', repeat=1)  # id = 1
             self.assertEqual('Step: "before reset"  id = 1\ntype - repeat  repeat - 1\n', str(s1))
             FirstStepBase.reset_global_id()

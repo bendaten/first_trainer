@@ -26,7 +26,7 @@ class FirstStepBase(object):
     def __init__(self, name):
 
         where_am_i = 'FirstStepBase.__init__'
-        if not isinstance(name, basestring):
+        if not isinstance(name, str):
             raise TypeError(where_am_i + ' - name must be a string')
 
         self.step_id = FirstStepBase.__global_id
@@ -196,8 +196,6 @@ class FirstStepBody(FirstStepBase):
         :type distance: FirstDistance
         :param time: the segment duration
         :type time: FirstTime
-        :return: instance of FirstStepBocy
-        :rtype: FirstStepBody
         """
         where_am_i = 'FirstStepBody.__init__'
         if not isinstance(pace, FirstPace):

@@ -1,7 +1,7 @@
 class FirstDistance(object):
 
     @staticmethod
-    def is_valid_unit(unit):
+    def is_valid_unit(unit: str) -> bool:
 
         """
         Check if a string is one of the known length units
@@ -15,7 +15,7 @@ class FirstDistance(object):
 
     conversions = {'m': 1, 'km': 1000, 'mile': 1609.344, 'ft': 0.3048}
 
-    def __init__(self, distance, unit):
+    def __init__(self, distance: float, unit: str):
 
         """
         Constructor
@@ -27,17 +27,16 @@ class FirstDistance(object):
         :return: instance of FirstDistance
         :rtype: FirstDistance
         """
-        where_am_i = 'FirstDistance.__init__'
         if distance < 0:
-            raise ValueError(where_am_i + ' - %1s is not a positive number' % distance)
+            raise ValueError('{} is not a positive number'.format(distance))
         self.distance = distance
 
-        if not self.is_valid_unit(unit):
-            raise ValueError(where_am_i + ' - "%1s" is not a valid unit' % unit)
+        if not self.is_valid_unit(unit=unit):
+            raise ValueError('"{}" is not a valid unit'.format(unit))
         self.unit = unit
 
     @classmethod
-    def from_string(cls, string):
+    def from_string(cls, string: str):
 
         """
         Instantiate FirstDistance from a string input
@@ -47,25 +46,23 @@ class FirstDistance(object):
         :return: instance of FirstDistance created from the string
         :rtype: FirstDistance
         """
-        where_am_i = 'FirstDistance.from_string'
         tokens = string.split()
         if len(tokens) != 2:
-            raise ValueError(where_am_i + ' - from_string() ' +
-                             'expects 2 tokens, number and unit, but got "%1s"' % string)
+            raise ValueError('2 tokens are expected, number and unit, but got "{}"'.format(string))
 
         try:
             value = float(tokens[0])
         except ValueError as ex:
-            raise ValueError(where_am_i + ' - expects the first token to be a number but ' + str(ex))
+            raise ValueError('first token is expected to be a number but {}'.format(str(ex)))
         unit = tokens[1]
 
         return cls(distance=value, unit=unit)
 
     def __str__(self):
 
-        return str(self.distance) + ' ' + self.unit
+        return '{} {}'.format(str(self.distance), self.unit)
 
-    def convert_to(self, unit):
+    def convert_to(self, unit: str) -> float:
 
         """
         Convert a distance value to another unit
@@ -75,9 +72,8 @@ class FirstDistance(object):
         :return: the converted value
         :rtype: float
         """
-        where_am_i = 'FirstDistance.convert_to'
-        if not self.is_valid_unit(unit):
-            raise ValueError(where_am_i + ' - %1s is not a valid unit' % unit)
+        if not self.is_valid_unit(unit=unit):
+            raise ValueError('{} is not a valid unit'.format(unit))
 
         if self.unit == unit:
             return self.distance

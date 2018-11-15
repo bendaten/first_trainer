@@ -9,8 +9,8 @@ class TestFirstRunner(unittest.TestCase):
     def test_to_string(self):
 
         try:  # name only
-            r1 = FirstRunner(name='Yoseph Abulafia')
-            self.assertEqual('Name - Yoseph Abulafia\n', str(r1))
+            r1 = FirstRunner(name='John Doe')
+            self.assertEqual('Name - John Doe\n', str(r1))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -25,37 +25,18 @@ class TestFirstRunner(unittest.TestCase):
         except ValueError as vex:
             self.fail(str(vex))
 
-        try:  # no name
-            _ = FirstRunner(name=None, age=34, gender='female')
-            self.fail('Should not get here with no name')
-        except TypeError as ex:
-            self.assertEqual('FirstRunner.__init__ - name must be a string', str(ex))
-
-        try:  # bad type for age
-            _ = FirstRunner(name='Forest Gump', age='thirty four')
-            self.fail('Should not get here with string for age')
-        except TypeError as ex:
-            self.assertEqual('FirstRunner.__init__ - age must be an integer', str(ex))
-
         try:  # negative age
             _ = FirstRunner(name='Forest Gump', age=-34)
             self.fail('Should not get here with negative age')
         except ValueError as ex:
-            self.assertEqual('FirstRunner.__init__ - age must be positive', str(ex))
+            self.assertEqual('age must be positive', str(ex))
 
-        try:  # bad type for gender
-            _ = FirstRunner(name='Forest Gump', gender=0)
-            self.fail('Should not get here with number for gender')
-        except TypeError as ex:
-            self.assertEqual('FirstRunner.__init__ - gender must be a string', str(ex))
-
-        # TODO don't run this when not connected to the network
         if FirstUtils.is_internet_on():
             try:  # bad email
                 _ = FirstRunner(name='Forest Gump', email='doesnt#have.symbol.at')
                 self.fail('Should not get here with a bad email')
             except ValueError as ex:
-                self.assertEqual('FirstRunner.__init__ - invalid email address', str(ex))
+                self.assertEqual('invalid email address', str(ex))
 
 
 if __name__ == '__main__':

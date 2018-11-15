@@ -7,7 +7,7 @@ from first_time import FirstTime
 
 class FirstRaceType(object):
 
-    def __init__(self, name, distance, unit):
+    def __init__(self, name: str, distance: float, unit: str):
 
         """
         Constructor
@@ -21,13 +21,12 @@ class FirstRaceType(object):
         :return: instance of FirstRaceType
         :rtype: FirstRaceType
         """
-        where_am_i = 'FirstRace.__init__'
-        if not FirstDistance.is_valid_unit(unit):
-            raise ValueError(where_am_i + ' - "%1s" is not a valid length unit' % unit)
+        if not FirstDistance.is_valid_unit(unit=unit):
+            raise ValueError('"{}" is not a valid length unit'.format(unit))
         self.name = name
         self.distance = FirstDistance(distance=distance, unit=unit)
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         return self.name + ' - ' + str(self.distance)
 
@@ -35,7 +34,7 @@ class FirstRaceType(object):
 class FirstRace(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, race_type, name, race_date, target_time=None):
+    def __init__(self, race_type: FirstRaceType, name: str, race_date: datetime.date, target_time: FirstTime =None):
 
         """
         Constructor
@@ -51,15 +50,6 @@ class FirstRace(object):
         :return: instance of FirstRace
         :rtype: FirstRace
         """
-        where_am_i = 'FirstRace.__init__'
-        if not isinstance(race_type, FirstRaceType):
-            raise TypeError(where_am_i + ' - race type must be an instance of FirstRaceType')
-        if not isinstance(name, str):
-            raise TypeError(where_am_i + ' - name must be a string')
-        if not isinstance(race_date, datetime.date):
-            raise TypeError(where_am_i + ' - race_date must be an instance of datetime.date')
-        if target_time is not None and not isinstance(target_time, FirstTime):
-            raise TypeError(where_am_i + ' - target_time must be an instance of FirstTime')
 
         self.race_type = race_type
         self.name = name
@@ -71,7 +61,7 @@ class FirstRace(object):
     statuses = ['scheduled', 'done', 'skipped']
 
     # noinspection PyTypeChecker
-    def set_status(self, status):
+    def set_status(self, status: str) -> None:
 
         """
         Set the race status
@@ -79,16 +69,13 @@ class FirstRace(object):
         :param status:
         :type status: str
         """
-        where_am_i = 'FirstRace.set_status'
-        if not isinstance(status, str):
-            raise TypeError(where_am_i + ' - status must be a string')
 
         if status in self.statuses:
             self.status = status
         else:
-            raise ValueError(where_am_i + ' - Status not in ' + str(self.statuses))
+            raise ValueError('Status not in ' + str(self.statuses))
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         out_string = (self.name + ' of type ' + str(self.race_type) + '\n' +
                       'On ' + str(self.race_date) + '\n')
@@ -100,7 +87,7 @@ class FirstRace(object):
 
         return out_string
 
-    def details(self, level=0, indent=''):
+    def details(self, level: int =0, indent: str ='') -> str:
 
         """
         Generate a detailed text report
@@ -124,7 +111,7 @@ class FirstRace(object):
 
         return out_string
 
-    def set_target_time(self, a_time=None):
+    def set_target_time(self, a_time: FirstTime =None) -> None:
 
         """
         Set the target time for the race
@@ -132,26 +119,19 @@ class FirstRace(object):
         :param a_time:
         :type a_time: FirstTime
         """
-        where_am_i = 'FirstRace.set_target_time'
-        if a_time is not None and not isinstance(a_time, FirstTime):
-            raise TypeError(where_am_i + ' - a_time must be an instance of FirstTime')
 
         self.target_time = a_time
 
-    def set_actual_time(self, a_time=None):
+    def set_actual_time(self, a_time: FirstTime =None) -> None:
 
         """
         Set the actual race time after finished (future use)
         :param a_time:
         :type a_time: FirstTime
         """
-        where_am_i = 'FirstRace.set_actual_time'
-        if not isinstance(a_time, FirstTime):
-            raise TypeError(where_am_i + ' - a_time must be an instance of FirstTime')
-
         self.actual_time = a_time
 
-    def race_pace(self):
+    def race_pace(self) -> FirstPace:
 
         """
         Get the target race pace

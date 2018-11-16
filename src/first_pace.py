@@ -64,7 +64,7 @@ class FirstPace(object):
         """
         factor = distance.convert_to(unit=self.length_unit)
         seconds = self.time.total_seconds() * factor
-        result_time = FirstTime(seconds=int(seconds))
+        result_time = FirstTime(seconds=round(seconds))
         return result_time.convert_to(unit=unit)
 
     def to_distance(self, time: FirstTime, unit: str) -> float:

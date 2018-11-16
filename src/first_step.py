@@ -1,5 +1,7 @@
 import copy
+from typing import List
 
+from first_data import FirstData
 from first_distance import FirstDistance
 from first_pace import FirstPace
 from first_time import FirstTime
@@ -15,7 +17,7 @@ class FirstStepBase(object):
     __global_id = 0  # static
 
     @staticmethod
-    def reset_global_id():  # reset before each training plan
+    def reset_global_id() -> None:  # reset before each training plan
 
         """
         Reset the global id
@@ -23,34 +25,30 @@ class FirstStepBase(object):
         FirstStepBase.__global_id = 0
 
     # noinspection PyTypeChecker
-    def __init__(self, name):
-
-        where_am_i = 'FirstStepBase.__init__'
-        if not isinstance(name, str):
-            raise TypeError(where_am_i + ' - name must be a string')
+    def __init__(self, name: str):
 
         self.step_id = FirstStepBase.__global_id
         FirstStepBase.__global_id += 1
         self.name = name
 
-    def __str__(self):
+    def __str__(self) -> str:
 
-        return 'Step: "' + self.name + '"  id = ' + str(self.step_id) + '\n'
+        return 'Step: "{}"  id = {}\n'.format(self.name, self.step_id)
 
-    def details(self, indent=''):
+    def details(self, indent: str ='') -> str:
 
-        return indent + 'Step: "' + self.name + '"\n'
+        return '{}Step: "{}"\n'.format(indent, self.name)
 
-    def tcx_start(self, child, step_type, indent):
+    def tcx_start(self, child: bool, step_type: str, indent: str) -> str:
 
         if child:
             token = 'Child'
         else:
             token = 'Step'
 
-        tcx_string = indent + '<' + token + ' xsi:type="' + step_type + '">\n'
-        tcx_string += indent + '  <StepId>' + str(self.step_id) + '</StepId>\n'
-        tcx_string += indent + '  <Name>' + self.name + '</Name>\n'
+        tcx_string = '{}<{} xsi:type="{}">\n'.format(indent, token, step_type)
+        tcx_string += '{}  <StepId>{}</StepId>\n'.format(indent, str(self.step_id))
+        tcx_string += '{}  <Name>{}</Name>\n'.format(indent, self.name)
 
         return tcx_string
 
@@ -58,7 +56,7 @@ class FirstStepBase(object):
 class FirstStepRepeat(FirstStepBase):
 
     # noinspection PyTypeChecker
-    def __init__(self, name, repeat):
+    def __init__(self, name: str, repeat: int =1):
 
         """
         Constructor
@@ -70,11 +68,8 @@ class FirstStepRepeat(FirstStepBase):
         :return: instance of FirstStepRepeat
         :rtype: FirstStepRepeat
         """
-        where_am_i = 'FirstStepRepeat.__init__'
-        if repeat is not None and not isinstance(repeat, int):
-            raise TypeError(where_am_i + ' - repeat must be an integer')
         if repeat < 1:
-            raise ValueError(where_am_i + ' - repeat must be greater than 0')
+            raise ValueError('repeat must be greater than 0')
 
         FirstStepBase.__init__(self, name=name)
 
@@ -82,15 +77,15 @@ class FirstStepRepeat(FirstStepBase):
         self.steps = []
 
     @staticmethod
-    def __get_type():
+    def __get_type() -> str:
 
         return 'repeat'
 
-    def __str__(self):
+    def __str__(self) -> str:
 
-        return FirstStepBase.__str__(self) + 'type - ' + self.__get_type() + '  repeat - ' + str(self.repeat) + '\n'
+        return '{}type - {}  repeat - {}\n'.format(FirstStepBase.__str__(self), self.__get_type(), str(self.repeat))
 
-    def details(self, level=0, indent=''):
+    def details(self, level: int =0, indent: str ='') -> str:
 
         """
         Generate a detailed text report
@@ -108,7 +103,7 @@ class FirstStepRepeat(FirstStepBase):
 
         return out_string
 
-    def tcx(self, indent='', child=False, delta_seconds=5):
+    def tcx(self, indent: str ='', child: bool =False, delta_seconds: int =5) -> str:
 
         """
         Generate a tcx string to download to a Garmin device
@@ -124,7 +119,7 @@ class FirstStepRepeat(FirstStepBase):
         """
         tcx_string = FirstStepBase.tcx_start(self, child=child, step_type='Repeat_t', indent=indent)
 
-        tcx_string += indent + '  <Repetitions>' + str(self.repeat) + '</Repetitions>\n'
+        tcx_string += '{}  <Repetitions>{}</Repetitions>\n'.format(indent, str(self.repeat))
 
         for step in self.steps:
             tcx_string += step.tcx(indent=indent + '  ', child=True, delta_seconds=delta_seconds)
@@ -136,7 +131,7 @@ class FirstStepRepeat(FirstStepBase):
 
         return tcx_string
 
-    def add_step(self, step):
+    def add_step(self, step: FirstStepBase) -> None:
 
         """
         Add a child step
@@ -144,23 +139,20 @@ class FirstStepRepeat(FirstStepBase):
         :param step: the step to be added
         :type step: FirstStepBase
         """
-        where_am_i = 'FirstStepRepeat.add_step'
-        if not isinstance(step, FirstStepBase):
-            raise TypeError(where_am_i + ' - step must be an instance of FirstStepBase')
 
         self.steps.append(step)
         
-    def set_steps(self, steps):
+    def set_steps(self, steps: List[FirstStepBase]) -> None:
 
         """
         Set the steps to be repeated
 
         :param steps: list of steps
-        :type steps: list of FirstStepBase
+        :type steps: list[FirstStepBase]
         """
         self.steps = steps
 
-    def total(self, what='distance', unit='m'):
+    def total(self, what: str ='distance', unit: str ='m') -> float:
 
         """
         Calculate the total distance or time for this step
@@ -183,7 +175,8 @@ class FirstStepRepeat(FirstStepBase):
 class FirstStepBody(FirstStepBase):
 
     # noinspection PyTypeChecker
-    def __init__(self, name, pace, intensity='Active', distance=None, time=None):
+    def __init__(self, name: str, pace: FirstPace, intensity: str ='Active',
+                 distance: FirstDistance =None, time: FirstTime =None):
 
         """
         Constructor
@@ -192,22 +185,17 @@ class FirstStepBody(FirstStepBase):
         :type name: str
         :param pace: running pace
         :type pace: FirstPace
+        :param intensity: TBD
+        :type intensity: str
         :param distance: the segment distance
         :type distance: FirstDistance
         :param time: the segment duration
         :type time: FirstTime
         """
-        where_am_i = 'FirstStepBody.__init__'
-        if not isinstance(pace, FirstPace):
-            raise TypeError(where_am_i + ' - pace must be an instance of FirstPace')
         if distance is None and time is None:
-            raise ValueError(where_am_i + ' - Either distance or time must have a value')
-        if distance is not None and not isinstance(distance, FirstDistance):
-            raise TypeError(where_am_i + ' - distance must be an instance of FirstDistance')
-        if time is not None and not isinstance(time, FirstTime):
-            raise TypeError(where_am_i + ' - time must be an instance of FirstTime')
+            raise ValueError('Either distance or time must have a value')
         if distance is not None and time is not None:
-            raise ValueError(where_am_i + ' - cannot set both distance and duration in the same step')
+            raise ValueError('Cannot set both distance and duration in the same step')
 
         FirstStepBase.__init__(self, name=name)
 
@@ -217,16 +205,16 @@ class FirstStepBody(FirstStepBase):
         self.time = time
 
     @staticmethod
-    def __get_type():
+    def __get_type() -> str:
 
         return 'body'
 
     @staticmethod
-    def __get_tcx_type():
+    def __get_tcx_type() -> str:
 
         return 'Step_t'
 
-    def get_duration_type(self):
+    def get_duration_type(self) -> str:
 
         """
         Either distance or time
@@ -239,38 +227,40 @@ class FirstStepBody(FirstStepBase):
         else:
             return 'time'
 
-    def __str__(self):
+    def __str__(self) -> str:
 
         output = FirstStepBase.__str__(self)
-        output += 'type - ' + self.__get_type() + '  pace - ' + str(self.pace) + '\n'
+        output += 'type - {}  pace - {}\n'.format(self.__get_type(), str(self.pace))
         if self.get_duration_type() == 'distance':
-            output += 'Distance - ' + str(self.distance) + '\n'
+            output += 'Distance - {}\n'.format(str(self.distance))
         else:
-            output += 'Time - ' + str(self.time) + '\n'
+            output += 'Time - {}\n'.format(str(self.time))
 
         return output
 
-    def details(self, level=0, indent=''):
+    def details(self, level: int =0, indent: str ='') -> str:
 
         """
         Text report of a training plan
 
         :param level: level of details; 0 for minimum
+        :type level: int
         :param indent:
+        :type indent: str
         :return: plain text string
         :rtype: str
         """
         out_string = FirstStepBase.details(self, indent=indent)
         if self.get_duration_type() == 'distance':
-            out_string += indent + '  ' + str(self.distance)
+            out_string += '{}  {}'.format(indent, str(self.distance))
         else:
-            out_string += indent + '  ' + str(self.time)
+            out_string += '{}  {}'.format(indent, str(self.time))
 
-        out_string += '  at  ' + str(self.pace) + '\n'
+        out_string += '  at  {}\n'.format(str(self.pace))
 
         return out_string
 
-    def tcx(self, indent='', child=False, delta_seconds=5):
+    def tcx(self, indent: str ='', child: bool =False, delta_seconds: int =5) -> str:
 
         """
         Generate a tcx string to download to a Garmin device
@@ -287,26 +277,24 @@ class FirstStepBody(FirstStepBase):
         tcx_string = FirstStepBase.tcx_start(self, child=child, step_type='Step_t', indent=indent)
 
         if self.get_duration_type() == 'distance':
-            tcx_string += indent + '  <Duration xsi:type="Distance_t">\n'
-            tcx_string += indent + '    <Meters>' + '{:.0f}'.format(self.distance.convert_to('m')) + '</Meters>\n'
+            tcx_string += '{}  <Duration xsi:type="Distance_t">\n'.format(indent)
+            tcx_string += '{}    <Meters>{:.0f}</Meters>\n'.format(indent, self.distance.convert_to('m'))
         else:  # time
-            tcx_string += indent + '  <Duration xsi:type="Time_t">\n'
-            tcx_string += indent + '    <Seconds>' + str(int(self.time.convert_to('second'))) + '</Seconds>\n'
+            tcx_string += '{}  <Duration xsi:type="Time_t">\n'.format(indent)
+            tcx_string += '{}    <Seconds>{}</Seconds>\n'.format(indent, str(int(self.time.convert_to('second'))))
 
-        tcx_string += indent + '  </Duration>\n'
+        tcx_string += '{}  </Duration>\n'.format(indent)
 
-        tcx_string += indent + '  <Intensity>' + self.intensity + '</Intensity>\n'
+        tcx_string += '{}  <Intensity>{}</Intensity>\n'.format(indent, self.intensity)
 
-        tcx_string += indent + '  <Target xsi:type="Speed_t">\n'
-        tcx_string += indent + '    <SpeedZone xsi:type="CustomSpeedZone_t">\n'
-        tcx_string += indent + '    <LowInMetersPerSecond>' +                                      \
-                               '{:.7f}'.format(self.pace.meters_per_second_delta(delta_seconds)) + \
-                               '</LowInMetersPerSecond>\n'
-        tcx_string += indent + '    <HighInMetersPerSecond>' +                                     \
-                               '{:.7f}'.format(self.pace.meters_per_second_delta(-delta_seconds)) + \
-                               '</HighInMetersPerSecond>\n'
-        tcx_string += indent + '  </SpeedZone>\n'
-        tcx_string += indent + '  </Target>\n'
+        tcx_string += '{}  <Target xsi:type="Speed_t">\n'.format(indent)
+        tcx_string += '{}    <SpeedZone xsi:type="CustomSpeedZone_t">\n'.format(indent)
+        tcx_string += '{}    <LowInMetersPerSecond>{:.7f}</LowInMetersPerSecond>\n'.format(
+            indent, self.pace.meters_per_second_delta(delta_seconds))
+        tcx_string += '{}    <HighInMetersPerSecond>{:.7f}</HighInMetersPerSecond>\n'.format(
+            indent, self.pace.meters_per_second_delta(-delta_seconds))
+        tcx_string += '{}  </SpeedZone>\n'.format(indent)
+        tcx_string += '{}  </Target>\n'.format(indent)
 
         if child:
             tcx_string += indent + '</Child>\n'
@@ -315,7 +303,7 @@ class FirstStepBody(FirstStepBase):
 
         return tcx_string
 
-    def total(self, what='distance', unit='m'):
+    def total(self, what: str ='distance', unit: str ='m') -> float:
 
         """
         Calculate the total distance or time for this step
@@ -327,7 +315,6 @@ class FirstStepBody(FirstStepBase):
         :return: total distance value
         :rtype: float
         """
-        where_am_i = 'FirstStepBody.total'
         if what == 'distance':
             if self.get_duration_type() == what:
                 return self.distance.convert_to(unit=unit)
@@ -339,10 +326,10 @@ class FirstStepBody(FirstStepBase):
             else:
                 return self.pace.to_time(distance=self.distance, unit=unit)
         else:
-            raise ValueError(where_am_i + ' - what must be "distance" or "time"')
+            raise ValueError('what must be "distance" or "time"')
 
     @classmethod
-    def from_instructions(cls, instructions, data, time_index, rp):
+    def from_instructions(cls, instructions: str, data: FirstData, time_index: int, rp: FirstPace):
 
         """
         Create a step from an instruction string

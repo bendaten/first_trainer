@@ -34,7 +34,7 @@ class TestFirstPace(unittest.TestCase):
     def test_from_string(self):
 
         try:
-            pace = FirstPace.from_string('0:06:23 min per mile')
+            pace = FirstPace.from_string(str_input='0:06:23 min per mile')
             self.assertEqual('0:06:23 min per mile', str(pace))
         except ValueError as ex:
             self.fail(str(ex))

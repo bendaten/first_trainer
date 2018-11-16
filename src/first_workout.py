@@ -3,13 +3,14 @@ import datetime
 from parse import *
 
 from first_data import FirstData
+from first_pace import FirstPace
 from first_step import FirstStepBase, FirstStepRepeat, FirstStepBody
 
 
 class FirstWorkout(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name, workout_date, note=None):
+    def __init__(self, name: str, workout_date: datetime.date, note: str =None):
 
         """
         Constructor
@@ -23,13 +24,6 @@ class FirstWorkout(object):
         :return: instance to FirstWorkout
         :rtype: FirstWorkout
         """
-        where_am_i = 'FirstWorkout.__init__'
-        if not isinstance(name, str):
-            raise TypeError(where_am_i + ' - name must be a string')
-        if not isinstance(workout_date, datetime.date):
-            raise TypeError(where_am_i + ' - date must be a datetime')
-        if note is not None and not isinstance(note, str):
-            raise ValueError(where_am_i + ' - note must be a string')
 
         self.name = name
         self.workout_date = workout_date
@@ -37,7 +31,7 @@ class FirstWorkout(object):
         self.note = note
         self.steps = []
 
-    def add_step(self, step):
+    def add_step(self, step: FirstStepBase) -> None:
 
         """
         Add a step to the workout
@@ -45,42 +39,36 @@ class FirstWorkout(object):
         :param step:
         :type step: FirstStepBase
         """
-        where_am_i = 'FirstWorkout.add_step'
-        if not isinstance(step, FirstStepBase):
-            raise TypeError(where_am_i + ' - step must be an instance of FirstStepBase')
 
         self.steps.append(step)
 
     statuses = ['scheduled', 'done', 'skipped']
 
-    def set_status(self, status):
+    def set_status(self, status: str) -> None:
 
         """
 
         :param status: for now anything
         :type status: str
         """
-        where_am_i = 'FirstWorkout.set_status'
         if status in self.statuses:
             self.status = status
         else:
-            raise ValueError(where_am_i + ' - Status not in ' + str(self.statuses))
+            raise ValueError('Status not in {}'.format(str(self.statuses)))
 
-    def __str__(self):
+    def __str__(self) -> str:
 
-        out_string = self.name + '\n'
-        out_string += str(self.workout_date) + '\n'
-        out_string += self.status + '\n'
+        out_string = '{}\n{}\n{}\n'.format(self.name, str(self.workout_date), self.status)
 
         if len(self.steps) == 0:
             out_string += '\tEmpty workout\n'
         else:
             for step in self.steps:
-                out_string += '\t' + str(step)
+                out_string += '\t{}'.format(str(step))
 
         return out_string
 
-    def details(self, level=0, indent=''):
+    def details(self, level: int =0, indent: str ='') -> str:
 
         """
         Text report of a training plan
@@ -92,21 +80,21 @@ class FirstWorkout(object):
         :return: plain text string
         :rtype: str
         """
-        out_string = indent + '"' + self.name + '"\n'
-        out_string += indent + '  ' + self.workout_date.strftime('%a %Y-%m-%d') + '\n'
-        out_string += indent + '  ' + self.status + '\n'
+        out_string = indent + '{}"{}"\n'.format(indent, self.name)
+        out_string += indent + '{}  {}\n'.format(indent, self.workout_date.strftime('%a %Y-%m-%d'))
+        out_string += indent + '{}  {}\n'.format(indent, self.status)
 
         if level > 0:
             if level > 1:
                 for step in self.steps:
                     out_string += step.details(indent=indent + '  ')
 
-            out_string += indent + '  Totals: distance = {0:.2f} miles   duration = {1:.2f} minutes\n'. \
-                format(self.total(unit='mile'), self.total(what='time', unit='minute'))
+            out_string += '{0}  Totals: distance = {1:.2f} miles   duration = {2:.2f} minutes\n'.format(
+                indent, self.total(unit='mile'), self.total(what='time', unit='minute'))
 
         return out_string
 
-    def total(self, what='distance', unit='mile'):
+    def total(self, what: str ='distance', unit: str ='mile') -> float:
 
         """
         Calculate the total distance or time for this workout
@@ -124,7 +112,7 @@ class FirstWorkout(object):
 
         return result
 
-    def tcx(self, indent=''):
+    def tcx(self, indent: str ='') -> str:
 
         """
         Generate a tcx string to download to a Garmin device
@@ -134,21 +122,21 @@ class FirstWorkout(object):
         :return: a tcx format for the training plan
         :rtype: str
         """
-        tcx_string = indent + '<Workout Sport="Running">\n'
-        tcx_string += indent + '  ' + '<Name>' + self.name + '</Name>\n'
+        tcx_string = '{}<Workout Sport="Running">\n'.format(indent)
+        tcx_string += '{}  <Name>{}</Name>\n'.format(indent, self.name)
 
         for step in self.steps:
             tcx_string += step.tcx(indent=indent + '  ')
 
-        tcx_string += indent + '  ' + '<ScheduledOn>' + str(self.workout_date) + '</ScheduledOn>\n'
+        tcx_string += '{}  <ScheduledOn>{}</ScheduledOn>\n'.format(indent, str(self.workout_date))
         if self.note is not None:
-            tcx_string += indent + '  ' + '<Notes>' + self.note + '</Notes>\n'
-        tcx_string += indent + '</Workout>\n'
+            tcx_string += '{}  <Notes>{}</Notes>\n'.format(indent, self.note)
+        tcx_string += '{}</Workout>\n'.format(indent)
 
         return tcx_string
 
     @staticmethod
-    def __parse_simple_steps(data, instructions, time_index, race_pace):
+    def __parse_simple_steps(data: FirstData, instructions: str, time_index: int, race_pace: FirstPace):
 
         steps = []
 
@@ -169,9 +157,8 @@ class FirstWorkout(object):
         return steps, repeat
 
     @staticmethod
-    def __parse_steps(data, instructions, time_index, race_pace):
+    def __parse_steps(data: FirstData, instructions: str, time_index: int, race_pace: FirstPace):
 
-        where_am_i = 'FirstWorkout.__parse_steps'
         steps = []
         simple_instructions = ''
         remainder = instructions
@@ -183,7 +170,7 @@ class FirstWorkout(object):
                                                                          time_index=time_index, race_pace=race_pace)
                 simple_instructions = ''
                 if repeat < 1:
-                    raise ValueError(where_am_i + ' - Syntax error: missing nX before (')
+                    raise ValueError('Syntax error: missing nX before (')
 
                 steps += simple_steps
                 remainder = remainder[1:]
@@ -192,7 +179,7 @@ class FirstWorkout(object):
                                                                                 time_index=time_index,
                                                                                 race_pace=race_pace)
                 if not close_par:
-                    raise ValueError(where_am_i + ' - Unbalanced parentheses')
+                    raise ValueError('Unbalanced parentheses')
                 step.set_steps(steps=repeat_steps)
                 steps.append(step)
             elif char == ')':
@@ -209,13 +196,14 @@ class FirstWorkout(object):
         simple_steps, repeat = FirstWorkout.__parse_simple_steps(data=data, instructions=simple_instructions,
                                                                  time_index=time_index, race_pace=race_pace)
         if repeat > 0:
-            raise ValueError(where_am_i + ' - Syntax error: trailing nX')
+            raise ValueError('Syntax error: trailing nX')
         steps += simple_steps
 
         return steps, remainder, False
 
     @classmethod
-    def from_instructions(cls, instructions, wo_date, data, time_index, race_pace):
+    def from_instructions(cls, instructions: str, wo_date: datetime.date,
+                          data: FirstData, time_index: int, race_pace: FirstPace):
 
         """
         Constructor - create workout from instructions
@@ -232,21 +220,15 @@ class FirstWorkout(object):
         :return: instance of FirstWorkout
         :rtype: FirstWorkout
         """
-        where_am_i = 'FirstWorkout.from_instructions'
-        # noinspection PyTypeChecker
-        if not isinstance(instructions, str):
-            raise TypeError(where_am_i + ' - wi is expected to be a string')
-        if not isinstance(data, FirstData):
-            raise TypeError(where_am_i + ' - data should be an instance of FirstData')
 
         split1 = instructions.split(' ', 2)
-        name = 'Week ' + split1[0] + ' Keyrun ' + split1[1]
+        name = 'Week {} Keyrun {}'.format(split1[0], split1[1])
         wo = cls(name=name, workout_date=wo_date, note=split1[2])
 
         steps, remainder, close_par = FirstWorkout.__parse_steps(instructions=split1[2], data=data,
                                                                  time_index=time_index, race_pace=race_pace)
         if len(remainder) > 0:
-            raise ValueError(where_am_i + ' - remainder is expected to be empty after all steps are parsed')
+            raise ValueError('remainder is expected to be empty after all steps are parsed')
         for step in steps:
             wo.add_step(step=step)
 

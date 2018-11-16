@@ -14,19 +14,19 @@ class TestFirstStepNew(unittest.TestCase):
 
         FirstStepBase.reset_global_id()
 
-        p1 = FirstPace.from_string('0:10:00 min per mile')
-        d1 = FirstDistance.from_string('3 mile')
-        t1 = FirstTime.from_string('0:15:00')
+        pace = FirstPace.from_string(str_input='0:10:00 min per mile')
+        distance = FirstDistance.from_string(string='3 mile')
+        time = FirstTime.from_string(string='0:15:00')
 
         try:  # distance step
-            s1 = FirstStepBody(name='3 miles @ 10 minutes per mile', pace=p1, distance=d1)
+            step_b = FirstStepBody(name='3 miles @ 10 minutes per mile', pace=pace, distance=distance)
             cmp_string = 'Step: "3 miles @ 10 minutes per mile"  id = 0\n' + \
                          'type - body  pace - 0:10:00 min per mile\nDistance - 3.0 mile\n'
-            self.assertEqual(cmp_string, str(s1))
-            self.assertAlmostEquals(3.0, s1.total(unit='mile'), 5)
-            self.assertAlmostEquals(4.828032, s1.total(unit='km'), 5)
-            self.assertAlmostEquals(30.0, s1.total(what='time', unit='minute'), 5)
-            self.assertAlmostEquals(0.5, s1.total(what='time', unit='hour'), 5)
+            self.assertEqual(cmp_string, str(step_b))
+            self.assertAlmostEqual(3.0, step_b.total(unit='mile'), 5)
+            self.assertAlmostEqual(4.828032, step_b.total(unit='km'), 5)
+            self.assertAlmostEqual(30.0, step_b.total(what='time', unit='minute'), 5)
+            self.assertAlmostEqual(0.5, step_b.total(what='time', unit='hour'), 5)
             tcx_string = ('<Step xsi:type="Step_t">\n' +
                           '  <StepId>0</StepId>\n' +
                           '  <Name>3 miles @ 10 minutes per mile</Name>\n' +
@@ -41,7 +41,7 @@ class TestFirstStepNew(unittest.TestCase):
                           '  </SpeedZone>\n' +
                           '  </Target>\n' +
                           '</Step>\n')
-            self.assertEqual(tcx_string, s1.tcx())  # no indent
+            self.assertEqual(tcx_string, step_b.tcx())  # no indent
             tcx_string = ('    <Step xsi:type="Step_t">\n' +
                           '      <StepId>0</StepId>\n' +
                           '      <Name>3 miles @ 10 minutes per mile</Name>\n' +
@@ -56,19 +56,19 @@ class TestFirstStepNew(unittest.TestCase):
                           '      </SpeedZone>\n' +
                           '      </Target>\n' +
                           '    </Step>\n')
-            self.assertEqual(tcx_string, s1.tcx(indent='    ', delta_seconds=3))  # with indent
+            self.assertEqual(tcx_string, step_b.tcx(indent='    ', delta_seconds=3))  # with indent
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
             self.fail(str(vex))
 
         try:  # time step
-            s1 = FirstStepBody(name='15 minutes @ 10 minutes per mile', pace=p1, time=t1)
+            step_b = FirstStepBody(name='15 minutes @ 10 minutes per mile', pace=pace, time=time)
             cmp_string = 'Step: "15 minutes @ 10 minutes per mile"  id = 1\n' + \
                          'type - body  pace - 0:10:00 min per mile\nTime - 0:15:00\n'
-            self.assertEqual(cmp_string, str(s1))
-            self.assertAlmostEquals(15.0, s1.total(what='time', unit='minute'), 5)
-            self.assertAlmostEquals(7920.0, s1.total(unit='ft'))
+            self.assertEqual(cmp_string, str(step_b))
+            self.assertAlmostEqual(15.0, step_b.total(what='time', unit='minute'), 5)
+            self.assertAlmostEqual(7920.0, step_b.total(unit='ft'))
             tcx_string = ('<Step xsi:type="Step_t">\n' +
                           '  <StepId>1</StepId>\n' +
                           '  <Name>15 minutes @ 10 minutes per mile</Name>\n' +
@@ -83,88 +83,64 @@ class TestFirstStepNew(unittest.TestCase):
                           '  </SpeedZone>\n' +
                           '  </Target>\n' +
                           '</Step>\n')
-            self.assertEqual(tcx_string, s1.tcx())
+            self.assertEqual(tcx_string, step_b.tcx())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
             self.fail(str(vex))
 
-        try:  # bad name type
-            _ = FirstStepBody(name=123, pace=p1, time=t1)
-            self.fail('Should not get here with bad name')
-        except TypeError as ex:
-            self.assertEqual('FirstStepBase.__init__ - name must be a string', str(ex))
-
-        try:  # bad pace
-            _ = FirstStepBody(name='dummy', pace='bad pace type', time=t1)
-            self.fail('Should not get here with bad pace')
-        except TypeError as ex:
-            self.assertEqual('FirstStepBody.__init__ - pace must be an instance of FirstPace', str(ex))
-
         try:  # no distance and no time
-            _ = FirstStepBody(name='dummy', pace=p1)
+            _ = FirstStepBody(name='dummy', pace=pace)
             self.fail('Should not get here with neither distance nor duration')
         except ValueError as ex:
-            self.assertEqual('FirstStepBody.__init__ - Either distance or time must have a value', str(ex))
-
-        try:  # bad distance
-            _ = FirstStepBody(name='dummy', pace=p1, distance=123.45)
-            self.fail('Should not get here with bad distance')
-        except TypeError as ex:
-            self.assertEqual('FirstStepBody.__init__ - distance must be an instance of FirstDistance', str(ex))
-
-        try:  # bad time
-            _ = FirstStepBody(name='dummy', pace=p1, time=987.65)
-            self.fail('Should not get here with bad time')
-        except TypeError as ex:
-            self.assertEqual('FirstStepBody.__init__ - time must be an instance of FirstTime', str(ex))
+            self.assertEqual('Either distance or time must have a value', str(ex))
 
         try:  # both distance and time
-            _ = FirstStepBody(name='dummy', pace=p1, distance=d1, time=t1)
+            _ = FirstStepBody(name='dummy', pace=pace, distance=distance, time=time)
             self.fail('Should not get here with both distance and time')
         except ValueError as ex:
-            self.assertEqual('FirstStepBody.__init__ - cannot set both distance and duration in the same step', str(ex))
+            self.assertEqual('Cannot set both distance and duration in the same step', str(ex))
 
     def test_repeat(self):
 
         FirstStepBase.reset_global_id()
 
-        p1 = FirstPace.from_string('0:10:00 min per mile')
-        d1 = FirstDistance.from_string('3 mile')
-        t1 = FirstTime.from_string('0:15:00')
+        pace = FirstPace.from_string(str_input='0:10:00 min per mile')
+        distance = FirstDistance.from_string(string='3 mile')
+        time = FirstTime.from_string(string='0:15:00')
 
         try:
             name = '3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)'
-            s1 = FirstStepRepeat(name=name, repeat=3)
-            self.assertEqual('Step: "' + name + '"  id = 0\ntype - repeat  repeat - 3\n', str(s1))
-            self.assertAlmostEquals(0.0, s1.total(unit='mile'), 5)
-            self.assertAlmostEquals(0.0, s1.total(what='time', unit='minute'))
+            step_r = FirstStepRepeat(name=name, repeat=3)
+            self.assertEqual('Step: "' + name + '"  id = 0\ntype - repeat  repeat - 3\n', str(step_r))
+            self.assertAlmostEqual(0.0, step_r.total(unit='mile'), 5)
+            self.assertAlmostEqual(0.0, step_r.total(what='time', unit='minute'))
             tcx_string = ('<Step xsi:type="Repeat_t">\n' +
                           '  <StepId>0</StepId>\n' +
                           '  <Name>3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)</Name>\n' +
                           '  <Repetitions>3</Repetitions>\n' +
                           '</Step>\n')
-            self.assertEqual(tcx_string, s1.tcx())
+            self.assertEqual(tcx_string, step_r.tcx())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
             self.fail(str(vex))
 
         try:
-            s2 = FirstStepBody(name='3 mile @ 10 min per mile', pace=p1, distance=d1)
-            s3 = FirstStepBody(name='15 minutes @ 19 min per mile', pace=p1, time=t1)
-            s1.add_step(s2)
-            s1.add_step(s3)
+            step_b1 = FirstStepBody(name='3 mile @ 10 min per mile', pace=pace, distance=distance)
+            step_b2 = FirstStepBody(name='15 minutes @ 19 min per mile', pace=pace, time=time)
+            step_r.add_step(step_b1)
+            step_r.add_step(step_b2)
             short = 'Step: "' + name + '"  id = 0\ntype - repeat  repeat - 3\n'
-            self.assertEqual(short, str(s1))
+            self.assertEqual(short, str(step_r))
             detail = 'Step: "3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)"\n' +\
                      '  Step: "3 mile @ 10 min per mile"\n' +\
                      '    3.0 mile  at  0:10:00 min per mile\n' +\
                      '  Step: "15 minutes @ 19 min per mile"\n' +\
                      '    0:15:00  at  0:10:00 min per mile\n'
-            self.assertEqual(detail, s1.details())
-            self.assertAlmostEquals(13.5, s1.total(unit='mile'), 5)
-            self.assertAlmostEquals(135.0, s1.total(what='time', unit='minute'))
+            self.assertEqual(detail, step_r.details())
+            self.assertAlmostEqual(13.5, step_r.total(unit='mile'), 5)
+            self.assertAlmostEqual(135.0, step_r.total(what='time', unit='minute'))
             tcx_string = ('  <Step xsi:type="Repeat_t">\n' +
                           '    <StepId>0</StepId>\n' +
                           '    <Name>3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)</Name>\n' +
@@ -198,29 +174,17 @@ class TestFirstStepNew(unittest.TestCase):
                           '      </Target>\n' +
                           '    </Child>\n'
                           '  </Step>\n')
-            self.assertEqual(tcx_string, s1.tcx(indent='  ', delta_seconds=10))
+            self.assertEqual(tcx_string, step_r.tcx(indent='  ', delta_seconds=10))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
             self.fail(str(vex))
 
-        try:  # bad repeat type
-            _ = FirstStepRepeat(name='bla', repeat='3')
-            self.fail('Should not get here with bad repeat type')
-        except TypeError as ex:
-            self.assertEqual('FirstStepRepeat.__init__ - repeat must be an integer', str(ex))
-
         try:  # negative repeat
             _ = FirstStepRepeat(name='bla', repeat=-3)
             self.fail('Should not get here with negative repeat value')
         except ValueError as ex:
-            self.assertEqual('FirstStepRepeat.__init__ - repeat must be greater than 0', str(ex))
-
-        try:  # bad child step type
-            s1.add_step('bad step')
-            self.fail('Should not get here with bad step type')
-        except TypeError as ex:
-            self.assertEqual('FirstStepRepeat.add_step - step must be an instance of FirstStepBase', str(ex))
+            self.assertEqual('repeat must be greater than 0', str(ex))
 
     def test_reset(self):
 
@@ -228,11 +192,11 @@ class TestFirstStepNew(unittest.TestCase):
 
         try:
             _ = FirstStepRepeat(name='before reset', repeat=1)  # id = 0
-            s1 = FirstStepRepeat(name='before reset', repeat=1)  # id = 1
-            self.assertEqual('Step: "before reset"  id = 1\ntype - repeat  repeat - 1\n', str(s1))
+            step_r1 = FirstStepRepeat(name='before reset', repeat=1)  # id = 1
+            self.assertEqual('Step: "before reset"  id = 1\ntype - repeat  repeat - 1\n', str(step_r1))
             FirstStepBase.reset_global_id()
-            s2 = FirstStepRepeat(name='after reset', repeat=2)  # id = 0
-            self.assertEqual('Step: "after reset"  id = 0\ntype - repeat  repeat - 2\n', str(s2))
+            step_r2 = FirstStepRepeat(name='after reset', repeat=2)  # id = 0
+            self.assertEqual('Step: "after reset"  id = 0\ntype - repeat  repeat - 2\n', str(step_r2))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:

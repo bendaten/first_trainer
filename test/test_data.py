@@ -10,15 +10,15 @@ class TestFirstData(unittest.TestCase):
 
     def test_equivalent_time(self):
 
-        data_file_path = expanduser('~') + '/PycharmProjects/first/database/FIRSTregularPlans.xml'
+        data_file_path = '../database/FIRSTregularPlans.xml'
         try:  # good path
             data = FirstData(xml_path=data_file_path)
             self.assertEqual(4, len(data.race_types))
-            self.assertEqual(1, data.race_type_index_by_name('10K'))
-            self.assertEqual(2, data.race_type_index_by_name('HalfMarathon'))
+            self.assertEqual(1, data.race_type_index_by_name(name='10K'))
+            self.assertEqual(2, data.race_type_index_by_name(name='HalfMarathon'))
             self.assertEqual(91, len(data.race_times))
             self.assertEqual(4, len(data.race_times[0]))
-            from_time = FirstTime.from_string('0:20:13')
+            from_time = FirstTime.from_string(string='0:20:13')
             self.assertEqual('1:34:15', str(data.equivalent_time(time_from=from_time,
                                                                  race_index_from=0, race_index_to=2)))
             from_time = FirstTime.from_string('1:54:32')
@@ -33,63 +33,45 @@ class TestFirstData(unittest.TestCase):
             _ = data.race_type_index_by_name('lulu')
             self.fail('Should not get here with a bad race type name')
         except ValueError as ex:
-            self.assertEqual('FirstSegment.race_type_index_by_name - Race type lulu not found', str(ex))
+            self.assertEqual('Race type lulu not found', str(ex))
 
         try:  # time not found high
             from_time = FirstTime.from_string('4:49:59')
             _ = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
             self.fail('Should not get here with time not found')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - time is longer than the highest database time', str(ex))
+            self.assertEqual('Time is longer than the highest database time', str(ex))
 
         try:  # time not found low
             from_time = FirstTime.from_string('0:49:59')
             _ = data.equivalent_time(time_from=from_time, race_index_from=2, race_index_to=0)
             self.fail('Should not get here with time not found')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - time is shorter than the lowest database time', str(ex))
-
-        try:  # bad time type
-            _ = data.equivalent_time(time_from='abc', race_index_from=0, race_index_to=1)
-            self.fail('Should not get here with bad time type')
-        except TypeError as ex:
-            self.assertEqual('FirstData.equivalent_time - time_from must be an instance of FirstTime', str(ex))
-
-        try:  # bad index type
-            _ = data.equivalent_time(time_from=from_time, race_index_from='abc', race_index_to=2)
-            self.fail('Should not get here with bad index')
-        except TypeError as ex:
-            self.assertEqual('FirstData.equivalent_time - race_index_from must be an int', str(ex))
-
-        try:  # bad index type
-            _ = data.equivalent_time(time_from=from_time, race_index_from=0, race_index_to='abc')
-            self.fail('Should not get here with bad index')
-        except TypeError as ex:
-            self.assertEqual('FirstData.equivalent_time - race_index_to must be an int', str(ex))
+            self.assertEqual('Time is shorter than the lowest database time', str(ex))
 
         try:  # index out of range
             _ = data.equivalent_time(time_from=from_time, race_index_from=-1, race_index_to=2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
+            self.assertEqual('Race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
             _ = data.equivalent_time(time_from=from_time, race_index_from=4, race_index_to=2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
+            self.assertEqual('Race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
             _ = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=-2)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
+            self.assertEqual('Race index must be between 0 and 3', str(ex))
 
         try:  # index out of range
             _ = data.equivalent_time(time_from=from_time, race_index_from=1, race_index_to=55)
             self.fail('Should not get here with bad index')
         except ValueError as ex:
-            self.assertEqual('FirstData.equivalent_time - race index must be between 0 and 3', str(ex))
+            self.assertEqual('Race index must be between 0 and 3', str(ex))
 
         try:  # bad database file
             _ = FirstData(xml_path='lulu')
@@ -99,7 +81,7 @@ class TestFirstData(unittest.TestCase):
 
     def test_segments(self):
 
-        data_file_path = expanduser('~') + '/PycharmProjects/first/database/FIRSTregularPlans.xml'
+        data_file_path = '../database/FIRSTregularPlans.xml'
         try:  # good path
             data = FirstData(xml_path=data_file_path)
             self.assertEqual(14, len(data.segments))
@@ -121,7 +103,7 @@ class TestFirstData(unittest.TestCase):
 
     def test_plan_instructions(self):
 
-        data_file_path = expanduser('~') + '/PycharmProjects/first/database/FIRSTregularPlans.xml'
+        data_file_path = '../database/FIRSTregularPlans.xml'
         try:  # good path
             data = FirstData(xml_path=data_file_path)
             self.assertEqual(4, len(data.plan_instructions))

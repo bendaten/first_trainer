@@ -363,7 +363,7 @@ class FirstStepBody(FirstStepBase):
                 increment = None
             if segment_name == 'RP':  # special case for race-pace
                 segment = None
-                pace = copy.deepcopy(rp)
+                pace = FirstPace.copy(rp)
             else:
                 segment = data.segment_by_name(segment_name)
 

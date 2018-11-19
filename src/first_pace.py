@@ -50,6 +50,11 @@ class FirstPace(object):
 
         return cls(minutes=p_time.seconds//60, seconds=p_time.seconds % 60, length_unit=length_unit)
 
+    @classmethod
+    def copy(cls, from_pace: 'FirstPace'):
+
+        return cls.from_string(str(from_pace))
+
     def to_time(self, distance: FirstDistance, unit: str) -> float:
 
         """

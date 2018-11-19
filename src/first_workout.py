@@ -80,9 +80,9 @@ class FirstWorkout(object):
         :return: plain text string
         :rtype: str
         """
-        out_string = indent + '{}"{}"\n'.format(indent, self.name)
-        out_string += indent + '{}  {}\n'.format(indent, self.workout_date.strftime('%a %Y-%m-%d'))
-        out_string += indent + '{}  {}\n'.format(indent, self.status)
+        out_string = '{}"{}"\n'.format(indent, self.name)
+        out_string += '{}  {}\n'.format(indent, self.workout_date.strftime('%a %Y-%m-%d'))
+        out_string += '{}  {}\n'.format(indent, self.status)
 
         if level > 0:
             if level > 1:

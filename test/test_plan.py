@@ -19,17 +19,14 @@ class TestFirstPlan(unittest.TestCase):
 
         ws1 = [0, 2, 5]
         ws2 = [1, 3, 6]
-        ws3 = [2, 4, 6]
+        # ws3 = [2, 4, 6]
 
         try:  # name only
             p1 = FirstPlan(name='My first marathon training plan', weekly_schedule=ws1)
             self.assertEqual('Training Plan:\nName - "My first marathon training plan"\nWorkout days: Mon, Wed, Sat\n',
                              str(p1))
 
-            file_name = expanduser('~/PycharmProjects/first/database/cmp_plan1.tcx')
-            # to_file = open(file_name, 'w')
-            # to_file.write(p1.tcx())
-            # to_file.close()
+            file_name = '../database/cmp_plan1.tcx'
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
@@ -53,24 +50,6 @@ class TestFirstPlan(unittest.TestCase):
             self.fail(str(tex))
         except ValueError as vex:
             self.fail(str(vex))
-
-        try:  # bad name type
-            _ = FirstPlan(name=123, weekly_schedule=ws3)
-            self.fail('Should not get here with bad name type')
-        except TypeError as ex:
-            self.assertEqual('FirstPlan.__init__ - name must be a string', str(ex))
-
-        try:  # bad race type
-            _ = FirstPlan(name='Test', weekly_schedule=ws3, race='marathon')
-            self.fail('Should not get here with bad race type')
-        except TypeError as ex:
-            self.assertEqual('FirstPlan.__init__ - race must be an instance of FirstRace', str(ex))
-
-        try:  # bad runner type
-            _ = FirstPlan(name='Test', weekly_schedule=ws3, runner=345)
-            self.fail('Should not get here with bad runner type')
-        except TypeError as ex:
-            self.assertEqual('FirstPlan.__init__ - runner must be an instance of FirstRunner', str(ex))
 
     def test_add_workout(self):
 
@@ -110,10 +89,7 @@ class TestFirstPlan(unittest.TestCase):
                           'Total 1 workouts\n')
             self.assertEqual(cmp_string, str(p1))
 
-            file_name = expanduser('~/PycharmProjects/first/database/cmp_plan2.tcx')
-            # to_file = open(file_name, 'w')
-            # to_file.write(p1.tcx())
-            # to_file.close()
+            file_name = '../database/cmp_plan2.tcx'
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
@@ -121,15 +97,9 @@ class TestFirstPlan(unittest.TestCase):
         except TypeError as ex:
             self.fail(str(ex))
 
-        try:  # bad workout
-            p1.add_workout(workout='workout')
-            self.fail('Should not get here with bad workout')
-        except TypeError as ex:
-            self.assertEqual('FirstPlan.add_workout - workout must be an instance of FirstWorkout', str(ex))
-
     def test_generate_workouts(self):
 
-        data_file_path = expanduser('~') + '/PycharmProjects/first/database/FIRSTregularPlans.xml'
+        data_file_path = '../database/FIRSTregularPlans.xml'
         data = FirstData(xml_path=data_file_path)
         ws1 = [0, 2, 5]
         target_time = data.equivalent_time(time_from=FirstTime(minutes=30),
@@ -181,10 +151,7 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual('0:10:00', str(step.time))
             self.assertEqual('0:11:31 min per mile', str(step.pace))
 
-            file_name = expanduser('~/PycharmProjects/first/database/cmp_plan_marathon.tcx')
-            # to_file = open(file_name, 'w')
-            # to_file.write(p1.tcx())
-            # to_file.close()
+            file_name = expanduser('../database/cmp_plan_marathon.tcx')
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
@@ -212,10 +179,7 @@ class TestFirstPlan(unittest.TestCase):
             # print p2.details(1)
             # print p2.details(2)
 
-            file_name = expanduser('~/PycharmProjects/first/database/cmp_plan_half_marathon.tcx')
-            # to_file = open(file_name, 'w')
-            # $ to_file.write(p2.tcx())
-            # to_file.close()
+            file_name = '../database/cmp_plan_half_marathon.tcx'
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()

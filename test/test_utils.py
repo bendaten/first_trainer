@@ -1,6 +1,6 @@
 import unittest
 
-from first_utils import HtmlTag, HtmlTable
+from first_utils import XmlTag, HtmlTable
 
 
 class TestHtmlBuilder(unittest.TestCase):
@@ -8,9 +8,9 @@ class TestHtmlBuilder(unittest.TestCase):
     def test_hello(self):
 
         try:  # happy path
-            d1 = HtmlTag(name='html')
-            b1 = HtmlTag(name='body')
-            p1 = HtmlTag(name='p', single_line=True)
+            d1 = XmlTag(name='html')
+            b1 = XmlTag(name='body')
+            p1 = XmlTag(name='p', single_line=True)
             p1.add(item='Hello HTML')
             b1.add(item=p1)
             d1.add(item=b1)
@@ -25,14 +25,14 @@ class TestHtmlBuilder(unittest.TestCase):
             self.fail(str(ex))
 
         try:  # bad item
-            d1 = HtmlTag(name='abc')
+            d1 = XmlTag(name='abc')
             d1.add(item=123)
             self.fail('Expected to raise exception')
         except ValueError as ex:
-            self.assertEqual('Unexpected HTML item type', str(ex))
+            self.assertEqual('Unexpected XML item type', str(ex))
 
         try:  # bad item level
-            d1 = HtmlTag(name='abc')
+            d1 = XmlTag(name='abc')
             d1.add(item='def')
             _ = d1.indented_str(level=-1)
             self.fail('Expected to raise exception')
@@ -42,18 +42,18 @@ class TestHtmlBuilder(unittest.TestCase):
     def test_table(self):
 
         try:  # happy path
-            d1 = HtmlTag(name='html')
+            d1 = XmlTag(name='html')
 
-            h1 = HtmlTag(name='head')
+            h1 = XmlTag(name='head')
             d1.add(item=h1)
-            s1 = HtmlTag(name='style')
+            s1 = XmlTag(name='style')
             h1.add(item=s1)
             s1.add(item='table { border-collapse: collapse }')
             s1.add(item='td, th { border: 1px solid black; text-align: left; padding: 4px }')
 
-            b1 = HtmlTag(name='body')
+            b1 = XmlTag(name='body')
             d1.add(item=b1)
-            message = HtmlTag(name='h2', single_line=True)
+            message = XmlTag(name='h2', single_line=True)
             message.add(item='The following tables have an auto-increment field that is over 25% of its type capacity:')
             b1.add(item=message)
             t1 = HtmlTable()
@@ -98,7 +98,7 @@ class TestHtmlBuilder(unittest.TestCase):
                        '    </table>\n' + \
                        '  </body>\n' + \
                        '</html>'
-            self.assertEqual(expected, d1.indented_str(doctype=True))
+            self.assertEqual(expected, d1.indented_str(doctype='html'))
         except ValueError as ex:
             self.fail(str(ex))
 
@@ -128,18 +128,18 @@ class TestHtmlBuilder(unittest.TestCase):
     def test_attributes(self):
 
         try:
-            html = HtmlTag(name='html')
-            body = HtmlTag(name='body')
+            html = XmlTag(name='html')
+            body = XmlTag(name='body')
             html.add(body)
-            link = HtmlTag(name='a', attributes={'href': 'https://www.w3schools.com'}, single_line=True)
+            link = XmlTag(name='a', attributes={'href': 'https://www.w3schools.com'}, single_line=True)
             body.add(link)
             link.add('This is the link to W3Schools')
-            body.add(HtmlTag(name='br', single_line=True))
+            body.add(XmlTag(name='br', single_line=True))
             img_attr = {'src': 'https://www.w3schools.com/html/w3schools.jpg',
                         'alt': 'W3Schools.com',
                         'width': '104',
                         'height': '142'}
-            image = HtmlTag(name='img', attributes=img_attr, single_line=True)
+            image = XmlTag(name='img', attributes=img_attr, single_line=True)
             body.add(image)
 
             expected = '<html>\n' + \

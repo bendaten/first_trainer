@@ -5,6 +5,7 @@ from first_data import FirstData
 from first_race import FirstRace
 from first_runner import FirstRunner
 from first_step import FirstStepBase
+from first_utils import XmlTag
 from first_workout import FirstWorkout
 
 
@@ -79,43 +80,36 @@ class FirstPlan(object):
 
     def tcx(self) -> str:
 
-        """
-        Generate a tcx string to download to a Garmin device
+        tcx_attr = {'xmlns': 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2',
+                    'xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+                    'xsi:schemaLocation': 'http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 ' +
+                                          'http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd'}
+        tcx = XmlTag(name='TrainingCenterDatabase', attributes=tcx_attr)
 
-        :return: a tcx format for the training plan
-        :rtype: str
-        """
-        tcx_string = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n' + \
-                     '<TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" ' + \
-                     'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ' + \
-                     'xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 ' + \
-                     'http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">\n\n'
-
-        tcx_string += '  <Folders>\n'
-        tcx_string += '    <Workouts>\n'
-        tcx_string += '      <Running Name="{}">\n'.format(self.name)
-
+        folders = XmlTag(name='Folders')
+        tcx.add(item=folders)
+        workouts_hdrs = XmlTag(name='Workouts')
+        folders.add(item=workouts_hdrs)
+        running = XmlTag(name='Running', attributes={'Name': self.name})
+        workouts_hdrs.add(item=running)
         for workout in self.workouts:
-            tcx_string += '        <WorkoutNameRef>\n'
-            tcx_string += '          <Id>{}</Id>\n'.format(workout.name)
-            tcx_string += '        </WorkoutNameRef>\n'
+            wo_ref = XmlTag(name='WorkoutNameRef')
+            running.add(item=wo_ref)
+            wo_id = XmlTag(name='Id', single_line=True)
+            wo_id.add(item=workout.name)
+            wo_ref.add(item=wo_id)
 
-        tcx_string += '      </Running>\n'
-        tcx_string += '      <Biking Name="Biking"/>\n'
-        tcx_string += '      <Other Name="Other"/>\n'
-        tcx_string += '    </Workouts>\n'
-        tcx_string += '  </Folders>\n\n'
+        biking = XmlTag(name='Biking', attributes={'Name': 'Biking'}, single_line=True)
+        workouts_hdrs.add(item=biking)
+        other = XmlTag(name='Other', attributes={'Name': 'Other'}, single_line=True)
+        workouts_hdrs.add(item=other)
 
-        tcx_string += '  <Workouts>\n'
-
+        workouts = XmlTag(name='Workouts')
+        tcx.add(item=workouts)
         for workout in self.workouts:
-            tcx_string += workout.tcx(indent='    ')
+            workouts.add(item=workout.tcx())
 
-        tcx_string += '  </Workouts>\n\n'
-
-        tcx_string += '</TrainingCenterDatabase>\n'
-
-        return tcx_string
+        return tcx.indented_str(doctype='xml')
 
     def add_workout(self, workout: FirstWorkout) -> None:
 

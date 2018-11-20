@@ -36,27 +36,27 @@ class TestFirstStepNew(unittest.TestCase):
                           '  <Intensity>Active</Intensity>\n' +
                           '  <Target xsi:type="Speed_t">\n' +
                           '    <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '    <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
-                          '    <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
-                          '  </SpeedZone>\n' +
+                          '      <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
+                          '      <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
+                          '    </SpeedZone>\n' +
                           '  </Target>\n' +
-                          '</Step>\n')
-            self.assertEqual(tcx_string, step_b.tcx())  # no indent
-            tcx_string = ('    <Step xsi:type="Step_t">\n' +
-                          '      <StepId>0</StepId>\n' +
-                          '      <Name>3 miles @ 10 minutes per mile</Name>\n' +
-                          '      <Duration xsi:type="Distance_t">\n' +
-                          '        <Meters>4828</Meters>\n' +
-                          '      </Duration>\n' +
-                          '      <Intensity>Active</Intensity>\n' +
-                          '      <Target xsi:type="Speed_t">\n' +
-                          '        <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '        <LowInMetersPerSecond>2.6688955</LowInMetersPerSecond>\n' +
-                          '        <HighInMetersPerSecond>2.6957186</HighInMetersPerSecond>\n' +
-                          '      </SpeedZone>\n' +
-                          '      </Target>\n' +
-                          '    </Step>\n')
-            self.assertEqual(tcx_string, step_b.tcx(indent='    ', delta_seconds=3))  # with indent
+                          '</Step>')
+            self.assertEqual(tcx_string, step_b.tcx().indented_str())  # no indent
+            tcx_string = ('<Step xsi:type="Step_t">\n' +
+                          '  <StepId>0</StepId>\n' +
+                          '  <Name>3 miles @ 10 minutes per mile</Name>\n' +
+                          '  <Duration xsi:type="Distance_t">\n' +
+                          '    <Meters>4828</Meters>\n' +
+                          '  </Duration>\n' +
+                          '  <Intensity>Active</Intensity>\n' +
+                          '  <Target xsi:type="Speed_t">\n' +
+                          '    <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
+                          '      <LowInMetersPerSecond>2.6688955</LowInMetersPerSecond>\n' +
+                          '      <HighInMetersPerSecond>2.6957186</HighInMetersPerSecond>\n' +
+                          '    </SpeedZone>\n' +
+                          '  </Target>\n' +
+                          '</Step>')
+            self.assertEqual(tcx_string, step_b.tcx(delta_seconds=3).indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -78,12 +78,12 @@ class TestFirstStepNew(unittest.TestCase):
                           '  <Intensity>Active</Intensity>\n' +
                           '  <Target xsi:type="Speed_t">\n' +
                           '    <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '    <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
-                          '    <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
-                          '  </SpeedZone>\n' +
+                          '      <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
+                          '      <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
+                          '    </SpeedZone>\n' +
                           '  </Target>\n' +
-                          '</Step>\n')
-            self.assertEqual(tcx_string, step_b.tcx())
+                          '</Step>')
+            self.assertEqual(tcx_string, step_b.tcx().indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -119,8 +119,8 @@ class TestFirstStepNew(unittest.TestCase):
                           '  <StepId>0</StepId>\n' +
                           '  <Name>3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)</Name>\n' +
                           '  <Repetitions>3</Repetitions>\n' +
-                          '</Step>\n')
-            self.assertEqual(tcx_string, step_r.tcx())
+                          '</Step>')
+            self.assertEqual(tcx_string, step_r.tcx().indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -141,40 +141,40 @@ class TestFirstStepNew(unittest.TestCase):
             self.assertEqual(detail, step_r.details())
             self.assertAlmostEqual(13.5, step_r.total(unit='mile'), 5)
             self.assertAlmostEqual(135.0, step_r.total(what='time', unit='minute'))
-            tcx_string = ('  <Step xsi:type="Repeat_t">\n' +
-                          '    <StepId>0</StepId>\n' +
-                          '    <Name>3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)</Name>\n' +
-                          '    <Repetitions>3</Repetitions>\n' +
-                          '    <Child xsi:type="Step_t">\n' +
-                          '      <StepId>1</StepId>\n' +
-                          '      <Name>3 mile @ 10 min per mile</Name>\n' +
-                          '      <Duration xsi:type="Distance_t">\n' +
-                          '        <Meters>4828</Meters>\n' +
-                          '      </Duration>\n' +
-                          '      <Intensity>Active</Intensity>\n' +
-                          '      <Target xsi:type="Speed_t">\n' +
-                          '        <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
+            tcx_string = ('<Step xsi:type="Repeat_t">\n' +
+                          '  <StepId>0</StepId>\n' +
+                          '  <Name>3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)</Name>\n' +
+                          '  <Repetitions>3</Repetitions>\n' +
+                          '  <Child xsi:type="Step_t">\n' +
+                          '    <StepId>1</StepId>\n' +
+                          '    <Name>3 mile @ 10 min per mile</Name>\n' +
+                          '    <Duration xsi:type="Distance_t">\n' +
+                          '      <Meters>4828</Meters>\n' +
+                          '    </Duration>\n' +
+                          '    <Intensity>Active</Intensity>\n' +
+                          '    <Target xsi:type="Speed_t">\n' +
+                          '      <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
                           '        <LowInMetersPerSecond>2.6382689</LowInMetersPerSecond>\n' +
                           '        <HighInMetersPerSecond>2.7277017</HighInMetersPerSecond>\n' +
                           '      </SpeedZone>\n' +
-                          '      </Target>\n' +
-                          '    </Child>\n' +
-                          '    <Child xsi:type="Step_t">\n' +
-                          '      <StepId>2</StepId>\n' +
-                          '      <Name>15 minutes @ 19 min per mile</Name>\n' +
-                          '      <Duration xsi:type="Time_t">\n' +
-                          '        <Seconds>900</Seconds>\n' +
-                          '      </Duration>\n' +
-                          '      <Intensity>Active</Intensity>\n' +
-                          '      <Target xsi:type="Speed_t">\n' +
-                          '        <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
+                          '    </Target>\n' +
+                          '  </Child>\n' +
+                          '  <Child xsi:type="Step_t">\n' +
+                          '    <StepId>2</StepId>\n' +
+                          '    <Name>15 minutes @ 19 min per mile</Name>\n' +
+                          '    <Duration xsi:type="Time_t">\n' +
+                          '      <Seconds>900</Seconds>\n' +
+                          '    </Duration>\n' +
+                          '    <Intensity>Active</Intensity>\n' +
+                          '    <Target xsi:type="Speed_t">\n' +
+                          '      <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
                           '        <LowInMetersPerSecond>2.6382689</LowInMetersPerSecond>\n' +
                           '        <HighInMetersPerSecond>2.7277017</HighInMetersPerSecond>\n' +
                           '      </SpeedZone>\n' +
-                          '      </Target>\n' +
-                          '    </Child>\n'
-                          '  </Step>\n')
-            self.assertEqual(tcx_string, step_r.tcx(indent='  ', delta_seconds=10))
+                          '    </Target>\n' +
+                          '  </Child>\n'
+                          '</Step>')
+            self.assertEqual(tcx_string, step_r.tcx(delta_seconds=10).indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:

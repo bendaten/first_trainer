@@ -83,9 +83,9 @@ class TestFirstWorkout(unittest.TestCase):
                           '    <Intensity>Active</Intensity>\n' +
                           '    <Target xsi:type="Speed_t">\n' +
                           '      <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '      <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
-                          '      <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
-                          '    </SpeedZone>\n' +
+                          '        <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
+                          '        <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
+                          '      </SpeedZone>\n' +
                           '    </Target>\n' +
                           '  </Step>\n' +
                           '  <Step xsi:type="Repeat_t">\n' +
@@ -101,9 +101,9 @@ class TestFirstWorkout(unittest.TestCase):
                           '      <Intensity>Active</Intensity>\n' +
                           '      <Target xsi:type="Speed_t">\n' +
                           '        <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '        <LowInMetersPerSecond>3.3182351</LowInMetersPerSecond>\n' +
-                          '        <HighInMetersPerSecond>3.3880926</HighInMetersPerSecond>\n' +
-                          '      </SpeedZone>\n' +
+                          '          <LowInMetersPerSecond>3.3182351</LowInMetersPerSecond>\n' +
+                          '          <HighInMetersPerSecond>3.3880926</HighInMetersPerSecond>\n' +
+                          '        </SpeedZone>\n' +
                           '      </Target>\n' +
                           '    </Child>\n' +
                           '    <Child xsi:type="Step_t">\n' +
@@ -115,9 +115,9 @@ class TestFirstWorkout(unittest.TestCase):
                           '      <Intensity>Active</Intensity>\n' +
                           '      <Target xsi:type="Speed_t">\n' +
                           '        <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '        <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
-                          '        <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
-                          '      </SpeedZone>\n' +
+                          '          <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
+                          '          <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
+                          '        </SpeedZone>\n' +
                           '      </Target>\n' +
                           '    </Child>\n' +
                           '  </Step>\n' +
@@ -130,15 +130,15 @@ class TestFirstWorkout(unittest.TestCase):
                           '    <Intensity>Active</Intensity>\n' +
                           '    <Target xsi:type="Speed_t">\n' +
                           '      <SpeedZone xsi:type="CustomSpeedZone_t">\n' +
-                          '      <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
-                          '      <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
-                          '    </SpeedZone>\n' +
+                          '        <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>\n' +
+                          '        <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>\n' +
+                          '      </SpeedZone>\n' +
                           '    </Target>\n' +
                           '  </Step>\n')
             tcx_string_end = ('  <ScheduledOn>2017-06-24</ScheduledOn>\n' +
-                              '</Workout>\n')
+                              '</Workout>')
             cmp_string = tcx_string + tcx_string_end
-            self.assertEqual(cmp_string, wo.tcx())
+            self.assertEqual(cmp_string, wo.tcx().indented_str())
 
             wo.add_step(step=s_warmup)
             cmp_string = ('Week 1 Key-run 1\n' +
@@ -252,7 +252,7 @@ class TestFirstWorkout(unittest.TestCase):
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
-            self.assertEqual(cmp_string, wo1.tcx())
+            self.assertEqual(cmp_string, wo1.tcx().indented_str())
 
         except ValueError as ex:
             self.fail(str(ex))
@@ -302,7 +302,7 @@ class TestFirstWorkout(unittest.TestCase):
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
-            self.assertEqual(cmp_string, wo2.tcx())
+            self.assertEqual(cmp_string, wo2.tcx().indented_str())
 
         except ValueError as ex:
             self.fail(str(ex))

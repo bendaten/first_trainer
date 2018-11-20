@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no" ?>
 <TrainingCenterDatabase xmlns="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.garmin.com/xmlschemas/TrainingCenterDatabase/v2 http://www.garmin.com/xmlschemas/TrainingCenterDatabasev2.xsd">
-
   <Folders>
     <Workouts>
       <Running Name="My first marathon training plan">
@@ -8,11 +7,10 @@
           <Id>Week 1 Key-run 1</Id>
         </WorkoutNameRef>
       </Running>
-      <Biking Name="Biking"/>
-      <Other Name="Other"/>
+      <Biking Name="Biking">
+      <Other Name="Other">
     </Workouts>
   </Folders>
-
   <Workouts>
     <Workout Sport="Running">
       <Name>Week 1 Key-run 1</Name>
@@ -25,9 +23,9 @@
         <Intensity>Active</Intensity>
         <Target xsi:type="Speed_t">
           <SpeedZone xsi:type="CustomSpeedZone_t">
-          <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
-          <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
-        </SpeedZone>
+            <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
+          </SpeedZone>
         </Target>
       </Step>
       <Step xsi:type="Repeat_t">
@@ -43,9 +41,9 @@
           <Intensity>Active</Intensity>
           <Target xsi:type="Speed_t">
             <SpeedZone xsi:type="CustomSpeedZone_t">
-            <LowInMetersPerSecond>3.3182351</LowInMetersPerSecond>
-            <HighInMetersPerSecond>3.3880926</HighInMetersPerSecond>
-          </SpeedZone>
+              <LowInMetersPerSecond>3.3182351</LowInMetersPerSecond>
+              <HighInMetersPerSecond>3.3880926</HighInMetersPerSecond>
+            </SpeedZone>
           </Target>
         </Child>
         <Child xsi:type="Step_t">
@@ -57,9 +55,9 @@
           <Intensity>Active</Intensity>
           <Target xsi:type="Speed_t">
             <SpeedZone xsi:type="CustomSpeedZone_t">
-            <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
-            <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
-          </SpeedZone>
+              <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
+              <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
+            </SpeedZone>
           </Target>
         </Child>
       </Step>
@@ -72,13 +70,12 @@
         <Intensity>Active</Intensity>
         <Target xsi:type="Speed_t">
           <SpeedZone xsi:type="CustomSpeedZone_t">
-          <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
-          <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
-        </SpeedZone>
+            <LowInMetersPerSecond>2.6600727</LowInMetersPerSecond>
+            <HighInMetersPerSecond>2.7047798</HighInMetersPerSecond>
+          </SpeedZone>
         </Target>
       </Step>
       <ScheduledOn>2017-06-24</ScheduledOn>
     </Workout>
   </Workouts>
-
 </TrainingCenterDatabase>

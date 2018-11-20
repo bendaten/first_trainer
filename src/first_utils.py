@@ -23,16 +23,16 @@ class FirstUtils(object):
             return False
 
 
-class HtmlItem(object):
+class XmlItem(object):
 
     """
-    A simple HTML builder
+    A simple XML builder
     """
 
     def __init__(self, single_line: bool = False):
 
         """
-        HtmlItem builder
+        XmlItem builder
 
         :param single_line: keep the item in a single line like '<b>Boldface</b>'
         :type single_line: bool
@@ -46,23 +46,23 @@ class HtmlItem(object):
         """
         Add to the list of items
 
-        :param item: the item to add for now handles only strings and HtmlItems
+        :param item: the item to add for now handles only strings and XmlItems
         :type item: Any
         """
 
-        if isinstance(item, HtmlItem) or isinstance(item, str):
+        if isinstance(item, XmlItem) or isinstance(item, str):
             self.items.append(item)
         else:
-            raise ValueError('Unexpected HTML item type')  # for now just HtmlItem and string
+            raise ValueError('Unexpected XML item type')  # for now just XmlItem and string
 
     def indented_str(self, level: int = 0) -> str:
 
         """
-        Create an HTML string
+        Create an XML string
 
         :param level: Control indentation. Each line is indented level * INDENT
         :type level: int
-        :return: The HTML string
+        :return: The XML string
         :rtype: str
         """
 
@@ -75,24 +75,24 @@ class HtmlItem(object):
         for item in self.items:
             if isinstance(item, str):
                 contents += '{}{}{}'.format(indent, item, separator)
-            elif isinstance(item, HtmlItem):
+            elif isinstance(item, XmlItem):
                 contents += '{}{}'.format(item.indented_str(level=level), separator)
             else:
-                raise ValueError('Unexpected HTML item type')  # for now just HtmlItem and string
+                raise ValueError('Unexpected XML item type')  # for now just XmlItem and string
 
         return contents
 
 
-class HtmlTag(HtmlItem):
+class XmlTag(XmlItem):
 
     def __init__(self, name: str, attributes: Dict[str, str] = None, single_line: bool = False):
 
         """
-        HtmlTag builder
+        HXmlTag builder
 
-        :param name: The HTML tag name
+        :param name: The XML tag name
         :type name: str
-        :param attributes: HTML tag attributes
+        :param attributes: XML tag attributes
         :type attributes: dict[str, str]
         :param single_line: keep the tag in a single line like '<b>Boldface</b>'
         :type single_line: bool
@@ -102,16 +102,16 @@ class HtmlTag(HtmlItem):
         self.attributes = attributes
         super().__init__(single_line=single_line)
 
-    def indented_str(self, level: int = 0, doctype: bool = False) -> str:
+    def indented_str(self, level: int = 0, doctype: str = None) -> str:
 
         """
-        Create an HTML string
+        Create an XML string
 
         :param level: Control indentation. Each line is indented level * INDENT
         :type level: int
-        :param doctype: Insert <!DOCTYPE html> above the first tag
-        :type doctype: bool
-        :return: The HTML string
+        :param doctype: Insert <!DOCTYPE html> or <?xml version...?> above the first tag
+        :type doctype: str
+        :return: The XML string
         :rtype: str
         """
 
@@ -121,7 +121,16 @@ class HtmlTag(HtmlItem):
         separator = '' if self.single_line else '\n'
         indent = level * INDENT
         second_indent = '' if self.single_line else indent
-        first_line = '<!DOCTYPE html>\n' if doctype else ''
+        if doctype is not None:
+            if doctype == 'html':
+                first_line = '<!DOCTYPE html>\n'
+            elif doctype == 'xml':
+                first_line = '<?xml version="1.0" encoding="UTF-8" standalone="no" ?>\n'
+            else:
+                raise ValueError('doctype must be "html" or "xml"')
+        else:
+            first_line = ''
+
         tag = self.name
         if self.attributes is not None:
             for option in self.attributes:
@@ -134,7 +143,7 @@ class HtmlTag(HtmlItem):
                                        super().indented_str(level=level + 1), closing_tag)
 
 
-class HtmlTable(HtmlTag):
+class HtmlTable(XmlTag):
 
     """
     Shortcut for building simple tables
@@ -154,7 +163,7 @@ class HtmlTable(HtmlTag):
         """
 
         super().__init__(name='table', attributes=attributes)
-        self.add(HtmlTag(name='tbody'))
+        self.add(XmlTag(name='tbody'))
 
     def add_header(self, column_names: List[str]) -> None:
 
@@ -169,10 +178,10 @@ class HtmlTable(HtmlTag):
         if tbody.items:
             raise ValueError('Only one table header allowed')
 
-        header = HtmlTag(name='tr')
+        header = XmlTag(name='tr')
         tbody.add(item=header)
         for name in column_names:
-            column = HtmlTag(name='th', single_line=True)
+            column = XmlTag(name='th', single_line=True)
             column.add(item=name)
             header.add(item=column)
 
@@ -193,9 +202,9 @@ class HtmlTable(HtmlTag):
         if len(header.items) != len(values):
             raise ValueError('Number of values must match number of columns')
 
-        row = HtmlTag(name='tr')
+        row = XmlTag(name='tr')
         tbody.add(item=row)
         for value in values:
-            column = HtmlTag(name='td', single_line=True)
+            column = XmlTag(name='td', single_line=True)
             column.add(item=value)
             row.add(item=column)

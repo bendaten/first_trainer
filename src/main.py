@@ -1,4 +1,5 @@
 import argparse
+import os
 
 from os.path import expanduser
 
@@ -59,38 +60,43 @@ def main():
     if args.output not in ['text', 'tcx', 'both']:
         raise ValueError('output should be one of "text", "tcx", or "both"')
 
-    data_file_path = expanduser('~') + '/PycharmProjects/first/database/FIRSTregularPlans.xml'
+    if 'FIRST_TRAINER' not in os.environ:
+        raise ValueError('Environment variable FIRST_TRAINER is not defined')
+
+    root = os.environ['FIRST_TRAINER']
+
+    data_file_path = '{}database/FIRSTregularPlans.xml'.format(root)
     data = FirstData(xml_path=data_file_path)
 
     runner = FirstRunner(name=args.runner_name)
 
-    target_time = FirstTime.from_string(args.target_time)
+    target_time = FirstTime.from_string(string=args.target_time)
     if args.ref_race_type is not None:
         target_time = data.equivalent_time(time_from=target_time,
-                                           race_index_from=data.race_type_index_by_name(args.ref_race_type),
-                                           race_index_to=data.race_type_index_by_name(args.race_type))
+                                           race_index_from=data.race_type_index_by_name(name=args.ref_race_type),
+                                           race_index_to=data.race_type_index_by_name(name=args.race_type))
     if args.race_name is not None:
         race_name = args.race_name
     else:
         race_name = args.race_type
 
     race_date = datetime.datetime.strptime(args.race_date, '%m/%d/%Y').date()
-    race = FirstRace(race_type=data.get_race_type_by_name(args.race_type),
+    race = FirstRace(race_type=data.get_race_type_by_name(name=args.race_type),
                      name=race_name, race_date=race_date, target_time=target_time)
-    ws = get_keyrun_days(args.keyrun_days)
+    ws = get_keyrun_days(user_string=args.keyrun_days)
 
     plan = FirstPlan(name=args.race_name, weekly_schedule=ws, race=race, runner=runner)
     plan.generate_workouts(data=data)
 
     base_file_name = str(race_date) + race_name
     if args.output == 'text' or args.output == 'both':
-        file_name = expanduser('~/Downloads/') + base_file_name + '.txt'
+        file_name = expanduser('~/Downloads/') + base_file_name + '.txt'  # mac
         target = open(file_name, 'w')
         target.write(plan.details(level=3))
         target.close()
 
     if args.output == 'tcx' or args.output == 'both':
-        file_name = expanduser('~/Downloads/') + base_file_name + '.tcx'
+        file_name = expanduser('~/Downloads/') + base_file_name + '.tcx'  # mac
         target = open(file_name, 'w')
         target.write(plan.tcx())
         target.close()

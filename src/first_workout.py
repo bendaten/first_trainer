@@ -5,6 +5,7 @@ from parse import *
 from first_data import FirstData
 from first_pace import FirstPace
 from first_step import FirstStepBase, FirstStepRepeat, FirstStepBody
+from first_utils import XmlTag
 
 
 class FirstWorkout(object):
@@ -112,28 +113,26 @@ class FirstWorkout(object):
 
         return result
 
-    def tcx(self, indent: str ='') -> str:
+    def tcx(self) -> XmlTag:
 
-        """
-        Generate a tcx string to download to a Garmin device
-
-        :param indent:
-        :type indent: str
-        :return: a tcx format for the training plan
-        :rtype: str
-        """
-        tcx_string = '{}<Workout Sport="Running">\n'.format(indent)
-        tcx_string += '{}  <Name>{}</Name>\n'.format(indent, self.name)
+        workout = XmlTag(name='Workout', attributes={'Sport': 'Running'})
+        name = XmlTag(name='Name', single_line=True)
+        name.add(item=self.name)
+        workout.add(item=name)
 
         for step in self.steps:
-            tcx_string += step.tcx(indent=indent + '  ')
+            workout.add(step.tcx())
 
-        tcx_string += '{}  <ScheduledOn>{}</ScheduledOn>\n'.format(indent, str(self.workout_date))
+        scheduled = XmlTag(name='ScheduledOn', single_line=True)
+        workout.add(item=scheduled)
+        scheduled.add(item=str(self.workout_date))
+
         if self.note is not None:
-            tcx_string += '{}  <Notes>{}</Notes>\n'.format(indent, self.note)
-        tcx_string += '{}</Workout>\n'.format(indent)
+            notes = XmlTag(name='Notes', single_line=True)
+            workout.add(item=notes)
+            notes.add(item=self.note)
 
-        return tcx_string
+        return workout
 
     @staticmethod
     def __parse_simple_steps(data: FirstData, instructions: str, time_index: int, race_pace: FirstPace):

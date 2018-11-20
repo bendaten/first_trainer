@@ -1,2 +1,4 @@
 # ignore all PyCharm files
 .idea/
+*/__pycache__/
+.DS_Store

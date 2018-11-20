@@ -1,10 +1,10 @@
-import copy
 from typing import List
 
 from first_data import FirstData
 from first_distance import FirstDistance
 from first_pace import FirstPace
 from first_time import FirstTime
+from first_utils import XmlTag
 
 
 class FirstStepBase(object):
@@ -39,18 +39,19 @@ class FirstStepBase(object):
 
         return '{}Step: "{}"\n'.format(indent, self.name)
 
-    def tcx_start(self, child: bool, step_type: str, indent: str) -> str:
+    def tcx_top(self, child: bool, step_type: str) -> XmlTag:
 
-        if child:
-            token = 'Child'
-        else:
-            token = 'Step'
+        level = 'Child' if child else 'Step'
+        step = XmlTag(name=level, attributes={'xsi:type': step_type})
+        step_id = XmlTag(name='StepId', single_line=True)
+        step_id.add(item=str(self.step_id))
+        step.add(item=step_id)
 
-        tcx_string = '{}<{} xsi:type="{}">\n'.format(indent, token, step_type)
-        tcx_string += '{}  <StepId>{}</StepId>\n'.format(indent, str(self.step_id))
-        tcx_string += '{}  <Name>{}</Name>\n'.format(indent, self.name)
+        name = XmlTag(name='Name', single_line=True)
+        name.add(item=self.name)
+        step.add(item=name)
 
-        return tcx_string
+        return step
 
 
 class FirstStepRepeat(FirstStepBase):
@@ -103,33 +104,18 @@ class FirstStepRepeat(FirstStepBase):
 
         return out_string
 
-    def tcx(self, indent: str ='', child: bool =False, delta_seconds: int =5) -> str:
+    def tcx(self, child: bool =False, delta_seconds: int =5) -> XmlTag:
 
-        """
-        Generate a tcx string to download to a Garmin device
+        step = self.tcx_top(child=child, step_type='Repeat_t')
 
-        :param indent:
-        :type indent: str
-        :param child: is a child of a repeat step (can be recursive)
-        :type child: bool
-        :param delta_seconds: for speed tolerance
-        :type delta_seconds: int
-        :return: a tcx format for the training plan
-        :rtype: str
-        """
-        tcx_string = FirstStepBase.tcx_start(self, child=child, step_type='Repeat_t', indent=indent)
+        repetitions = XmlTag(name='Repetitions', single_line=True)
+        repetitions.add(item=str(self.repeat))
+        step.add(item=repetitions)
 
-        tcx_string += '{}  <Repetitions>{}</Repetitions>\n'.format(indent, str(self.repeat))
+        for step_item in self.steps:
+            step.add(item=step_item.tcx(child=True, delta_seconds=delta_seconds))
 
-        for step in self.steps:
-            tcx_string += step.tcx(indent=indent + '  ', child=True, delta_seconds=delta_seconds)
-
-        if child:
-            tcx_string += indent + '</Child>\n'
-        else:
-            tcx_string += indent + '</Step>\n'
-
-        return tcx_string
+        return step
 
     def add_step(self, step: FirstStepBase) -> None:
 
@@ -260,48 +246,41 @@ class FirstStepBody(FirstStepBase):
 
         return out_string
 
-    def tcx(self, indent: str ='', child: bool =False, delta_seconds: int =5) -> str:
+    def tcx(self, child: bool =False, delta_seconds: int =5) -> XmlTag:
 
-        """
-        Generate a tcx string to download to a Garmin device
-
-        :param indent:
-        :type indent: str
-        :param child: is a child of a repeat step (can be recursive)
-        :type child: bool
-        :param delta_seconds: for speed tolerance
-        :type delta_seconds: int
-        :return: a tcx format for the training plan
-        :rtype: str
-        """
-        tcx_string = FirstStepBase.tcx_start(self, child=child, step_type='Step_t', indent=indent)
+        step = self.tcx_top(child=child, step_type='Step_t')
 
         if self.get_duration_type() == 'distance':
-            tcx_string += '{}  <Duration xsi:type="Distance_t">\n'.format(indent)
-            tcx_string += '{}    <Meters>{:.0f}</Meters>\n'.format(indent, self.distance.convert_to('m'))
+            dur_type = 'Distance_t'
+            dur_quantity = 'Meters'
+            dur_value = '{:.0f}'.format(self.distance.convert_to('m'))
         else:  # time
-            tcx_string += '{}  <Duration xsi:type="Time_t">\n'.format(indent)
-            tcx_string += '{}    <Seconds>{}</Seconds>\n'.format(indent, str(int(self.time.convert_to('second'))))
+            dur_type = 'Time_t'
+            dur_quantity = 'Seconds'
+            dur_value = '{:.0f}'.format(self.time.convert_to('second'))
 
-        tcx_string += '{}  </Duration>\n'.format(indent)
+        duration = XmlTag(name='Duration', attributes={'xsi:type': dur_type})
+        dur = XmlTag(name=dur_quantity, single_line=True)
+        dur.add(item=dur_value)
+        duration.add(item=dur)
+        step.add(item=duration)
 
-        tcx_string += '{}  <Intensity>{}</Intensity>\n'.format(indent, self.intensity)
+        intensity = XmlTag(name='Intensity', single_line=True)
+        intensity.add(item=self.intensity)
+        step.add(item=intensity)
 
-        tcx_string += '{}  <Target xsi:type="Speed_t">\n'.format(indent)
-        tcx_string += '{}    <SpeedZone xsi:type="CustomSpeedZone_t">\n'.format(indent)
-        tcx_string += '{}    <LowInMetersPerSecond>{:.7f}</LowInMetersPerSecond>\n'.format(
-            indent, self.pace.meters_per_second_delta(delta_seconds))
-        tcx_string += '{}    <HighInMetersPerSecond>{:.7f}</HighInMetersPerSecond>\n'.format(
-            indent, self.pace.meters_per_second_delta(-delta_seconds))
-        tcx_string += '{}  </SpeedZone>\n'.format(indent)
-        tcx_string += '{}  </Target>\n'.format(indent)
+        target = XmlTag(name='Target', attributes={'xsi:type': 'Speed_t'})
+        step.add(item=target)
+        zone = XmlTag(name='SpeedZone', attributes={'xsi:type': 'CustomSpeedZone_t'})
+        target.add(item=zone)
+        low = XmlTag(name='LowInMetersPerSecond', single_line=True)
+        low.add(item='{:.7f}'.format(self.pace.meters_per_second_delta(delta_seconds)))
+        zone.add(item=low)
+        high = XmlTag(name='HighInMetersPerSecond', single_line=True)
+        high.add(item='{:.7f}'.format(self.pace.meters_per_second_delta(-delta_seconds)))
+        zone.add(item=high)
 
-        if child:
-            tcx_string += indent + '</Child>\n'
-        else:
-            tcx_string += indent + '</Step>\n'
-
-        return tcx_string
+        return step
 
     def total(self, what: str ='distance', unit: str ='m') -> float:
 

@@ -1,6 +1,5 @@
 import unittest
 from datetime import date
-from os.path import expanduser
 
 from first_data import FirstData
 from first_distance import FirstDistance
@@ -19,7 +18,6 @@ class TestFirstPlan(unittest.TestCase):
 
         ws1 = [0, 2, 5]
         ws2 = [1, 3, 6]
-        # ws3 = [2, 4, 6]
 
         try:  # name only
             p1 = FirstPlan(name='My first marathon training plan', weekly_schedule=ws1)
@@ -151,7 +149,7 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual('0:10:00', str(step.time))
             self.assertEqual('0:11:31 min per mile', str(step.pace))
 
-            file_name = expanduser('../database/cmp_plan_marathon.tcx')
+            file_name = '../database/cmp_plan_marathon.tcx'
             from_file = open(file_name)
             cmp_string = from_file.read()
             from_file.close()
@@ -176,8 +174,6 @@ class TestFirstPlan(unittest.TestCase):
 
         try:  # positive
             p2.generate_workouts(data=data)
-            # print p2.details(1)
-            # print p2.details(2)
 
             file_name = '../database/cmp_plan_half_marathon.tcx'
             from_file = open(file_name)

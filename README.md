@@ -11,8 +11,8 @@ It outputs a text file with the plans specifics and a training file (TCX) for Ga
 ### Development
 - API
 - UI
-- Enable to replace pace with speed
-- Enable to change the plan's units:
+- Enable replacing pace with speed
+- Enable changing the plan's units:
   - length: m, km, mile, ft
   - pace: min per mile, min per km
   - speed: mile/hr, km/hr, m/s

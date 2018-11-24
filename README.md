@@ -10,9 +10,9 @@ It outputs a text file with the plans specifics and a training file (TCX) for Ga
 **training plan**
 - name - plan name
 - weekly schedule - which days of the week you run
-- race - the race you are training for
-- runner - you
-- workouts - a list of workout
+- race - the race you are training for :runner:
+- runner - you :runner:
+- workouts - a list of workout :runner:
 
 **race**
 - race type
@@ -35,15 +35,16 @@ It outputs a text file with the plans specifics and a training file (TCX) for Ga
 - name
 - date
 - status - scheduled, done, skipped
-- steps - list of step (basic step)
+- steps - list of step (basic step) :runner:
 
 **step**
 two flavours derived from basic-step:
-- body
-- repeat
+- body :runner:
+- repeat :runner:
 
 **step-body**
 distance step - run a specific distance in a specific pace
+
 time step - run a specific time in a specific pace
 - pace
 - intensity
@@ -51,7 +52,7 @@ time step - run a specific time in a specific pace
 
 **step-repeat**
 - repeat - how many times to repeat the following list of steps
-- steps - a list of steps, either body or repeat (recursively)
+- steps - a list of steps, either body or repeat (recursively) :runner:
 
 ### Parameters
 

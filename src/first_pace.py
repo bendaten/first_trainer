@@ -1,12 +1,12 @@
-from datetime import timedelta
+from typing import Dict
 
-from first_time import FirstTime
 from first_distance import FirstDistance
+from first_time import FirstTime
 
 
 class FirstPace(object):
 
-    def __init__(self, minutes: int =0, seconds: int =0, length_unit: str ='mile'):
+    def __init__(self, minutes: int = 0, seconds: int = 0, length_unit: str = 'mile'):
 
         """
         Constructor
@@ -28,6 +28,10 @@ class FirstPace(object):
     def __str__(self):
 
         return str(self.time) + ' min per ' + self.length_unit
+
+    def to_json(self) -> Dict:
+
+        return {'pace': str(self), 'length_unit': self.length_unit, 'time': self.time.to_json()}
 
     @classmethod
     def from_string(cls, str_input: str):
@@ -89,7 +93,7 @@ class FirstPace(object):
         return result_distance.convert_to(unit=unit)
 
     @classmethod
-    def from_time_distance(cls, time: FirstTime, distance: FirstDistance, unit: str =None):
+    def from_time_distance(cls, time: FirstTime, distance: FirstDistance, unit: str = None):
 
         """
         Constructor: Initiate FirstPace from time/distance
@@ -118,7 +122,7 @@ class FirstPace(object):
         :param seconds:
         :type seconds: int
         """
-        self.time += timedelta(seconds=seconds)
+        self.time = FirstTime(seconds=self.time.seconds + seconds)
 
     def meters_per_second_delta(self, delta_in_seconds: int) -> float:
 

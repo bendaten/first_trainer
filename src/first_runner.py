@@ -1,4 +1,6 @@
 # noinspection PyTypeChecker
+from typing import Dict
+
 from first_distance import FirstDistance
 from first_utils import FirstUtils
 
@@ -6,7 +8,7 @@ from first_utils import FirstUtils
 class FirstRunner(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, age: int =None, gender: str =None, email: str =None, length_unit: str ='mile'):
+    def __init__(self, name: str, age: int = None, gender: str = None, email: str = None, length_unit: str = 'mile'):
 
         """
         Constructor
@@ -78,3 +80,17 @@ class FirstRunner(object):
                 out_string += indent + '  Email - ' + self.email + '\n'
 
         return out_string
+
+    def to_json(self) -> Dict:
+
+        result_dict = {'name': self.name}
+        if self.age:
+            result_dict['age'] = self.age
+        if self.gender:
+            result_dict['gender'] = self.gender
+        if self.email:
+            result_dict['email'] = self.email
+        if self.length_unit:
+            result_dict['length_unit'] = self.length_unit
+
+        return result_dict

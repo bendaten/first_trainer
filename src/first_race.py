@@ -1,4 +1,5 @@
 import datetime
+from typing import Dict
 
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -30,11 +31,15 @@ class FirstRaceType(object):
 
         return self.name + ' - ' + str(self.distance)
 
+    def to_json(self) -> Dict:
+
+        return {'name': self.name, 'distance': self.distance.to_json()}
+
 
 class FirstRace(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, race_type: FirstRaceType, name: str, race_date: datetime.date, target_time: FirstTime =None):
+    def __init__(self, race_type: FirstRaceType, name: str, race_date: datetime.date, target_time: FirstTime = None):
 
         """
         Constructor
@@ -87,7 +92,7 @@ class FirstRace(object):
 
         return out_string
 
-    def details(self, level: int =0, indent: str ='') -> str:
+    def details(self, level: int = 0, indent: str = '') -> str:
 
         """
         Generate a detailed text report
@@ -111,7 +116,19 @@ class FirstRace(object):
 
         return out_string
 
-    def set_target_time(self, a_time: FirstTime =None) -> None:
+    def to_json(self) -> Dict:
+
+        result_dict = {'Name': self.name}
+        if self.actual_time:
+            result_dict['actual_time'] = str(self.actual_time)
+        result_dict['race_date'] = str(self.race_date)
+        result_dict['race_type'] = self.race_type.to_json()
+        result_dict['status'] = self.status
+        result_dict['target_time'] = {'time': str(self.target_time), 'seconds': self.target_time.seconds}
+
+        return result_dict
+
+    def set_target_time(self, a_time: FirstTime = None) -> None:
 
         """
         Set the target time for the race
@@ -122,7 +139,7 @@ class FirstRace(object):
 
         self.target_time = a_time
 
-    def set_actual_time(self, a_time: FirstTime =None) -> None:
+    def set_actual_time(self, a_time: FirstTime = None) -> None:
 
         """
         Set the actual race time after finished (future use)

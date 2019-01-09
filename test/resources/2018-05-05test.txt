@@ -1,0 +1,495 @@
+Training Plan:
+Name - "test"
+Workout days: Mon, Wed, Sat
+Race:
+  Name - "test" of type Marathon - 26.22 mile
+  On 2018-05-05
+  Target time - 4:00:00
+  Status - scheduled
+Runner:
+  Name - "John Doe"
+Workouts:
+  "Week 1 Keyrun 1"
+    Mon 2018-01-15
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 3"
+      Step: "1600m"
+        1600.0 m  at  0:07:43 min per mile
+      Step: "200 m@RI"
+        200.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 5.91 miles   duration = 51.65 minutes
+  "Week 1 Keyrun 2"
+    Wed 2018-01-17
+    scheduled
+    Step: "2 mile@RI"
+      2.0 mile  at  0:09:48 min per mile
+    Step: "2 mile@short"
+      2.0 mile  at  0:08:13 min per mile
+    Step: "2 mile@RI"
+      2.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 55.63 minutes
+  "Week 1 Keyrun 3"
+    Sat 2018-01-20
+    scheduled
+    Step: "13 mile@RP+30"
+      13.0 mile  at  0:09:39 min per mile
+    Totals: distance = 13.00 miles   duration = 125.45 minutes
+  "Week 2 Keyrun 1"
+    Mon 2018-01-22
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 4"
+      Step: "800m"
+        800.0 m  at  0:07:27 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 5.53 miles   duration = 49.53 minutes
+  "Week 2 Keyrun 2"
+    Wed 2018-01-24
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "5 mile@RP"
+      5.0 mile  at  0:09:09 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 7.00 miles   duration = 65.35 minutes
+  "Week 2 Keyrun 3"
+    Sat 2018-01-27
+    scheduled
+    Step: "15 mile@RP+45"
+      15.0 mile  at  0:09:54 min per mile
+    Totals: distance = 15.00 miles   duration = 148.50 minutes
+  "Week 3 Keyrun 1"
+    Mon 2018-01-29
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "1200m"
+      1200.0 m  at  0:07:35 min per mile
+    Step: "200 m@RI"
+      200.0 m  at  0:09:48 min per mile
+    Step: "1000m"
+      1000.0 m  at  0:07:31 min per mile
+    Step: "200 m@RI"
+      200.0 m  at  0:09:48 min per mile
+    Step: "800m"
+      800.0 m  at  0:07:27 min per mile
+    Step: "200 m@RI"
+      200.0 m  at  0:09:48 min per mile
+    Step: "600m"
+      600.0 m  at  0:07:25 min per mile
+    Step: "200 m@RI"
+      200.0 m  at  0:09:48 min per mile
+    Step: "400m"
+      400.0 m  at  0:07:19 min per mile
+    Step: "200 m@RI"
+      200.0 m  at  0:09:48 min per mile
+    Step: "200 m@400m"
+      200.0 m  at  0:07:19 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 5.78 miles   duration = 50.60 minutes
+  "Week 3 Keyrun 2"
+    Wed 2018-01-31
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "5 mile@long"
+      5.0 mile  at  0:08:43 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 7.00 miles   duration = 63.18 minutes
+  "Week 3 Keyrun 3"
+    Sat 2018-02-03
+    scheduled
+    Step: "17 mile@RP+45"
+      17.0 mile  at  0:09:54 min per mile
+    Totals: distance = 17.00 miles   duration = 168.30 minutes
+  "Week 4 Keyrun 1"
+    Mon 2018-02-05
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 5"
+      Step: "1000m"
+        1000.0 m  at  0:07:31 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 6.90 miles   duration = 60.50 minutes
+  "Week 4 Keyrun 2"
+    Wed 2018-02-07
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "4 mile@mid"
+      4.0 mile  at  0:08:28 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 53.47 minutes
+  "Week 4 Keyrun 3"
+    Sat 2018-02-10
+    scheduled
+    Step: "20 mile@RP+60"
+      20.0 mile  at  0:10:09 min per mile
+    Totals: distance = 20.00 miles   duration = 203.00 minutes
+  "Week 5 Keyrun 1"
+    Mon 2018-02-12
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 3"
+      Step: "1600m"
+        1600.0 m  at  0:07:43 min per mile
+      Step: "200 m@RI"
+        200.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 5.91 miles   duration = 51.65 minutes
+  "Week 5 Keyrun 2"
+    Wed 2018-02-14
+    scheduled
+    Step: "2 mile@RI"
+      2.0 mile  at  0:09:48 min per mile
+    Step: "3 mile@short"
+      3.0 mile  at  0:08:13 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 54.05 minutes
+  "Week 5 Keyrun 3"
+    Sat 2018-02-17
+    scheduled
+    Step: "18 mile@RP+45"
+      18.0 mile  at  0:09:54 min per mile
+    Totals: distance = 18.00 miles   duration = 178.20 minutes
+  "Week 6 Keyrun 1"
+    Mon 2018-02-19
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 2"
+      Step: "1200m"
+        1200.0 m  at  0:07:35 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "repeat X 4"
+      Step: "800m"
+        800.0 m  at  0:07:27 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 7.52 miles   duration = 65.70 minutes
+  "Week 6 Keyrun 2"
+    Wed 2018-02-21
+    scheduled
+    Step: "5 mile@mid"
+      5.0 mile  at  0:08:28 min per mile
+    Totals: distance = 5.00 miles   duration = 42.33 minutes
+  "Week 6 Keyrun 3"
+    Sat 2018-02-24
+    scheduled
+    Step: "20 mile@RP+45"
+      20.0 mile  at  0:09:54 min per mile
+    Totals: distance = 20.00 miles   duration = 198.00 minutes
+  "Week 7 Keyrun 1"
+    Mon 2018-02-26
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 6"
+      Step: "800m"
+        800.0 m  at  0:07:27 min per mile
+      Step: "300 m@RI"
+        300.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 6.65 miles   duration = 58.20 minutes
+  "Week 7 Keyrun 2"
+    Wed 2018-02-28
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "6 mile@long"
+      6.0 mile  at  0:08:43 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 8.00 miles   duration = 71.90 minutes
+  "Week 7 Keyrun 3"
+    Sat 2018-03-03
+    scheduled
+    Step: "13 mile@RP+15"
+      13.0 mile  at  0:09:24 min per mile
+    Totals: distance = 13.00 miles   duration = 122.20 minutes
+  "Week 8 Keyrun 1"
+    Mon 2018-03-05
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 2"
+      Step: "repeat X 6"
+        Step: "400m"
+          400.0 m  at  0:07:19 min per mile
+        Step: "300 m@RI"
+          300.0 m  at  0:09:48 min per mile
+      Step: "500 m@RI"
+        500.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 8.39 miles   duration = 74.90 minutes
+  "Week 8 Keyrun 2"
+    Wed 2018-03-07
+    scheduled
+    Step: "2 mile@RI"
+      2.0 mile  at  0:09:48 min per mile
+    Step: "3 mile@short"
+      3.0 mile  at  0:08:13 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 54.05 minutes
+  "Week 8 Keyrun 3"
+    Sat 2018-03-10
+    scheduled
+    Step: "18 mile@RP+30"
+      18.0 mile  at  0:09:39 min per mile
+    Totals: distance = 18.00 miles   duration = 173.70 minutes
+  "Week 9 Keyrun 1"
+    Mon 2018-03-12
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "1600m"
+      1600.0 m  at  0:07:43 min per mile
+    Step: "400 m@RI"
+      400.0 m  at  0:09:48 min per mile
+    Step: "2 mile@2000m"
+      2.0 mile  at  0:07:47 min per mile
+    Step: "800 m@RI"
+      800.0 m  at  0:09:48 min per mile
+    Step: "repeat X 2"
+      Step: "800m"
+        800.0 m  at  0:07:27 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 7.78 miles   duration = 67.80 minutes
+  "Week 9 Keyrun 2"
+    Wed 2018-03-14
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "4 mile@mid"
+      4.0 mile  at  0:08:28 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 53.47 minutes
+  "Week 9 Keyrun 3"
+    Sat 2018-03-17
+    scheduled
+    Step: "20 mile@RP+30"
+      20.0 mile  at  0:09:39 min per mile
+    Totals: distance = 20.00 miles   duration = 193.00 minutes
+  "Week 10 Keyrun 1"
+    Mon 2018-03-19
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 3"
+      Step: "repeat X 2"
+        Step: "1200m"
+          1200.0 m  at  0:07:35 min per mile
+        Step: "400 m@RI"
+          400.0 m  at  0:09:48 min per mile
+      Step: "800 m@RI"
+        800.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 10.01 miles   duration = 88.10 minutes
+  "Week 10 Keyrun 2"
+    Wed 2018-03-21
+    scheduled
+    Step: "10 mile@RP"
+      10.0 mile  at  0:09:09 min per mile
+    Totals: distance = 10.00 miles   duration = 91.50 minutes
+  "Week 10 Keyrun 3"
+    Sat 2018-03-24
+    scheduled
+    Step: "15 mile@RP+20"
+      15.0 mile  at  0:09:29 min per mile
+    Totals: distance = 15.00 miles   duration = 142.25 minutes
+  "Week 11 Keyrun 1"
+    Mon 2018-03-26
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "1000m"
+      1000.0 m  at  0:07:31 min per mile
+    Step: "400 m@RI"
+      400.0 m  at  0:09:48 min per mile
+    Step: "2000m"
+      2000.0 m  at  0:07:47 min per mile
+    Step: "400 m@RI"
+      400.0 m  at  0:09:48 min per mile
+    Step: "1000m"
+      1000.0 m  at  0:07:31 min per mile
+    Step: "400 m@RI"
+      400.0 m  at  0:09:48 min per mile
+    Step: "1000m"
+      1000.0 m  at  0:07:31 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 6.40 miles   duration = 55.97 minutes
+  "Week 11 Keyrun 2"
+    Wed 2018-03-28
+    scheduled
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Step: "5 mile@RP"
+      5.0 mile  at  0:09:09 min per mile
+    Totals: distance = 6.00 miles   duration = 55.55 minutes
+  "Week 11 Keyrun 3"
+    Sat 2018-03-31
+    scheduled
+    Step: "20 mile@RP+30"
+      20.0 mile  at  0:09:39 min per mile
+    Totals: distance = 20.00 miles   duration = 193.00 minutes
+  "Week 12 Keyrun 1"
+    Mon 2018-04-02
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 3"
+      Step: "1600m"
+        1600.0 m  at  0:07:43 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 6.28 miles   duration = 55.30 minutes
+  "Week 12 Keyrun 2"
+    Wed 2018-04-04
+    scheduled
+    Step: "10 mile@RP"
+      10.0 mile  at  0:09:09 min per mile
+    Totals: distance = 10.00 miles   duration = 91.50 minutes
+  "Week 12 Keyrun 3"
+    Sat 2018-04-07
+    scheduled
+    Step: "15 mile@RP+10"
+      15.0 mile  at  0:09:19 min per mile
+    Totals: distance = 15.00 miles   duration = 139.75 minutes
+  "Week 13 Keyrun 1"
+    Mon 2018-04-09
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 10"
+      Step: "400m"
+        400.0 m  at  0:07:19 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 7.52 miles   duration = 67.50 minutes
+  "Week 13 Keyrun 2"
+    Wed 2018-04-11
+    scheduled
+    Step: "8 mile@RP"
+      8.0 mile  at  0:09:09 min per mile
+    Totals: distance = 8.00 miles   duration = 73.20 minutes
+  "Week 13 Keyrun 3"
+    Sat 2018-04-14
+    scheduled
+    Step: "20 mile@RP+15"
+      20.0 mile  at  0:09:24 min per mile
+    Totals: distance = 20.00 miles   duration = 188.00 minutes
+  "Week 14 Keyrun 1"
+    Mon 2018-04-16
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 8"
+      Step: "800m"
+        800.0 m  at  0:07:27 min per mile
+      Step: "300 m@RI"
+        300.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 8.02 miles   duration = 69.27 minutes
+  "Week 14 Keyrun 2"
+    Wed 2018-04-18
+    scheduled
+    Step: "5 mile@mid"
+      5.0 mile  at  0:08:28 min per mile
+    Totals: distance = 5.00 miles   duration = 42.33 minutes
+  "Week 14 Keyrun 3"
+    Sat 2018-04-21
+    scheduled
+    Step: "13 mile@RP"
+      13.0 mile  at  0:09:09 min per mile
+    Totals: distance = 13.00 miles   duration = 118.95 minutes
+  "Week 15 Keyrun 1"
+    Mon 2018-04-23
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 5"
+      Step: "1000m"
+        1000.0 m  at  0:07:31 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 6.90 miles   duration = 60.50 minutes
+  "Week 15 Keyrun 2"
+    Wed 2018-04-25
+    scheduled
+    Step: "2 mile@RI"
+      2.0 mile  at  0:09:48 min per mile
+    Step: "3 mile@short"
+      3.0 mile  at  0:08:13 min per mile
+    Step: "1 mile@RI"
+      1.0 mile  at  0:09:48 min per mile
+    Totals: distance = 6.00 miles   duration = 54.05 minutes
+  "Week 15 Keyrun 3"
+    Sat 2018-04-28
+    scheduled
+    Step: "10 mile@RP"
+      10.0 mile  at  0:09:09 min per mile
+    Totals: distance = 10.00 miles   duration = 91.50 minutes
+  "Week 16 Keyrun 1"
+    Mon 2018-04-30
+    scheduled
+    Step: "warmup"
+      0:15:00  at  0:09:48 min per mile
+    Step: "repeat X 6"
+      Step: "400m"
+        400.0 m  at  0:07:19 min per mile
+      Step: "400 m@RI"
+        400.0 m  at  0:09:48 min per mile
+    Step: "cooldown"
+      0:10:00  at  0:09:48 min per mile
+    Totals: distance = 5.53 miles   duration = 50.50 minutes
+  "Week 16 Keyrun 2"
+    Wed 2018-05-02
+    scheduled
+    Step: "3 mile@RP"
+      3.0 mile  at  0:09:09 min per mile
+    Totals: distance = 3.00 miles   duration = 27.45 minutes
+  "Week 16 Keyrun 3"
+    Sat 2018-05-05
+    scheduled
+    Step: "26.22 mile@RP"
+      26.22 mile  at  0:09:09 min per mile
+    Totals: distance = 26.22 miles   duration = 239.92 minutes
+Total 48 workouts

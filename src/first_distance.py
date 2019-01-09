@@ -58,6 +58,10 @@ class FirstDistance(object):
 
         return cls(distance=value, unit=unit)
 
+    def to_json(self):
+
+        return {'distance': self.distance, 'unit': self.unit}
+
     def __str__(self):
 
         return '{} {}'.format(str(self.distance), self.unit)

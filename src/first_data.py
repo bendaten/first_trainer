@@ -1,5 +1,5 @@
-from typing import List, Dict
 from datetime import timedelta
+from typing import Dict
 
 import xmltodict as xmltodict
 
@@ -12,7 +12,8 @@ from first_time import FirstTime
 class FirstSegment(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, distance: FirstDistance =None, duration: FirstTime =None, ref_pace_name: str =None):
+    def __init__(self, name: str, distance: FirstDistance = None,
+                 duration: FirstTime = None, ref_pace_name: str = None):
 
         """
         Constructor

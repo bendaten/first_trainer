@@ -1,3 +1,4 @@
+import json
 from datetime import timedelta
 from typing import List
 
@@ -12,7 +13,7 @@ from first_workout import FirstWorkout
 class FirstPlan(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, weekly_schedule: List[int], race: FirstRace =None, runner: FirstRunner =None):
+    def __init__(self, name: str, weekly_schedule: List[int], race: FirstRace = None, runner: FirstRunner = None):
 
         """
         Constructor
@@ -45,7 +46,7 @@ class FirstPlan(object):
 
         return self.details()
 
-    def details(self, level: int =0, indent: str ='') -> str:
+    def details(self, level: int = 0, indent: str = '') -> str:
 
         """
         Text report of a training plan
@@ -110,6 +111,21 @@ class FirstPlan(object):
             workouts.add(item=workout.tcx())
 
         return tcx.indented_str(doctype='xml')
+
+    def to_json(self) -> str:
+
+        result_dict = {'name': self.name}
+
+        week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
+        result_dict['weekly_schedule'] = [week[day_index] for day_index in self.weekly_schedule]
+        result_dict['race'] = self.race.to_json()
+        result_dict['runner'] = self.runner.to_json()
+        workouts_list = [workout.to_json() for workout in self.workouts]
+        result_dict['workouts'] = workouts_list
+
+        json_str = json.dumps(result_dict)
+
+        return json_str
 
     def add_workout(self, workout: FirstWorkout) -> None:
 

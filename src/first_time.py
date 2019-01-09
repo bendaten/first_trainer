@@ -1,4 +1,6 @@
 from datetime import timedelta
+from typing import Dict
+
 from dateutil.parser import parse
 
 
@@ -6,7 +8,7 @@ class FirstTime(timedelta):
 
     """FirstTime adds restrictions to timedelta. It allows only positive values and a has a conversion method"""
 
-    def __new__(cls, hours: int =0, minutes: int =0, seconds: int =0):
+    def __new__(cls, hours: int = 0, minutes: int = 0, seconds: int = 0):
 
         """
         Constructor
@@ -24,6 +26,10 @@ class FirstTime(timedelta):
             raise ValueError('negative values are invalid')
 
         return super().__new__(cls, hours=hours, minutes=minutes, seconds=seconds)
+
+    def to_json(self) -> Dict:
+
+        return {'time': str(self), 'seconds': self.seconds}
 
     conversions = {'second': 1, 'minute': 60, 'hour': 3600}
 

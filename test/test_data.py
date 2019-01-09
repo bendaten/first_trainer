@@ -1,7 +1,5 @@
 import unittest
 
-from os.path import expanduser
-
 from first_data import FirstData
 from first_time import FirstTime
 

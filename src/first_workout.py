@@ -1,6 +1,8 @@
-import datetime
+from typing import Dict
 
 from parse import *
+
+import datetime
 
 from first_data import FirstData
 from first_pace import FirstPace
@@ -11,7 +13,7 @@ from first_utils import XmlTag
 class FirstWorkout(object):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, workout_date: datetime.date, note: str =None):
+    def __init__(self, name: str, workout_date: datetime.date, note: str = None):
 
         """
         Constructor
@@ -69,7 +71,7 @@ class FirstWorkout(object):
 
         return out_string
 
-    def details(self, level: int =0, indent: str ='') -> str:
+    def details(self, level: int = 0, indent: str = '') -> str:
 
         """
         Text report of a training plan
@@ -95,7 +97,19 @@ class FirstWorkout(object):
 
         return out_string
 
-    def total(self, what: str ='distance', unit: str ='mile') -> float:
+    def to_json(self) -> Dict:
+
+        result_dict = {'name': self.name,
+                       'note': self.note,
+                       'status': self.status,
+                       'date': str(self.workout_date),
+                       'steps': [step.to_json() for step in self.steps],
+                       'total_distance': {'distance': self.total(unit='mile'), 'unit': 'mile'},
+                       'total_time': {'time': self.total(what='time', unit='minute'), 'unit': 'minute'}}
+
+        return result_dict
+
+    def total(self, what: str = 'distance', unit: str = 'mile') -> float:
 
         """
         Calculate the total distance or time for this workout

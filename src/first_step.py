@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Dict
 
 from first_data import FirstData
 from first_distance import FirstDistance
@@ -35,7 +35,7 @@ class FirstStepBase(object):
 
         return 'Step: "{}"  id = {}\n'.format(self.name, self.step_id)
 
-    def details(self, indent: str ='') -> str:
+    def details(self, indent: str = '') -> str:
 
         return '{}Step: "{}"\n'.format(indent, self.name)
 
@@ -57,7 +57,7 @@ class FirstStepBase(object):
 class FirstStepRepeat(FirstStepBase):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, repeat: int =1):
+    def __init__(self, name: str, repeat: int = 1):
 
         """
         Constructor
@@ -86,7 +86,7 @@ class FirstStepRepeat(FirstStepBase):
 
         return '{}type - {}  repeat - {}\n'.format(FirstStepBase.__str__(self), self.__get_type(), str(self.repeat))
 
-    def details(self, level: int =0, indent: str ='') -> str:
+    def details(self, level: int = 0, indent: str = '') -> str:
 
         """
         Generate a detailed text report
@@ -104,7 +104,15 @@ class FirstStepRepeat(FirstStepBase):
 
         return out_string
 
-    def tcx(self, child: bool =False, delta_seconds: int =5) -> XmlTag:
+    def to_json(self) -> Dict:
+
+        result_dict = {'name': self.name,
+                       'repeat': self.repeat,
+                       'steps': [step.to_json() for step in self.steps]}
+
+        return result_dict
+
+    def tcx(self, child: bool = False, delta_seconds: int = 5) -> XmlTag:
 
         step = self.tcx_top(child=child, step_type='Repeat_t')
 
@@ -138,7 +146,7 @@ class FirstStepRepeat(FirstStepBase):
         """
         self.steps = steps
 
-    def total(self, what: str ='distance', unit: str ='m') -> float:
+    def total(self, what: str = 'distance', unit: str = 'm') -> float:
 
         """
         Calculate the total distance or time for this step
@@ -161,8 +169,8 @@ class FirstStepRepeat(FirstStepBase):
 class FirstStepBody(FirstStepBase):
 
     # noinspection PyTypeChecker
-    def __init__(self, name: str, pace: FirstPace, intensity: str ='Active',
-                 distance: FirstDistance =None, time: FirstTime =None):
+    def __init__(self, name: str, pace: FirstPace, intensity: str = 'Active',
+                 distance: FirstDistance = None, time: FirstTime = None):
 
         """
         Constructor
@@ -224,7 +232,7 @@ class FirstStepBody(FirstStepBase):
 
         return output
 
-    def details(self, level: int =0, indent: str ='') -> str:
+    def details(self, level: int = 0, indent: str = '') -> str:
 
         """
         Text report of a training plan
@@ -246,7 +254,18 @@ class FirstStepBody(FirstStepBase):
 
         return out_string
 
-    def tcx(self, child: bool =False, delta_seconds: int =5) -> XmlTag:
+    def to_json(self) -> Dict:
+
+        result_dict = {'name': self.name}
+        if self.time:
+            result_dict['time'] = self.time.to_json()
+        if self.distance:
+            result_dict['distance'] = self.distance.to_json()
+        result_dict['pace'] = self.pace.to_json()
+
+        return result_dict
+
+    def tcx(self, child: bool = False, delta_seconds: int = 5) -> XmlTag:
 
         step = self.tcx_top(child=child, step_type='Step_t')
 
@@ -282,7 +301,7 @@ class FirstStepBody(FirstStepBase):
 
         return step
 
-    def total(self, what: str ='distance', unit: str ='m') -> float:
+    def total(self, what: str = 'distance', unit: str = 'm') -> float:
 
         """
         Calculate the total distance or time for this step

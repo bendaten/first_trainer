@@ -1,4 +1,6 @@
+import json
 from datetime import timedelta
+from os.path import expanduser
 from typing import Dict
 
 import xmltodict as xmltodict
@@ -116,11 +118,53 @@ class FirstData(object):
             data_dict = xmltodict.parse(fd.read())['FIRSTdatabase']
             fd.close()
 
+            # FirstData.save_json(data_dict)  # remove later
+
             self.name = data_dict['name']
             self.note = data_dict['note']
             self.__get_rtt(rtt=data_dict['rTT'])
             self.__get_segments(st=data_dict['sT'])
             self.__get_instructions(wis=data_dict['wIs'])
+
+    @staticmethod
+    def save_json(orig_dict: Dict) -> None:  # remove later
+
+        rtt = orig_dict['rTT']
+        races = [{'name': race['name'],
+                  'distance': {'value': race['distance']['distance'], 'unit': race['distance']['unit']}}
+                 for race in rtt['races']['race']]
+        equivalent_times = [[{'seconds': time['seconds'], 'minutes': time['minutes'], 'hours': time['hours']}
+                             for time in row['times']['time']]
+                            for row in rtt['rows']['row']]
+
+        st = orig_dict['sT']
+        segments = {'reference_race': st['refRace'],
+                    'pace_unit': st['paceUnit'],
+                    'segment_types': [{'name': segment['name'],
+                                       'type': segment['type'],
+                                       'distance': {'value': segment['distance']['distance'],
+                                                    'unit': segment['distance']['unit']} if 'distance' in segment else None,
+                                       'ref_pace_name': segment['refPaceName']}
+                                      for segment in st['segments']['segment']],
+                    'paces': [paces_string for paces_string in st['lines']['string']]}
+
+        wis = orig_dict['wIs']['planInstructions']
+        plan_instructions = [{'name': plan['name'],
+                              'race_name': plan['raceName'],
+                              'instructions': plan['instructions']['string']} for plan in wis]
+
+        first_db = {'name': orig_dict['name'],
+                    'note': orig_dict['note'],
+                    'races': races,
+                    'equivalent_times': equivalent_times,
+                    'segments': segments,
+                    'workout_instructions': plan_instructions}
+        json_str = json.dumps(first_db)
+
+        file_name = expanduser('~/Downloads/training_db.json')
+        target = open(file_name, 'w')
+        target.write(json_str)
+        target.close()
 
     def __str__(self) -> str:
 

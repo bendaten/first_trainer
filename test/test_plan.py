@@ -97,8 +97,8 @@ class TestFirstPlan(unittest.TestCase):
 
     def test_generate_workouts(self):
 
-        data_file_path = '../database/FIRSTregularPlans.xml'
-        data = FirstData(xml_path=data_file_path)
+        data_file_path = '../database/training_db.json'
+        data = FirstData(json_path=data_file_path)
         ws1 = [0, 2, 5]
         target_time = data.equivalent_time(time_from=FirstTime(minutes=30),
                                            race_index_from=data.race_type_index_by_name('5K'),

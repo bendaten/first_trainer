@@ -180,8 +180,8 @@ class TestFirstWorkout(unittest.TestCase):
         rp = FirstPace.from_string(str_input='0:09:35 min per mile')
         ti = 50
         wo_date = date(2017, 8, 21)
-        data_file_path = '../database/FIRSTregularPlans.xml'
-        data = FirstData(data_file_path)
+        data_file_path = '../database/training_db.json'
+        data = FirstData(json_path=data_file_path)
         instructions = '1 1 warmup#3x(1600m#200 m@RI)cooldown'
         FirstStepBase.reset_global_id()
 

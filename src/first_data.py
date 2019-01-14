@@ -1,9 +1,9 @@
 import json
 from datetime import timedelta
 from os.path import expanduser
-from typing import Dict
+from typing import Dict, List
 
-import xmltodict as xmltodict
+# import xmltodict as xmltodict
 
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -67,7 +67,7 @@ class FirstSegment(object):
 
 class PlanInstructions(object):
 
-    def __init__(self, name: str, race_name: str):
+    def __init__(self, name: str, race_name: str, instructions: List[str] = None):
 
         """
         Constructor
@@ -81,7 +81,11 @@ class PlanInstructions(object):
         """
         self.name = name
         self.race_name = race_name
-        self.instructions = []
+        self.instructions = instructions or []
+
+    def __repr__(self):
+
+        return 'plan: {}   race: {}   {} workouts'.format(self.name, self.race_name, len(self.instructions))
 
     def add_instruction(self, line: str) -> None:
 
@@ -95,13 +99,12 @@ class PlanInstructions(object):
 
 class FirstData(object):
 
-    def __init__(self, xml_path: str):
+    # def __init__(self, xml_path: str = None, json_path: str = None):
+    def __init__(self, json_path: str):
 
         """
         Constructor
 
-        :param xml_path: path to xml database
-        :type xml_path: str
         :return: instance of FirstData
         :rtype: FirstData
         """
@@ -114,146 +117,217 @@ class FirstData(object):
         self.segments_paces = []
         self.plan_instructions = []
 
-        with open(xml_path, 'r') as fd:
-            data_dict = xmltodict.parse(fd.read())['FIRSTdatabase']
-            fd.close()
+        # if xml_path is not None:
+        #     with open(xml_path, 'r') as fd:
+        #         data_dict = xmltodict.parse(fd.read())['FIRSTdatabase']
+        #         fd.close()
+        #
+        #         # FirstData.save_json(data_dict)  # remove later
+        #
+        #         self.name = data_dict['name']
+        #         self.note = data_dict['note']
+        #         self.__get_rtt(rtt=data_dict['rTT'])
+        #         self.__get_segments(st=data_dict['sT'])
+        #         self.__get_instructions(wis=data_dict['wIs'])
+        # elif json_path is not None:
+        if json_path is not None:
+            with open(json_path, 'r') as fd:
+                data_dict = json.load(fd)
+                self.name = data_dict['name']
+                self.note = data_dict['note']
 
-            # FirstData.save_json(data_dict)  # remove later
+                self.race_types = [FirstRaceType(name=race['name'], distance=float(race['distance']['value']),
+                                                 unit=race['distance']['unit'])
+                                   for race in data_dict['races']]
+                self.race_times = [[FirstTime(seconds=int(time['seconds']), minutes=int(time['minutes']),
+                                              hours=int(time['hours']))
+                                    for time in times]
+                                   for times in data_dict['equivalent_times']]
+                self.__get_segments_json(json_segments=data_dict['segments'])
+                self.plan_instructions = [PlanInstructions(name=plan['name'], race_name=plan['race_name'],
+                                                           instructions=[line for line in plan['instructions']])
+                                          for plan in data_dict['workout_instructions']]
+        else:
+            # raise ValueError('Either xml_path or json_path should point to an existing file')
+            raise ValueError('json_path should point to an existing file')
 
-            self.name = data_dict['name']
-            self.note = data_dict['note']
-            self.__get_rtt(rtt=data_dict['rTT'])
-            self.__get_segments(st=data_dict['sT'])
-            self.__get_instructions(wis=data_dict['wIs'])
+    def __get_segments_json(self, json_segments: Dict) -> None:
 
-    @staticmethod
-    def save_json(orig_dict: Dict) -> None:  # remove later
+        self.reference_race = json_segments['reference_race']
+        index = 0
+        for segment_type in json_segments['segment_types']:
+            name = segment_type['name']
+            type_str = segment_type['type']
+            ref_pace = segment_type['ref_pace_name']
+            if type_str == 'DISTANCE':
+                distance = FirstDistance(distance=float(segment_type['distance']['value']),
+                                         unit=segment_type['distance']['unit'])
+                self.segments.append(FirstSegment(name=name, distance=distance))
+            elif type_str == 'TIME':
+                duration = FirstTime(seconds=int(segment_type['time']['seconds']),
+                                     minutes=int(segment_type['time']['minutes']),
+                                     hours=int(segment_type['time']['hours']))
+                self.segments.append(FirstSegment(name=name, duration=duration,
+                                                  ref_pace_name=ref_pace))
+            else:  # PACE
+                self.segments.append(FirstSegment(name=name, ref_pace_name=ref_pace))
 
-        rtt = orig_dict['rTT']
-        races = [{'name': race['name'],
-                  'distance': {'value': race['distance']['distance'], 'unit': race['distance']['unit']}}
-                 for race in rtt['races']['race']]
-        equivalent_times = [[{'seconds': time['seconds'], 'minutes': time['minutes'], 'hours': time['hours']}
-                             for time in row['times']['time']]
-                            for row in rtt['rows']['row']]
+            self.segments_lookup[name] = index  # TODO is it really needed?
+            index += 1
 
-        st = orig_dict['sT']
-        segments = {'reference_race': st['refRace'],
-                    'pace_unit': st['paceUnit'],
-                    'segment_types': [{'name': segment['name'],
-                                       'type': segment['type'],
-                                       'distance': {'value': segment['distance']['distance'],
-                                                    'unit': segment['distance']['unit']} if 'distance' in segment else None,
-                                       'ref_pace_name': segment['refPaceName']}
-                                      for segment in st['segments']['segment']],
-                    'paces': [paces_string for paces_string in st['lines']['string']]}
+        pace_unit = json_segments['pace_unit']
+        distance_unit = pace_unit.split()[-1]
+        for line in json_segments['paces']:
+            items = line.split()
+            paces_list = [FirstTime.from_string(items[0])]
+            index = 0
+            for pace_str in items[1:]:
+                time_str = '0:{}'.format(pace_str)
+                ref_segment = self.segments[index]
+                if ref_segment.get_type() == 'distance':
+                    cur_time = FirstTime.from_string(time_str)
+                    cur_distance = ref_segment.distance
+                    paces_list.append(FirstPace.from_time_distance(time=cur_time, distance=cur_distance,
+                                                                   unit=distance_unit))
+                elif ref_segment.get_type() == 'pace':
+                    paces_list.append(FirstPace.from_string('{} {}'.format(time_str, pace_unit)))
+                else:
+                    raise ValueError('Duration segments have already a reference pace')
 
-        wis = orig_dict['wIs']['planInstructions']
-        plan_instructions = [{'name': plan['name'],
-                              'race_name': plan['raceName'],
-                              'instructions': plan['instructions']['string']} for plan in wis]
+                index += 1
+            self.segments_paces.append(paces_list)
 
-        first_db = {'name': orig_dict['name'],
-                    'note': orig_dict['note'],
-                    'races': races,
-                    'equivalent_times': equivalent_times,
-                    'segments': segments,
-                    'workout_instructions': plan_instructions}
-        json_str = json.dumps(first_db)
-
-        file_name = expanduser('~/Downloads/training_db.json')
-        target = open(file_name, 'w')
-        target.write(json_str)
-        target.close()
+    # @staticmethod
+    # def save_json(orig_dict: Dict) -> None:  # remove later
+    #
+    #     rtt = orig_dict['rTT']
+    #     races = [{'name': race['name'],
+    #               'distance': {'value': race['distance']['distance'], 'unit': race['distance']['unit']}}
+    #              for race in rtt['races']['race']]
+    #     equivalent_times = [[{'seconds': time['seconds'], 'minutes': time['minutes'], 'hours': time['hours']}
+    #                          for time in row['times']['time']]
+    #                         for row in rtt['rows']['row']]
+    #
+    #     st = orig_dict['sT']
+    #     segments = {'reference_race': st['refRace'],
+    #                 'pace_unit': st['paceUnit'],
+    #                 'segment_types': [{'name': segment['name'],
+    #                                    'type': segment['type'],
+    #                                    'distance': {'value': segment['distance']['distance'],
+    #                                                 'unit': segment['distance']['unit']} if 'distance' in segment else None,
+    #                                    'time': {'seconds': segment['time']['seconds'],
+    #                                             'minutes': segment['time']['minutes'],
+    #                                             'hours': segment['time']['hours']} if 'time' in segment else None,
+    #                                    'ref_pace_name': segment['refPaceName']}
+    #                                   for segment in st['segments']['segment']],
+    #                 'paces': [paces_string for paces_string in st['lines']['string']]}
+    #
+    #     wis = orig_dict['wIs']['planInstructions']
+    #     plan_instructions = [{'name': plan['name'],
+    #                           'race_name': plan['raceName'],
+    #                           'instructions': plan['instructions']['string']} for plan in wis]
+    #
+    #     first_db = {'name': orig_dict['name'],
+    #                 'note': orig_dict['note'],
+    #                 'races': races,
+    #                 'equivalent_times': equivalent_times,
+    #                 'segments': segments,
+    #                 'workout_instructions': plan_instructions}
+    #     json_str = json.dumps(first_db)
+    #
+    #     file_name = expanduser('~/Downloads/training_db.json')
+    #     target = open(file_name, 'w')
+    #     target.write(json_str)
+    #     target.close()
 
     def __str__(self) -> str:
 
         return self.name
 
-    def __get_rtt(self, rtt: Dict) -> None:
-
-        self.__get_races(races=rtt['races'])
-        self.__get_times(rows=rtt['rows'])
-
-    def __get_races(self, races: Dict) -> None:
-
-        for race in races['race']:
-            name = race['name']
-            info = race['distance']
-            self.race_types.append(FirstRaceType(name=name, distance=float(info['distance']), unit=info['unit']))
-
-    def __get_times(self, rows: Dict) -> None:
-
-        for row in rows['row']:
-            times = []
-            for col in row['times']['time']:
-                times.append(FirstTime(seconds=int(col['seconds']),
-                                       minutes=int(col['minutes']), hours=int(col['hours'])))
-
-            self.race_times.append(times)
-
-    def __get_segments(self, st: Dict) -> None:
-
-        index = 0
-        segments = st['segments']
-        for segment in segments['segment']:
-            name = segment['name']
-            segment_type = segment['type']
-
-            if segment_type == 'DISTANCE':
-                dist_dict = segment['distance']
-                distance = FirstDistance(distance=float(dist_dict['distance']), unit=dist_dict['unit'])
-                self.segments.append(FirstSegment(name=name, distance=distance))
-            elif segment_type == 'TIME':
-                time_dict = segment['time']
-                duration = FirstTime(seconds=int(time_dict['seconds']),
-                                     minutes=int(time_dict['minutes']),
-                                     hours=int(time_dict['hours']))
-                self.segments.append(FirstSegment(name=name, duration=duration, ref_pace_name=segment['refPaceName']))
-            else:  # PACE
-                self.segments.append(FirstSegment(name=name, ref_pace_name=segment['refPaceName']))
-
-            self.segments_lookup[name] = index
-
-            index += 1
-
-        self.reference_race = st['refRace']
-        pace_unit = st['paceUnit']
-        dist_unit = pace_unit.split()[-1]
-
-        for line in st['lines']['string']:
-            paces_list = []
-            first = True
-            index = 0
-            for value in line.split():
-                if first:
-                    paces_list.append(FirstTime.from_string(value))
-                    first = False
-                else:
-                    # why incrementing index makes ref_segment.get_type undefined?
-                    time_string = '0:' + value
-                    ref_segment = self.segments[index]
-                    if ref_segment.get_type() == 'distance':
-                        cur_time = FirstTime.from_string(time_string)
-                        cur_dist = ref_segment.distance
-                        paces_list.append(FirstPace.from_time_distance(time=cur_time, distance=cur_dist,
-                                                                       unit=dist_unit))
-                    elif ref_segment.get_type() == 'pace':
-                        paces_list.append(FirstPace.from_string(time_string + ' ' + pace_unit))
-                    else:
-                        raise ValueError('Duration segments have already a reference pace')
-
-                    index = index + 1
-
-            self.segments_paces.append(paces_list)
-
-    def __get_instructions(self, wis: Dict) -> None:
-
-        for plan_instructions in wis['planInstructions']:
-            one_plan = PlanInstructions(name=plan_instructions['name'], race_name=plan_instructions['raceName'])
-            for line in plan_instructions['instructions']['string']:
-                one_plan.add_instruction(line=line)
-            self.plan_instructions.append(one_plan)
+    # def __get_rtt(self, rtt: Dict) -> None:
+    #
+    #     self.__get_races(races=rtt['races'])
+    #     self.__get_times(rows=rtt['rows'])
+    #
+    # def __get_races(self, races: Dict) -> None:
+    #
+    #     for race in races['race']:
+    #         name = race['name']
+    #         info = race['distance']
+    #         self.race_types.append(FirstRaceType(name=name, distance=float(info['distance']), unit=info['unit']))
+    #
+    # def __get_times(self, rows: Dict) -> None:
+    #
+    #     for row in rows['row']:
+    #         times = []
+    #         for col in row['times']['time']:
+    #             times.append(FirstTime(seconds=int(col['seconds']),
+    #                                    minutes=int(col['minutes']), hours=int(col['hours'])))
+    #
+    #         self.race_times.append(times)
+    #
+    # def __get_segments(self, st: Dict) -> None:
+    #
+    #     index = 0
+    #     segments = st['segments']
+    #     for segment in segments['segment']:
+    #         name = segment['name']
+    #         segment_type = segment['type']
+    #
+    #         if segment_type == 'DISTANCE':
+    #             dist_dict = segment['distance']
+    #             distance = FirstDistance(distance=float(dist_dict['distance']), unit=dist_dict['unit'])
+    #             self.segments.append(FirstSegment(name=name, distance=distance))
+    #         elif segment_type == 'TIME':
+    #             time_dict = segment['time']
+    #             duration = FirstTime(seconds=int(time_dict['seconds']),
+    #                                  minutes=int(time_dict['minutes']),
+    #                                  hours=int(time_dict['hours']))
+    #             self.segments.append(FirstSegment(name=name, duration=duration, ref_pace_name=segment['refPaceName']))
+    #         else:  # PACE
+    #             self.segments.append(FirstSegment(name=name, ref_pace_name=segment['refPaceName']))
+    #
+    #         self.segments_lookup[name] = index
+    #
+    #         index += 1
+    #
+    #     self.reference_race = st['refRace']
+    #     pace_unit = st['paceUnit']
+    #     dist_unit = pace_unit.split()[-1]
+    #
+    #     for line in st['lines']['string']:
+    #         paces_list = []
+    #         first = True
+    #         index = 0
+    #         for value in line.split():
+    #             if first:
+    #                 paces_list.append(FirstTime.from_string(value))
+    #                 first = False
+    #             else:
+    #                 # why incrementing index makes ref_segment.get_type undefined?
+    #                 time_string = '0:' + value
+    #                 ref_segment = self.segments[index]
+    #                 if ref_segment.get_type() == 'distance':
+    #                     cur_time = FirstTime.from_string(time_string)
+    #                     cur_dist = ref_segment.distance
+    #                     paces_list.append(FirstPace.from_time_distance(time=cur_time, distance=cur_dist,
+    #                                                                    unit=dist_unit))
+    #                 elif ref_segment.get_type() == 'pace':
+    #                     paces_list.append(FirstPace.from_string(time_string + ' ' + pace_unit))
+    #                 else:
+    #                     raise ValueError('Duration segments have already a reference pace')
+    #
+    #                 index = index + 1
+    #
+    #         self.segments_paces.append(paces_list)
+    #
+    # def __get_instructions(self, wis: Dict) -> None:
+    #
+    #     for plan_instructions in wis['planInstructions']:
+    #         one_plan = PlanInstructions(name=plan_instructions['name'], race_name=plan_instructions['raceName'])
+    #         for line in plan_instructions['instructions']['string']:
+    #             one_plan.add_instruction(line=line)
+    #         self.plan_instructions.append(one_plan)
 
     def equivalent_time(self, time_from: FirstTime, race_index_from: int, race_index_to: int) -> FirstTime:
 

@@ -64,8 +64,8 @@ def main():
 
     root = os.environ['FIRST_TRAINER']
 
-    data_file_path = '{}database/FIRSTregularPlans.xml'.format(root)
-    data = FirstData(xml_path=data_file_path)
+    data_file_path = '{}/database/training_db.json'.format(root)  # add to config
+    data = FirstData(json_path=data_file_path)
 
     runner = FirstRunner(name=args.runner_name)
 

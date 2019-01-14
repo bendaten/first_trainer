@@ -8,9 +8,9 @@ class TestFirstData(unittest.TestCase):
 
     def test_equivalent_time(self):
 
-        data_file_path = '../database/FIRSTregularPlans.xml'
+        data_file_path = '../database/training_db.json'
         try:  # good path
-            data = FirstData(xml_path=data_file_path)
+            data = FirstData(json_path=data_file_path)
             self.assertEqual(4, len(data.race_types))
             self.assertEqual(1, data.race_type_index_by_name(name='10K'))
             self.assertEqual(2, data.race_type_index_by_name(name='HalfMarathon'))
@@ -72,16 +72,16 @@ class TestFirstData(unittest.TestCase):
             self.assertEqual('Race index must be between 0 and 3', str(ex))
 
         try:  # bad database file
-            _ = FirstData(xml_path='lulu')
+            _ = FirstData(json_path='lulu')
             self.fail('Should not get here with bad file name')
         except IOError as ioex:
             self.assertEqual("[Errno 2] No such file or directory: 'lulu'", str(ioex))
 
     def test_segments(self):
 
-        data_file_path = '../database/FIRSTregularPlans.xml'
+        data_file_path = '../database/training_db.json'  # add path to config
         try:  # good path
-            data = FirstData(xml_path=data_file_path)
+            data = FirstData(json_path=data_file_path)
             self.assertEqual(14, len(data.segments))
             self.assertEqual('400m  distance  400.0 m', str(data.segments[0]))
             self.assertEqual('long  pace', str(data.segments[-5]))
@@ -101,9 +101,9 @@ class TestFirstData(unittest.TestCase):
 
     def test_plan_instructions(self):
 
-        data_file_path = '../database/FIRSTregularPlans.xml'
+        data_file_path = '../database/training_db.json'  # add path to config
         try:  # good path
-            data = FirstData(xml_path=data_file_path)
+            data = FirstData(json_path=data_file_path)
             self.assertEqual(4, len(data.plan_instructions))
             plan1 = data.plan_instructions[0]
             self.assertEqual('5K plan instructions', plan1.name)

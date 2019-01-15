@@ -8,7 +8,6 @@ from first_time import FirstTime
 
 class FirstRaceType(object):
 
-    # def __init__(self, name: str, distance: float, unit: str):
     def __init__(self, name: str, distance: FirstDistance):
 
         """
@@ -22,7 +21,6 @@ class FirstRaceType(object):
         :rtype: FirstRaceType
         """
         self.name = name
-        # self.distance = FirstDistance(distance=distance, unit=unit)
         self.distance = distance
 
     def __str__(self) -> str:

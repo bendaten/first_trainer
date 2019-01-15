@@ -118,8 +118,6 @@ class FirstData(object):
             with open(json_path, 'r') as fd:
                 data_dict = json.load(fd)
 
-                # self.improve_json(data_dict)
-
                 self.name = data_dict['name']
                 self.note = data_dict['note']
 
@@ -177,24 +175,6 @@ class FirstData(object):
 
                 index += 1
             self.segments_paces.append(paces_list)
-
-    @staticmethod
-    def improve_json(orig_dict: Dict) -> None:
-
-        first_db = orig_dict
-
-        for segment_type in first_db['segments']['segment_types']:
-            if segment_type['time']:
-                segment_type['time'] = '{}:{:02d}:{:02d}'.format(int(segment_type['time']['hours']),
-                                                                 int(segment_type['time']['minutes']),
-                                                                 int(segment_type['time']['seconds']))
-
-        json_str = json.dumps(first_db)
-
-        file_name = expanduser('~/Downloads/training_db.json')
-        target = open(file_name, 'w')
-        target.write(json_str)
-        target.close()
 
     def __str__(self) -> str:
 

@@ -1,6 +1,7 @@
 import unittest
 from datetime import date
 
+from first_config import Config
 from first_data import FirstData
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -180,8 +181,7 @@ class TestFirstWorkout(unittest.TestCase):
         rp = FirstPace.from_string(str_input='0:09:35 min per mile')
         ti = 50
         wo_date = date(2017, 8, 21)
-        data_file_path = '../database/training_db.json'
-        data = FirstData(json_path=data_file_path)
+        data = FirstData(json_path=Config.DATABASE_JSON)
         instructions = '1 1 warmup#3x(1600m#200 m@RI)cooldown'
         FirstStepBase.reset_global_id()
 
@@ -248,8 +248,8 @@ class TestFirstWorkout(unittest.TestCase):
             self.assertAlmostEqual(50.25, wo1.total(what='time', unit='minute'), 5)
             self.assertAlmostEqual(6.01970, wo1.total(what='distance', unit='mile'), 5)
 
-            file_name = '../database/cmp_workout1.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_workout1.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, wo1.tcx().indented_str())
@@ -298,8 +298,8 @@ class TestFirstWorkout(unittest.TestCase):
             self.assertAlmostEqual(71.2, wo2.total(what='time', unit='minute'), 5)
             self.assertAlmostEqual(8.62946, wo2.total(what='distance', unit='mile'), 5)
 
-            file_name = '../database/cmp_workout2.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_workout2.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, wo2.tcx().indented_str())

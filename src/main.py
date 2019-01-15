@@ -1,10 +1,7 @@
 import argparse
-import os
-
-from os.path import expanduser
-
 import datetime
 
+from first_config import Config
 from first_data import FirstData
 from first_plan import FirstPlan
 from first_race import FirstRace
@@ -59,13 +56,7 @@ def main():
     if 'text' not in args.output and 'tcx' not in args.output and 'json' not in args.output:
         raise ValueError('Unknown output formats (). Available text, tcx, and json'.format(args.output))
 
-    if 'FIRST_TRAINER' not in os.environ:
-        raise ValueError('Environment variable FIRST_TRAINER is not defined')
-
-    root = os.environ['FIRST_TRAINER']
-
-    data_file_path = '{}/database/training_db.json'.format(root)  # add to config
-    data = FirstData(json_path=data_file_path)
+    data = FirstData(json_path=Config.DATABASE_JSON)
 
     runner = FirstRunner(name=args.runner_name)
 
@@ -89,19 +80,19 @@ def main():
 
     base_file_name = str(race_date) + race_name
     if 'text' in args.output:
-        file_name = expanduser('~/Downloads/') + base_file_name + '.txt'  # mac
+        file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'txt')
         target = open(file_name, 'w')
         target.write(plan.details(level=3))
         target.close()
 
     if 'tcx' in args.output:
-        file_name = expanduser('~/Downloads/') + base_file_name + '.tcx'  # mac
+        file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'tcx')
         target = open(file_name, 'w')
         target.write(plan.tcx())
         target.close()
 
     if 'json' in args.output:
-        file_name = expanduser('~/Downloads/') + base_file_name + '.json'  # mac
+        file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'json')
         target = open(file_name, 'w')
         target.write(plan.to_json())
         target.close()

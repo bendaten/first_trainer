@@ -1,8 +1,6 @@
 import json
 from datetime import timedelta
-from os.path import expanduser
 from typing import Dict, List
-
 
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -151,7 +149,7 @@ class FirstData(object):
             else:  # PACE
                 self.segments.append(FirstSegment(name=name, ref_pace_name=ref_pace))
 
-            self.segments_lookup[name] = index  # TODO is it really needed?
+            self.segments_lookup[name] = index
             index += 1
 
         pace_unit = json_segments['pace_unit']

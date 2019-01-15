@@ -1,6 +1,7 @@
 import unittest
 from datetime import date
 
+from first_config import Config
 from first_data import FirstData
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -24,8 +25,8 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual('Training Plan:\nName - "My first marathon training plan"\nWorkout days: Mon, Wed, Sat\n',
                              str(p1))
 
-            file_name = '../database/cmp_plan1.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_plan1.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, p1.tcx())
@@ -87,8 +88,8 @@ class TestFirstPlan(unittest.TestCase):
                           'Total 1 workouts\n')
             self.assertEqual(cmp_string, str(p1))
 
-            file_name = '../database/cmp_plan2.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_plan2.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, p1.tcx())
@@ -97,8 +98,7 @@ class TestFirstPlan(unittest.TestCase):
 
     def test_generate_workouts(self):
 
-        data_file_path = '../database/training_db.json'
-        data = FirstData(json_path=data_file_path)
+        data = FirstData(json_path=Config.DATABASE_JSON)
         ws1 = [0, 2, 5]
         target_time = data.equivalent_time(time_from=FirstTime(minutes=30),
                                            race_index_from=data.race_type_index_by_name('5K'),
@@ -112,7 +112,6 @@ class TestFirstPlan(unittest.TestCase):
 
         try:  # positive
             p1.generate_workouts(data=data)
-            # print p1.details(1)
             self.assertEqual(48, len(p1.workouts))
             wo = p1.workouts[0]
             self.assertEqual('Week 1 Keyrun 1', wo.name)
@@ -149,8 +148,8 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual('0:10:00', str(step.time))
             self.assertEqual('0:11:31 min per mile', str(step.pace))
 
-            file_name = '../database/cmp_plan_marathon.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_plan_marathon.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, p1.tcx())
@@ -175,8 +174,8 @@ class TestFirstPlan(unittest.TestCase):
         try:  # positive
             p2.generate_workouts(data=data)
 
-            file_name = '../database/cmp_plan_half_marathon.tcx'
-            from_file = open(file_name)
+            file_name = 'cmp_plan_half_marathon.tcx'
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, p2.tcx())

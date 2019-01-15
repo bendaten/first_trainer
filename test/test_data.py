@@ -1,5 +1,6 @@
 import unittest
 
+from first_config import Config
 from first_data import FirstData
 from first_time import FirstTime
 
@@ -8,9 +9,8 @@ class TestFirstData(unittest.TestCase):
 
     def test_equivalent_time(self):
 
-        data_file_path = '../database/training_db.json'
         try:  # good path
-            data = FirstData(json_path=data_file_path)
+            data = FirstData(json_path=Config.DATABASE_JSON)
             self.assertEqual(4, len(data.race_types))
             self.assertEqual(1, data.race_type_index_by_name(name='10K'))
             self.assertEqual(2, data.race_type_index_by_name(name='HalfMarathon'))
@@ -79,9 +79,8 @@ class TestFirstData(unittest.TestCase):
 
     def test_segments(self):
 
-        data_file_path = '../database/training_db.json'  # add path to config
         try:  # good path
-            data = FirstData(json_path=data_file_path)
+            data = FirstData(json_path=Config.DATABASE_JSON)
             self.assertEqual(14, len(data.segments))
             self.assertEqual('400m  distance  400.0 m', str(data.segments[0]))
             self.assertEqual('long  pace', str(data.segments[-5]))
@@ -101,9 +100,8 @@ class TestFirstData(unittest.TestCase):
 
     def test_plan_instructions(self):
 
-        data_file_path = '../database/training_db.json'  # add path to config
         try:  # good path
-            data = FirstData(json_path=data_file_path)
+            data = FirstData(json_path=Config.DATABASE_JSON)
             self.assertEqual(4, len(data.plan_instructions))
             plan1 = data.plan_instructions[0]
             self.assertEqual('5K plan instructions', plan1.name)

@@ -1,6 +1,7 @@
 import unittest
 from datetime import date
 
+from first_distance import FirstDistance
 from first_race import FirstRaceType, FirstRace
 from first_time import FirstTime
 
@@ -10,7 +11,7 @@ class TestFirstRaceType(unittest.TestCase):
     def test_to_string(self):
 
         try:
-            r1 = FirstRaceType(name='marathon', distance=26.219, unit='mile')
+            r1 = FirstRaceType(name='marathon', distance=FirstDistance.from_string('26.219 mile'))
             self.assertEqual('marathon - 26.219 mile', str(r1))
         except ValueError as ex:
             self.fail(str(ex))
@@ -20,7 +21,7 @@ class TestFirstRace(unittest.TestCase):
 
     def test_to_string(self):
 
-        rt1 = FirstRaceType(name='5K', distance=5.0, unit='km')
+        rt1 = FirstRaceType(name='5K', distance=FirstDistance.from_string('5.0 km'))
         rd1 = date(year=2017, month=7, day=29)
         tt1 = FirstTime.from_string(string='0:25:30')
         tt2 = FirstTime.from_string(string='0:24:34')

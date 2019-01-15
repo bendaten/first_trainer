@@ -8,24 +8,20 @@ from first_time import FirstTime
 
 class FirstRaceType(object):
 
-    def __init__(self, name: str, distance: float, unit: str):
+    def __init__(self, name: str, distance: FirstDistance):
 
         """
         Constructor
 
         :param name: like Marathon
         :type name: str
-        :param distance: distance value
-        :type distance: float
-        :param unit: length unit
-        :type unit: str
+        :param distance: distance
+        :type distance: FirstDistance
         :return: instance of FirstRaceType
         :rtype: FirstRaceType
         """
-        if not FirstDistance.is_valid_unit(unit=unit):
-            raise ValueError('"{}" is not a valid length unit'.format(unit))
         self.name = name
-        self.distance = FirstDistance(distance=distance, unit=unit)
+        self.distance = distance
 
     def __str__(self) -> str:
 

@@ -34,7 +34,7 @@ class TestFirstPlan(unittest.TestCase):
         except ValueError as vex:
             self.fail(str(vex))
 
-        rt1 = FirstRaceType(name='Marathon', distance=42.195, unit='km')
+        rt1 = FirstRaceType(name='Marathon', distance=FirstDistance.from_string('42.195 km'))
         rd1 = date(year=2017, month=7, day=29)
         r1 = FirstRace(name='SFM', race_type=rt1, race_date=rd1)
         rn1 = FirstRunner(name='DBD')
@@ -52,7 +52,7 @@ class TestFirstPlan(unittest.TestCase):
     def test_add_workout(self):
 
         ws1 = [0, 2, 5]
-        rt1 = FirstRaceType(name='Marathon', distance=42.195, unit='km')
+        rt1 = FirstRaceType(name='Marathon', distance=FirstDistance.from_string('42.195 km'))
         rd1 = date(year=2017, month=7, day=29)
         r1 = FirstRace(name='SFM', race_type=rt1, race_date=rd1)
         rn1 = FirstRunner(name='DBD')

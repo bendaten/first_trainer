@@ -29,16 +29,19 @@ class XmlItem(object):
     A simple XML builder
     """
 
-    def __init__(self, single_line: bool = False):
+    def __init__(self, single_line: bool = False, mute: bool = False):
 
         """
         XmlItem builder
 
         :param single_line: keep the item in a single line like '<b>Boldface</b>'
         :type single_line: bool
+        :param mute: don't print this item and its children
+        :type mute: bool
         """
 
         self.single_line = single_line
+        self.mute = mute
         self.items = []
 
     def add(self, item) -> None:
@@ -69,6 +72,9 @@ class XmlItem(object):
         if level < 0:
             raise ValueError('level must be equal to or greater than 0')
 
+        if self.mute:
+            return ''
+
         contents = ''
         separator = '' if self.single_line else '\n'
         indent = '' if self.single_line else level * INDENT
@@ -85,7 +91,7 @@ class XmlItem(object):
 
 class XmlTag(XmlItem):
 
-    def __init__(self, name: str, attributes: Dict[str, str] = None, single_line: bool = False):
+    def __init__(self, name: str, attributes: Dict[str, str] = None, single_line: bool = False, mute: bool = False):
 
         """
         HXmlTag builder
@@ -96,11 +102,13 @@ class XmlTag(XmlItem):
         :type attributes: dict[str, str]
         :param single_line: keep the tag in a single line like '<b>Boldface</b>'
         :type single_line: bool
+        :param mute: don't print this item and its children
+        :type mute: bool
         """
 
         self.name = name
         self.attributes = attributes
-        super().__init__(single_line=single_line)
+        super().__init__(single_line=single_line, mute=mute)
 
     def indented_str(self, level: int = 0, doctype: str = None) -> str:
 
@@ -143,6 +151,8 @@ class XmlTag(XmlItem):
                                        super().indented_str(level=level + 1), closing_tag)
 
 
+# HTML Shortcuts:
+
 class HtmlTable(XmlTag):
 
     """
@@ -154,45 +164,51 @@ class HtmlTable(XmlTag):
     * add_row ...
     """
 
-    def __init__(self, attributes: Dict[str, str] = None):
+    def __init__(self, attributes: Dict[str, str] = None, mute: bool = False):
 
         """
         HtmlTable builder
         :param attributes: HTML tag attributes
         :type attributes: dict[str, str]
+        :param mute: don't print this item and its children
+        :type mute: bool
         """
 
         super().__init__(name='table', attributes=attributes)
-        self.add(XmlTag(name='tbody'))
+        self.add(XmlTag(name='tbody', mute=mute))
 
-    def add_header(self, column_names: List[str]) -> None:
+    def add_header(self, column_names: List[str], mute: bool = False) -> None:
 
         """
         Add table header with column names. Use it only once and before you add any row
 
         :param column_names:
         :type column_names: list[str]
+        :param mute: don't print this item and its children
+        :type mute: bool
         """
 
         tbody = self.items[0]
         if tbody.items:
             raise ValueError('Only one table header allowed')
 
-        header = XmlTag(name='tr')
+        header = XmlTag(name='tr', mute=mute)
         tbody.add(item=header)
         for name in column_names:
             column = XmlTag(name='th', single_line=True)
             column.add(item=name)
             header.add(item=column)
 
-    def add_row(self, values: List[str]) -> None:
+    def add_row(self, values: List, mute: bool = False) -> None:
 
         """
         Add table row with values for all columns. Use it after creating the header.
         The number of values must match the number of columns
 
         :param values:
-        :type values: list[str]
+        :type values: list
+        :param mute: don't print this item and its children
+        :type mute: bool
         """
 
         tbody = self.items[0]
@@ -202,9 +218,22 @@ class HtmlTable(XmlTag):
         if len(header.items) != len(values):
             raise ValueError('Number of values must match number of columns')
 
-        row = XmlTag(name='tr')
+        row = XmlTag(name='tr', mute=mute)
         tbody.add(item=row)
         for value in values:
             column = XmlTag(name='td', single_line=True)
             column.add(item=value)
             row.add(item=column)
+
+
+class HtmlBold(XmlTag):
+
+    def __init__(self, text: str):
+        """
+        shortcut for boldface text
+
+        :param text: the text
+        :type text: str
+        """
+        super().__init__(name='b', single_line=True)
+        self.add(text)

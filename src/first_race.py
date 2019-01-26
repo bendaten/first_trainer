@@ -4,6 +4,7 @@ from typing import Dict
 from first_distance import FirstDistance
 from first_pace import FirstPace
 from first_time import FirstTime
+from first_utils import XmlTag, HtmlTable, HtmlBold
 
 
 class FirstRaceType(object):
@@ -123,6 +124,25 @@ class FirstRace(object):
         result_dict['target_time'] = {'time': str(self.target_time), 'seconds': self.target_time.seconds}
 
         return result_dict
+
+    def to_html(self) -> XmlTag:
+
+        section = XmlTag(name='div')
+        title = XmlTag(name='h2', single_line=True)
+        title.add('Race:')
+        section.add(title)
+
+        table = HtmlTable(attributes={'style': 'border-spacing: 15px 0'})
+        section.add(table)
+        table.add_header(column_names=['key', 'value'], mute=True)
+        table.add_row(values=['Name:', HtmlBold(self.name)])
+        table.add_row(values=['Type:', HtmlBold(self.race_type.name)])
+        table.add_row(values=['Distance:', HtmlBold(str(self.race_type.distance))])
+        table.add_row(values=['Date:', HtmlBold(str(self.race_date))])
+        table.add_row(values=['Target time:', HtmlBold(str(self.target_time))])
+        table.add_row(values=['Status:', HtmlBold(self.status)])
+
+        return section
 
     def set_target_time(self, a_time: FirstTime = None) -> None:
 

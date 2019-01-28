@@ -1,6 +1,6 @@
 import unittest
 
-from first_utils import XmlTag, HtmlTable
+from first_utils import XmlTag, HtmlTable, HtmlBold
 
 
 class TestHtmlBuilder(unittest.TestCase):
@@ -102,6 +102,35 @@ class TestHtmlBuilder(unittest.TestCase):
         except ValueError as ex:
             self.fail(str(ex))
 
+        try:  # headless table
+            t1 = HtmlTable()
+            t1.add_header(column_names=['a', 'b', 'c'], mute=True)
+            t1.add_row(values=[HtmlBold('Item 1'), 'type 1', 'value 1'])
+            t1.add_row(values=[HtmlBold('Item 2'), 'type 2', 'value 2'])
+            t1.add_row(values=[HtmlBold('Item 3'), 'type 3', 'value 3'])
+            expected = '<table>\n' + \
+                       '  <tbody>\n' + \
+                       '    <tr>\n' + \
+                       '      <td><b>Item 1</b></td>\n' + \
+                       '      <td>type 1</td>\n' + \
+                       '      <td>value 1</td>\n' + \
+                       '    </tr>\n' + \
+                       '    <tr>\n' + \
+                       '      <td><b>Item 2</b></td>\n' + \
+                       '      <td>type 2</td>\n' + \
+                       '      <td>value 2</td>\n' + \
+                       '    </tr>\n' + \
+                       '    <tr>\n' + \
+                       '      <td><b>Item 3</b></td>\n' + \
+                       '      <td>type 3</td>\n' + \
+                       '      <td>value 3</td>\n' + \
+                       '    </tr>\n' + \
+                       '  </tbody>\n' + \
+                       '</table>'
+            self.assertEqual(expected, t1.indented_str())
+        except ValueError as ex:
+            self.fail(str(ex))
+
         try:  # row before header
             t1 = HtmlTable()
             t1.add_row(values=['a', 'b'])
@@ -151,5 +180,13 @@ class TestHtmlBuilder(unittest.TestCase):
                        '  </body>\n' + \
                        '</html>'
             self.assertEqual(expected, html.indented_str())
+        except ValueError as ex:
+            self.fail(str(ex))
+
+    def test_bold(self):
+
+        try:
+            bf = HtmlBold('this should be bold faced')
+            self.assertEqual('<b>this should be bold faced</b>', bf.indented_str())
         except ValueError as ex:
             self.fail(str(ex))

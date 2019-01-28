@@ -82,7 +82,9 @@ class XmlItem(object):
             if isinstance(item, str):
                 contents += '{}{}{}'.format(indent, item, separator)
             elif isinstance(item, XmlItem):
-                contents += '{}{}'.format(item.indented_str(level=level), separator)
+                item_separator = '' if item.mute else separator
+                child_level = 0 if self.single_line else level  # all children of a single line tag don't need indent
+                contents += '{}{}'.format(item.indented_str(level=child_level), item_separator)
             else:
                 raise ValueError('Unexpected XML item type')  # for now just XmlItem and string
 
@@ -125,6 +127,9 @@ class XmlTag(XmlItem):
 
         if level < 0:
             raise ValueError('level must be equal to or greater than 0')
+
+        if self.mute:
+            return ''
 
         separator = '' if self.single_line else '\n'
         indent = level * INDENT

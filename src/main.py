@@ -24,7 +24,7 @@ def process_args():
                         help='One of 5K, 10K, HalfMarathon, Marathon. Default is Marathon')
     parser.add_argument('-n', '--race_name', default='My Race', help='Race name. Default is the race type')
     parser.add_argument('-d', '--race_date', help='Race date - MM/DD/YYYY', required=True)
-    help_line = 'Format types separated by comma or space. Available - text, tcx, json'
+    help_line = 'Format types separated by comma or space. Available - text, tcx, json, html'
     parser.add_argument('-o', '--output', default='text', help=help_line)
 
     return parser.parse_args()
@@ -53,8 +53,9 @@ def main():
 
     args = process_args()
 
-    if 'text' not in args.output and 'tcx' not in args.output and 'json' not in args.output:
-        raise ValueError('Unknown output formats (). Available text, tcx, and json'.format(args.output))
+    if 'text' not in args.output and 'tcx' not in args.output and \
+            'json' not in args.output and 'html' not in args.output:
+        raise ValueError('Unknown output formats (). Available text, tcx, html, and json'.format(args.output))
 
     data = FirstData(json_path=Config.DATABASE_JSON)
 
@@ -95,6 +96,12 @@ def main():
         file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'json')
         target = open(file_name, 'w')
         target.write(plan.to_json())
+        target.close()
+
+    if 'html' in args.output:
+        file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'html')
+        target = open(file_name, 'w')
+        target.write(plan.to_html())
         target.close()
 
 

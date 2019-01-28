@@ -2,7 +2,7 @@
 from typing import Dict
 
 from first_distance import FirstDistance
-from first_utils import FirstUtils
+from first_utils import FirstUtils, XmlTag, HtmlTable, HtmlBold
 
 
 class FirstRunner(object):
@@ -94,3 +94,25 @@ class FirstRunner(object):
             result_dict['length_unit'] = self.length_unit
 
         return result_dict
+
+    def to_html(self) -> XmlTag:
+
+        section = XmlTag(name='div')
+        title = XmlTag(name='h2', single_line=True)
+        title.add('Runner:')
+        section.add(title)
+
+        table = HtmlTable(attributes={'style': 'border-spacing: 15px 0'})
+        section.add(table)
+        table.add_header(column_names=['key', 'value'], mute=True)
+        table.add_row(values=['Name:', HtmlBold(self.name)])
+        if self.age:
+            table.add_row(values=['Age:', HtmlBold(str(self.age))])
+        if self.gender:
+            table.add_row(values=['Gender:', HtmlBold(self.gender)])
+        if self.email:
+            table.add_row(values=['Email:', HtmlBold(self.email)])
+        if self.length_unit:
+            table.add_row(values=['Preferred Length Unit:', HtmlBold(self.length_unit)])
+
+        return section

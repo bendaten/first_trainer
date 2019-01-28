@@ -127,6 +127,33 @@ class FirstPlan(object):
 
         return json_str
 
+    def to_html(self) -> str:
+
+        html = XmlTag(name='html')
+
+        header = XmlTag(name='head')
+        html.add(header)
+
+        body = XmlTag(name='body')
+        html.add(body)
+
+        title = XmlTag(name='h1', single_line=True)
+        body.add(title)
+        title.add('Training Plan: {}'.format(self.name))
+
+        body.add(self.race.to_html())
+        body.add(self.runner.to_html())
+
+        workouts_section = XmlTag('div')
+        body.add(workouts_section)
+        schedule_title = XmlTag('h2')
+        schedule_title.add('Schedule:')
+        workouts_section.add(schedule_title)
+        for workout in self.workouts:
+            body.add(workout.to_html())
+
+        return html.indented_str(doctype='html')
+
     def add_workout(self, workout: FirstWorkout) -> None:
 
         """

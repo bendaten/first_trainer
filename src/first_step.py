@@ -112,6 +112,17 @@ class FirstStepRepeat(FirstStepBase):
 
         return result_dict
 
+    def to_html(self) -> XmlTag:
+
+        section = XmlTag(name='div', attributes={'style': 'margin-left: 20px'})
+        par = XmlTag(name='p')
+        section.add(par)
+        par.add('Repeat {} times:'.format(self.repeat))
+        for step in self.steps:
+            section.add(step.to_html())
+
+        return section
+
     def tcx(self, child: bool = False, delta_seconds: int = 5) -> XmlTag:
 
         step = self.tcx_top(child=child, step_type='Repeat_t')
@@ -264,6 +275,20 @@ class FirstStepBody(FirstStepBase):
         result_dict['pace'] = self.pace.to_json()
 
         return result_dict
+
+    def to_html(self) -> XmlTag:
+
+        section = XmlTag(name='div', attributes={'style': 'margin-left: 20px'})
+        par = XmlTag(name='p')
+        section.add(par)
+        text = ''
+        if self.time:
+            text = str(self.time)
+        if self.distance:
+            text = str(self.distance)
+        par.add('{} - {} at {}'.format(self.name, text, str(self.pace)))
+
+        return section
 
     def tcx(self, child: bool = False, delta_seconds: int = 5) -> XmlTag:
 

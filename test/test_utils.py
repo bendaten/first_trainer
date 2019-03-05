@@ -190,3 +190,23 @@ class TestHtmlBuilder(unittest.TestCase):
             self.assertEqual('<b>this should be bold faced</b>', bf.indented_str())
         except ValueError as ex:
             self.fail(str(ex))
+
+        try:
+            par = XmlTag(name='p')
+            par.add('Plain and ')
+            par.add(HtmlBold('Bold'))
+            par.add(' are here.')
+            expected = '<p>\n  Plain and \n  <b>Bold</b>\n   are here.\n</p>'
+            self.assertEqual(expected, par.indented_str())
+        except ValueError as ex:
+            self.fail(str(ex))
+
+        try:
+            par = XmlTag(name='p', single_line=True)
+            par.add('Plain and ')
+            par.add(HtmlBold('Bold'))
+            par.add(' are here.')
+            expected = '<p>Plain and <b>Bold</b> are here.</p>'
+            self.assertEqual(expected, par.indented_str())
+        except ValueError as ex:
+            self.fail(str(ex))

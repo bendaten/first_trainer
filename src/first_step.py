@@ -1,4 +1,4 @@
-from typing import List, Dict
+from typing import List, Dict, Union
 
 from first_data import FirstData
 from first_distance import FirstDistance
@@ -104,11 +104,11 @@ class FirstStepRepeat(FirstStepBase):
 
         return out_string
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
         result_dict = {'name': self.name,
                        'repeat': self.repeat,
-                       'steps': [step.to_json() for step in self.steps]}
+                       'steps': [step.to_json(output_unit=output_unit) for step in self.steps]}
 
         return result_dict
 
@@ -265,14 +265,14 @@ class FirstStepBody(FirstStepBase):
 
         return out_string
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
         result_dict = {'name': self.name}
         if self.time:
             result_dict['time'] = self.time.to_json()
         if self.distance:
-            result_dict['distance'] = self.distance.to_json()
-        result_dict['pace'] = self.pace.to_json()
+            result_dict['distance'] = self.distance.to_json(output_unit=output_unit)
+        result_dict['pace'] = self.pace.to_json(output_unit=output_unit)
 
         return result_dict
 

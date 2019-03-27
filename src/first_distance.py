@@ -1,3 +1,6 @@
+from typing import Union
+
+
 class FirstDistance(object):
 
     @staticmethod
@@ -58,9 +61,13 @@ class FirstDistance(object):
 
         return cls(distance=value, unit=unit)
 
-    def to_json(self):
+    def to_json(self, output_unit: Union[str, None] = None):
 
-        return {'distance': self.distance, 'unit': self.unit}
+        if output_unit:
+            dist = self.convert_to(output_unit)
+            return {'distance': dist, 'unit': output_unit}
+        else:
+            return {'distance': self.distance, 'unit': self.unit}
 
     def __str__(self):
 

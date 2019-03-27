@@ -1,5 +1,6 @@
 import argparse
 import datetime
+import json
 
 from first_config import Config
 from first_data import FirstData
@@ -24,6 +25,7 @@ def process_args():
                         help='One of 5K, 10K, HalfMarathon, Marathon. Default is Marathon')
     parser.add_argument('-n', '--race_name', default='My Race', help='Race name. Default is the race type')
     parser.add_argument('-d', '--race_date', help='Race date - MM/DD/YYYY', required=True)
+    parser.add_argument('-u', '--length_unit', default='mile', help='Show distances and paces with this unit')
     help_line = 'Format types separated by comma or space. Available - text, tcx, json, html'
     parser.add_argument('-o', '--output', default='text', help=help_line)
 
@@ -95,7 +97,7 @@ def main():
     if 'json' in args.output:
         file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'json')
         target = open(file_name, 'w')
-        target.write(plan.to_json())
+        target.write(json.dumps(plan.to_json(args.length_unit)))
         target.close()
 
     if 'html' in args.output:

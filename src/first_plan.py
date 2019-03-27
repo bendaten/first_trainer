@@ -1,6 +1,6 @@
 import json
 from datetime import timedelta
-from typing import List
+from typing import List, Union, Dict
 
 from first_data import FirstData
 from first_race import FirstRace
@@ -112,20 +112,24 @@ class FirstPlan(object):
 
         return tcx.indented_str(doctype='xml')
 
-    def to_json(self) -> str:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
         result_dict = {'name': self.name}
 
         week = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun']
         result_dict['weekly_schedule'] = [week[day_index] for day_index in self.weekly_schedule]
-        result_dict['race'] = self.race.to_json()
-        result_dict['runner'] = self.runner.to_json()
-        workouts_list = [workout.to_json() for workout in self.workouts]
+        if self.race:
+            result_dict['race'] = self.race.to_json(output_unit=output_unit)
+        if self.runner:
+            result_dict['runner'] = self.runner.to_json()
+        workouts_list = [workout.to_json(output_unit=output_unit) for workout in self.workouts]
         result_dict['workouts'] = workouts_list
 
-        json_str = json.dumps(result_dict)
+        return result_dict
 
-        return json_str
+        # json_str = json.dumps(result_dict)
+        #
+        # return json_str
 
     def to_html(self) -> str:
 

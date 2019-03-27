@@ -1,6 +1,8 @@
 import urllib.request
 from typing import List, Dict
 
+import numpy
+
 INDENT = '  '
 
 
@@ -21,6 +23,38 @@ class FirstUtils(object):
         except urllib.request.URLError as ex:
             print(str(ex))
             return False
+
+    @staticmethod
+    def assert_deep_almost_equal(test_case, expected, actual, *args, **kwargs):
+        """
+        Assert that two complex structures have almost equal contents.
+
+        Compares lists, dicts and tuples recursively. Checks numeric values
+        using test_case's :py:meth:`unittest.TestCase.assertAlmostEqual` and
+        checks all other values with :py:meth:`unittest.TestCase.assertEqual`.
+        Accepts additional positional and keyword arguments and pass those
+        intact to assertAlmostEqual() (that's how you specify comparison
+        precision).
+
+        :param test_case: TestCase object on which we can call all of the basic
+        'assert' methods.
+        :type test_case: :py:class:`unittest.TestCase` object
+        :param expected: expected complex object
+        :param actual: actual complex object
+        """
+        if isinstance(expected, (int, float, complex)):
+            test_case.assertAlmostEqual(expected, actual, *args, **kwargs)
+        elif isinstance(expected, (list, tuple, numpy.ndarray)):
+            test_case.assertEqual(len(expected), len(actual))
+            for index in range(len(expected)):
+                v1, v2 = expected[index], actual[index]
+                FirstUtils.assert_deep_almost_equal(test_case, v1, v2, *args, **kwargs)
+        elif isinstance(expected, dict):
+            test_case.assertEqual(set(expected), set(actual))
+            for key in expected:
+                FirstUtils.assert_deep_almost_equal(test_case, expected[key], actual[key], *args, **kwargs)
+        else:
+            test_case.assertEqual(expected, actual)
 
 
 class XmlItem(object):

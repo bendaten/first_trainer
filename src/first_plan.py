@@ -127,10 +127,6 @@ class FirstPlan(object):
 
         return result_dict
 
-        # json_str = json.dumps(result_dict)
-        #
-        # return json_str
-
     def to_html(self) -> str:
 
         html = XmlTag(name='html')

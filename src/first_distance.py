@@ -63,7 +63,7 @@ class FirstDistance(object):
 
     def to_json(self, output_unit: Union[str, None] = None):
 
-        if output_unit:
+        if output_unit and output_unit != self.unit:
             dist = self.convert_to(output_unit)
             return {'distance': dist, 'unit': output_unit}
         else:

@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, Dict
 
 
 class FirstDistance(object):
@@ -61,13 +61,21 @@ class FirstDistance(object):
 
         return cls(distance=value, unit=unit)
 
-    def to_json(self, output_unit: Union[str, None] = None):
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
         if output_unit and output_unit != self.unit:
             dist = self.convert_to(output_unit)
             return {'distance': dist, 'unit': output_unit}
         else:
             return {'distance': self.distance, 'unit': self.unit}
+
+    def to_html(self, output_unit: Union[str, None] = None) -> str:
+
+        if output_unit and output_unit != self.unit:
+            dist = self.convert_to(output_unit)
+            return '{0:.3f} {1:s}'.format(dist, output_unit)
+        else:
+            return '{0:.3f} {1:s}'.format(self.distance, self.unit)
 
     def __str__(self):
 

@@ -198,6 +198,88 @@ class TestFirstWorkout(unittest.TestCase):
             cmp_json['steps'] = km_steps
             cmp_json['total_distance'] = {'distance': 10.42336, 'unit': 'km'}
             FirstUtils.assert_deep_almost_equal(self, cmp_json, wo.to_json(output_unit='km'), 5)
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <h3>Week 1 Key-run 1 - Sat, Jun 24 2017</h3>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Warm up - 0:15:00 at 0:10:00 min per mile\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Repeat 8 times:\n' +
+                        '    </p>\n' +
+                        '    <div style="margin-left: 20px">\n' +
+                        '      <p>\n' +
+                        '        Fast - 400.000 m at 0:08:00 min per mile\n' +
+                        '      </p>\n' +
+                        '    </div>\n' +
+                        '    <div style="margin-left: 20px">\n' +
+                        '      <p>\n' +
+                        '        Rest - 400.000 m at 0:10:00 min per mile\n' +
+                        '      </p>\n' +
+                        '    </div>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Cool down - 0:10:00 at 0:10:00 min per mile\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <table style="border-spacing: 15px 0">\n' +
+                        '    <tbody>\n' +
+                        '      <tr>\n' +
+                        '        <td>Total Distance:</td>\n' +
+                        '        <td><b>6.48 mile</b></td>\n' +
+                        '      </tr>\n' +
+                        '      <tr>\n' +
+                        '        <td>Total Time:</td>\n' +
+                        '        <td><b>61 minutes</b></td>\n' +
+                        '      </tr>\n' +
+                        '    </tbody>\n' +
+                        '  </table>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, wo.to_html().indented_str())
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <h3>Week 1 Key-run 1 - Sat, Jun 24 2017</h3>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Warm up - 0:15:00 at 0:06:13 min per km\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Repeat 8 times:\n' +
+                        '    </p>\n' +
+                        '    <div style="margin-left: 20px">\n' +
+                        '      <p>\n' +
+                        '        Fast - 0.400 km at 0:04:58 min per km\n' +
+                        '      </p>\n' +
+                        '    </div>\n' +
+                        '    <div style="margin-left: 20px">\n' +
+                        '      <p>\n' +
+                        '        Rest - 0.400 km at 0:06:13 min per km\n' +
+                        '      </p>\n' +
+                        '    </div>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      Cool down - 0:10:00 at 0:06:13 min per km\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <table style="border-spacing: 15px 0">\n' +
+                        '    <tbody>\n' +
+                        '      <tr>\n' +
+                        '        <td>Total Distance:</td>\n' +
+                        '        <td><b>10.42 km</b></td>\n' +
+                        '      </tr>\n' +
+                        '      <tr>\n' +
+                        '        <td>Total Time:</td>\n' +
+                        '        <td><b>61 minutes</b></td>\n' +
+                        '      </tr>\n' +
+                        '    </tbody>\n' +
+                        '  </table>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, wo.to_html(output_unit='km').indented_str())
 
             wo.add_step(step=s_warmup)
             cmp_string = ('Week 1 Key-run 1\n' +
@@ -325,10 +407,9 @@ class TestFirstWorkout(unittest.TestCase):
 
             # tcx
             file_name = 'cmp_workout1.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r')
-            cmp_string = from_file.read()
-            from_file.close()
-            self.assertEqual(cmp_string, wo1.tcx().indented_str())
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_string = from_file.read()
+                self.assertEqual(cmp_string, wo1.tcx().indented_str())
 
             # json
             file_name = 'cmp_workout1.json'
@@ -340,6 +421,17 @@ class TestFirstWorkout(unittest.TestCase):
             with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
                 cmp_json = json.load(from_file)
                 FirstUtils.assert_deep_almost_equal(self, cmp_json, wo1.to_json(output_unit='km'), 5)
+
+            # html
+            file_name = 'cmp_workout1.html'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_html = from_file.read()
+                self.assertEqual(cmp_html, wo1.to_html().indented_str())
+
+            file_name = 'cmp_workout1_km.html'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_html = from_file.read()
+                self.assertEqual(cmp_html, wo1.to_html(output_unit='km').indented_str())
 
         except ValueError as ex:
             self.fail(str(ex))
@@ -386,10 +478,9 @@ class TestFirstWorkout(unittest.TestCase):
             self.assertAlmostEqual(8.62946, wo2.total(what='distance', unit='mile'), 5)
 
             file_name = 'cmp_workout2.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
-            cmp_string = from_file.read()
-            from_file.close()
-            self.assertEqual(cmp_string, wo2.tcx().indented_str())
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_string = from_file.read()
+                self.assertEqual(cmp_string, wo2.tcx().indented_str())
 
         except ValueError as ex:
             self.fail(str(ex))

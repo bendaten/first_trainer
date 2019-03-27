@@ -110,19 +110,20 @@ class FirstWorkout(object):
 
         return result_dict
 
-    def to_html(self) -> XmlTag:
+    def to_html(self, output_unit: Union[str, None] = None) -> XmlTag:
 
         section = XmlTag(name='div', attributes={'style': 'margin-left: 20px'})
         title = XmlTag(name='h3', single_line=True)
         title.add('{} - {}'.format(self.name, self.workout_date.strftime('%a, %b %d %Y')))
         section.add(title)
         for step in self.steps:
-            section.add(step.to_html())
+            section.add(step.to_html(output_unit=output_unit))
 
         table = HtmlTable(attributes={'style': 'border-spacing: 15px 0'})
         section.add(table)
         table.add_header(column_names=['key', 'value'], mute=True)
-        table.add_row(values=['Total Distance:', HtmlBold('{:.2f} miles'.format(self.total(unit='mile')))])
+        unit = output_unit or 'mile'
+        table.add_row(values=['Total Distance:', HtmlBold('{:.2f} {}'.format(self.total(unit=unit), unit))])
         table.add_row(values=['Total Time:', HtmlBold('{:.0f} minutes'.format(self.total(what='time', unit='minute')))])
 
         return section

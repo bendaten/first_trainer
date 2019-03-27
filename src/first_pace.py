@@ -39,6 +39,16 @@ class FirstPace(object):
         else:
             return {'pace': str(self), 'length_unit': self.length_unit, 'time': self.time.to_json()}
 
+    def to_html(self, output_unit: Union[str, None] = None) -> str:
+
+        if output_unit and output_unit != self.length_unit:
+            dist = FirstDistance(1.0, output_unit)
+            seconds_time = self.to_time(dist, 'second')
+            output_pace = FirstPace(seconds=round(seconds_time), length_unit=output_unit)
+            return '{} min per {}'.format(str(output_pace.time), output_unit)
+        else:
+            return '{} min per {}'.format(str(self.time), self.length_unit)
+
     @classmethod
     def from_string(cls, str_input: str):
 

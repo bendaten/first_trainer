@@ -113,11 +113,13 @@ class TestFirstDistance(unittest.TestCase):
         except ValueError as ex:
             self.assertEqual('"papa" is not a valid unit', str(ex))
 
-    def test_json(self):
+    def test_json_n_html(self):
         try:
             distance = FirstDistance.from_string(string='1 mile')
             self.assertEqual({'distance': 1.0, 'unit': 'mile'}, distance.to_json())
             self.assertEqual({'distance': 1.609344, 'unit': 'km'}, distance.to_json(output_unit='km'))
+            self.assertEqual('1.000 mile', distance.to_html())
+            self.assertEqual('1.609 km', distance.to_html(output_unit='km'))
         except ValueError as ex:
             self.fail(ex)
 

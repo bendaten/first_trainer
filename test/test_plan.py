@@ -34,6 +34,20 @@ class TestFirstPlan(unittest.TestCase):
                         "weekly_schedule": ["mon", "wed", "sat"],
                         "workouts": []}
             self.assertEqual(cmp_json, p1.to_json())
+            cmp_html = ('<!DOCTYPE html>\n' +
+                        '<html>\n' +
+                        '  <head>\n' +
+                        '  </head>\n' +
+                        '  <body>\n' +
+                        '    <h1>Training Plan: My first marathon training plan</h1>\n' +
+                        '    <div>\n' +
+                        '      <h2>\n' +
+                        '        Schedule:\n' +
+                        '      </h2>\n' +
+                        '    </div>\n' +
+                        '  </body>\n' +
+                        '</html>')
+            self.assertEqual(cmp_html, p1.to_html())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -104,6 +118,14 @@ class TestFirstPlan(unittest.TestCase):
             with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
                 cmp_json = json.load(from_file)
                 self.assertEqual(cmp_json, p1.to_json(output_unit='km'))
+            file_name = 'cmp_plan2.html'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_html = from_file.read()
+                self.assertEqual(cmp_html, p1.to_html())
+            file_name = 'cmp_plan2_km.html'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_html = from_file.read()
+                self.assertEqual(cmp_html, p1.to_html(output_unit='km'))
         except TypeError as ex:
             self.fail(str(ex))
 
@@ -167,6 +189,10 @@ class TestFirstPlan(unittest.TestCase):
             with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
                 cmp_json = json.load(from_file)
                 self.assertEqual(cmp_json, p1.to_json())
+            file_name = 'cmp_plan_marathon.html'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_html = from_file.read()
+                self.assertEqual(cmp_html, p1.to_html())
 
         except ValueError as vex:
             self.fail(str(vex))

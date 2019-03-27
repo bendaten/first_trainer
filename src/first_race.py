@@ -32,6 +32,10 @@ class FirstRaceType(object):
 
         return {'name': self.name, 'distance': self.distance.to_json(output_unit=output_unit)}
 
+    def distance_to_html(self, output_unit: Union[str, None] = None):
+
+        return self.distance.to_html(output_unit)
+
 
 class FirstRace(object):
 
@@ -126,7 +130,7 @@ class FirstRace(object):
 
         return result_dict
 
-    def to_html(self) -> XmlTag:
+    def to_html(self, output_unit: Union[str, None] = None) -> XmlTag:
 
         section = XmlTag(name='div')
         title = XmlTag(name='h2', single_line=True)
@@ -138,7 +142,7 @@ class FirstRace(object):
         table.add_header(column_names=['key', 'value'], mute=True)
         table.add_row(values=['Name:', HtmlBold(self.name)])
         table.add_row(values=['Type:', HtmlBold(self.race_type.name)])
-        table.add_row(values=['Distance:', HtmlBold(str(self.race_type.distance))])
+        table.add_row(values=['Distance:', HtmlBold(self.race_type.distance_to_html(output_unit))])
         table.add_row(values=['Date:', HtmlBold(str(self.race_date))])
         table.add_row(values=['Target time:', HtmlBold(str(self.target_time))])
         table.add_row(values=['Status:', HtmlBold(self.status)])

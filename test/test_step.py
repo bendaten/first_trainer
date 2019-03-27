@@ -68,6 +68,18 @@ class TestFirstStepNew(unittest.TestCase):
                                  'pace': '0:06:13 min per km',
                                  'time': {'seconds': 373, 'time': '0:06:13'}}}
             self.assertEqual(cmp_json, step_b.to_json(output_unit='km'))
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    3 miles @ 10 minutes per mile - 3.000 mile at 0:10:00 min per mile\n' +
+                        '  </p>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_b.to_html().indented_str())
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    3 miles @ 10 minutes per mile - 4.828 km at 0:06:13 min per km\n' +
+                        '  </p>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_b.to_html(output_unit='km').indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -107,6 +119,18 @@ class TestFirstStepNew(unittest.TestCase):
                                  'time': {'seconds': 373, 'time': '0:06:13'}},
                         'time': {'seconds': 900, 'time': '0:15:00'}}
             self.assertEqual(cmp_json, step_b.to_json(output_unit='km'))
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    15 minutes @ 10 minutes per mile - 0:15:00 at 0:10:00 min per mile\n' +
+                        '  </p>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_b.to_html().indented_str())
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    15 minutes @ 10 minutes per mile - 0:15:00 at 0:06:13 min per km\n' +
+                        '  </p>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_b.to_html(output_unit='km').indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -224,6 +248,38 @@ class TestFirstStepNew(unittest.TestCase):
                                             'time': {'seconds': 373, 'time': '0:06:13'}},
                                    'time': {'seconds': 900, 'time': '0:15:00'}}]}
             self.assertEqual(cmp_json, step_r.to_json(output_unit='km'))
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    Repeat 3 times:\n' +
+                        '  </p>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      3 mile @ 10 min per mile - 3.000 mile at 0:10:00 min per mile\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      15 minutes @ 19 min per mile - 0:15:00 at 0:10:00 min per mile\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_r.to_html().indented_str())
+            cmp_html = ('<div style="margin-left: 20px">\n' +
+                        '  <p>\n' +
+                        '    Repeat 3 times:\n' +
+                        '  </p>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      3 mile @ 10 min per mile - 4.828 km at 0:06:13 min per km\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '  <div style="margin-left: 20px">\n' +
+                        '    <p>\n' +
+                        '      15 minutes @ 19 min per mile - 0:15:00 at 0:06:13 min per km\n' +
+                        '    </p>\n' +
+                        '  </div>\n' +
+                        '</div>')
+            self.assertEqual(cmp_html, step_r.to_html(output_unit='km').indented_str())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:

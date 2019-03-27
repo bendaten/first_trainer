@@ -112,14 +112,14 @@ class FirstStepRepeat(FirstStepBase):
 
         return result_dict
 
-    def to_html(self) -> XmlTag:
+    def to_html(self, output_unit: Union[str, None] = None) -> XmlTag:
 
         section = XmlTag(name='div', attributes={'style': 'margin-left: 20px'})
         par = XmlTag(name='p')
         section.add(par)
         par.add('Repeat {} times:'.format(self.repeat))
         for step in self.steps:
-            section.add(step.to_html())
+            section.add(step.to_html(output_unit=output_unit))
 
         return section
 
@@ -276,7 +276,7 @@ class FirstStepBody(FirstStepBase):
 
         return result_dict
 
-    def to_html(self) -> XmlTag:
+    def to_html(self, output_unit: Union[str, None] = None) -> XmlTag:
 
         section = XmlTag(name='div', attributes={'style': 'margin-left: 20px'})
         par = XmlTag(name='p')
@@ -285,8 +285,8 @@ class FirstStepBody(FirstStepBase):
         if self.time:
             text = str(self.time)
         if self.distance:
-            text = str(self.distance)
-        par.add('{} - {} at {}'.format(self.name, text, str(self.pace)))
+            text = self.distance.to_html(output_unit=output_unit)
+        par.add('{} - {} at {}'.format(self.name, text, self.pace.to_html(output_unit=output_unit)))
 
         return section
 

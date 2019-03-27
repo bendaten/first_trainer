@@ -127,7 +127,7 @@ class FirstPlan(object):
 
         return result_dict
 
-    def to_html(self) -> str:
+    def to_html(self, output_unit: Union[str, None] = None) -> str:
 
         html = XmlTag(name='html')
 
@@ -141,8 +141,10 @@ class FirstPlan(object):
         body.add(title)
         title.add('Training Plan: {}'.format(self.name))
 
-        body.add(self.race.to_html())
-        body.add(self.runner.to_html())
+        if self.race:
+            body.add(self.race.to_html(output_unit=output_unit))
+        if self.runner:
+            body.add(self.runner.to_html())
 
         workouts_section = XmlTag('div')
         body.add(workouts_section)
@@ -150,7 +152,7 @@ class FirstPlan(object):
         schedule_title.add('Schedule:')
         workouts_section.add(schedule_title)
         for workout in self.workouts:
-            body.add(workout.to_html())
+            body.add(workout.to_html(output_unit=output_unit))
 
         return html.indented_str(doctype='html')
 

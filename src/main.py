@@ -103,7 +103,7 @@ def main():
     if 'html' in args.output:
         file_name = '{}/{}.{}'.format(Config.DOWNLOADS_DIR, base_file_name, 'html')
         target = open(file_name, 'w')
-        target.write(plan.to_html())
+        target.write(plan.to_html(args.length_unit))
         target.close()
 
 

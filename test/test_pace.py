@@ -44,6 +44,10 @@ class TestFirstPace(unittest.TestCase):
                         'pace': '0:03:58 min per km',
                         'time': {'seconds': 238, 'time': '0:03:58'}}
             self.assertEqual(cmp_json, pace.to_json(output_unit='km'))
+            cmp_html = '0:06:23 min per mile'
+            self.assertEqual(cmp_html, pace.to_html())
+            cmp_html = '0:03:58 min per km'
+            self.assertEqual(cmp_html, pace.to_html(output_unit='km'))
 
         except ValueError as ex:
             self.fail(str(ex))

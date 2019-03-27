@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Union
 
 from first_distance import FirstDistance
 from first_time import FirstTime
@@ -29,9 +29,15 @@ class FirstPace(object):
 
         return str(self.time) + ' min per ' + self.length_unit
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
-        return {'pace': str(self), 'length_unit': self.length_unit, 'time': self.time.to_json()}
+        if output_unit and output_unit != self.length_unit:
+            dist = FirstDistance(1.0, output_unit)
+            seconds_time = self.to_time(dist, 'second')
+            output_pace = FirstPace(seconds=round(seconds_time), length_unit=output_unit)
+            return {'pace': str(output_pace), 'length_unit': output_unit, 'time': output_pace.time.to_json()}
+        else:
+            return {'pace': str(self), 'length_unit': self.length_unit, 'time': self.time.to_json()}
 
     @classmethod
     def from_string(cls, str_input: str):

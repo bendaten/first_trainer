@@ -1,0 +1,38 @@
+{
+  "name": "Week 1 Keyrun 1",
+  "note": "warmup#3x(1600m#200 m@RI)cooldown",
+  "status": "scheduled",
+  "date": "2017-08-21",
+  "steps":
+  [
+    {
+      "name": "warmup",
+      "time": {"time": "0:15:00", "seconds": 900},
+      "pace": {"pace": "0:05:50 min per km", "length_unit": "km", "time": {"time": "0:05:50", "seconds": 350}}
+    },
+    {
+      "name": "repeat X 3",
+      "repeat": 3,
+      "steps":
+      [
+        {
+          "name": "1600m",
+          "distance": {"distance": 1.6, "unit": "km"},
+          "pace": {"pace": "0:04:32 min per km", "length_unit": "km", "time": {"time": "0:04:32", "seconds": 272}}
+        },
+        {
+          "name": "200 m@RI",
+          "distance": {"distance": 0.2, "unit": "km"},
+          "pace": {"pace": "0:05:50 min per km", "length_unit": "km", "time": {"time": "0:05:50", "seconds": 350}}
+        }
+      ]
+    },
+    {
+      "name": "cooldown",
+      "time": {"time": "0:10:00", "seconds": 600},
+      "pace": {"pace": "0:05:50 min per km", "length_unit": "km", "time": {"time": "0:05:50", "seconds": 350}}
+    }
+  ],
+  "total_distance": {"distance": 9.68777, "unit": "km"},
+  "total_time": {"time": 50.25, "unit": "minute"}
+}

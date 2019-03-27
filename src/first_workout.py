@@ -1,4 +1,4 @@
-from typing import Dict
+from typing import Dict, Union
 
 from parse import *
 
@@ -97,14 +97,15 @@ class FirstWorkout(object):
 
         return out_string
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
+        unit = output_unit or 'mile'
         result_dict = {'name': self.name,
                        'note': self.note,
                        'status': self.status,
                        'date': str(self.workout_date),
-                       'steps': [step.to_json() for step in self.steps],
-                       'total_distance': {'distance': self.total(unit='mile'), 'unit': 'mile'},
+                       'steps': [step.to_json(output_unit=output_unit) for step in self.steps],
+                       'total_distance': {'distance': self.total(unit=unit), 'unit': unit},
                        'total_time': {'time': self.total(what='time', unit='minute'), 'unit': 'minute'}}
 
         return result_dict

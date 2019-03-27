@@ -1,3 +1,4 @@
+import json
 import unittest
 from datetime import date
 
@@ -26,10 +27,13 @@ class TestFirstPlan(unittest.TestCase):
                              str(p1))
 
             file_name = 'cmp_plan1.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
-            cmp_string = from_file.read()
-            from_file.close()
-            self.assertEqual(cmp_string, p1.tcx())
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_string = from_file.read()
+                self.assertEqual(cmp_string, p1.tcx())
+            cmp_json = {"name": "My first marathon training plan",
+                        "weekly_schedule": ["mon", "wed", "sat"],
+                        "workouts": []}
+            self.assertEqual(cmp_json, p1.to_json())
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -89,10 +93,17 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual(cmp_string, str(p1))
 
             file_name = 'cmp_plan2.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
-            cmp_string = from_file.read()
-            from_file.close()
-            self.assertEqual(cmp_string, p1.tcx())
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_string = from_file.read()
+                self.assertEqual(cmp_string, p1.tcx())
+            file_name = 'cmp_plan2.json'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_json = json.load(from_file)
+                self.assertEqual(cmp_json, p1.to_json())
+            file_name = 'cmp_plan2_km.json'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_json = json.load(from_file)
+                self.assertEqual(cmp_json, p1.to_json(output_unit='km'))
         except TypeError as ex:
             self.fail(str(ex))
 
@@ -149,10 +160,13 @@ class TestFirstPlan(unittest.TestCase):
             self.assertEqual('0:11:31 min per mile', str(step.pace))
 
             file_name = 'cmp_plan_marathon.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
-            cmp_string = from_file.read()
-            from_file.close()
-            self.assertEqual(cmp_string, p1.tcx())
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_string = from_file.read()
+                self.assertEqual(cmp_string, p1.tcx())
+            file_name = 'cmp_plan_marathon.json'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_json = json.load(from_file)
+                self.assertEqual(cmp_json, p1.to_json())
 
         except ValueError as vex:
             self.fail(str(vex))

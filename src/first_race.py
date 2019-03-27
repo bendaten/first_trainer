@@ -1,5 +1,5 @@
 import datetime
-from typing import Dict
+from typing import Dict, Union
 
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -28,9 +28,9 @@ class FirstRaceType(object):
 
         return self.name + ' - ' + str(self.distance)
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
-        return {'name': self.name, 'distance': self.distance.to_json()}
+        return {'name': self.name, 'distance': self.distance.to_json(output_unit=output_unit)}
 
 
 class FirstRace(object):
@@ -113,15 +113,16 @@ class FirstRace(object):
 
         return out_string
 
-    def to_json(self) -> Dict:
+    def to_json(self, output_unit: Union[str, None] = None) -> Dict:
 
         result_dict = {'Name': self.name}
         if self.actual_time:
             result_dict['actual_time'] = str(self.actual_time)
         result_dict['race_date'] = str(self.race_date)
-        result_dict['race_type'] = self.race_type.to_json()
+        result_dict['race_type'] = self.race_type.to_json(output_unit=output_unit)
         result_dict['status'] = self.status
-        result_dict['target_time'] = {'time': str(self.target_time), 'seconds': self.target_time.seconds}
+        if self.target_time:
+            result_dict['target_time'] = {'time': str(self.target_time), 'seconds': self.target_time.seconds}
 
         return result_dict
 

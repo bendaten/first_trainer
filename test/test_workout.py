@@ -1,3 +1,4 @@
+import json
 import unittest
 from datetime import date
 
@@ -7,6 +8,7 @@ from first_distance import FirstDistance
 from first_pace import FirstPace
 from first_step import FirstStepBody, FirstStepRepeat, FirstStepBase
 from first_time import FirstTime
+from first_utils import FirstUtils
 from first_workout import FirstWorkout
 
 
@@ -16,7 +18,7 @@ class TestFirstWorkout(unittest.TestCase):
 
         pass
 
-    def test_steps_new(self):
+    def test_steps(self):
 
         FirstStepBase.reset_global_id()
         t_warmup = FirstTime.from_string(string='0:15:00')
@@ -51,25 +53,26 @@ class TestFirstWorkout(unittest.TestCase):
                           'type - body  pace - 0:10:00 min per mile\n' +
                           'Time - 0:10:00\n')
             self.assertEqual(cmp_string, str(wo))
-            cmp_string = '"Week 1 Key-run 1"\n' +\
-                         '  Sat 2017-06-24\n' +\
-                         '  scheduled\n' +\
-                         '  Step: "Warm up"\n' +\
-                         '    0:15:00  at  0:10:00 min per mile\n' +\
-                         '  Step: "Intervals"\n' +\
-                         '    Step: "Fast"\n' +\
-                         '      400.0 m  at  0:08:00 min per mile\n' +\
-                         '    Step: "Rest"\n' +\
-                         '      400.0 m  at  0:10:00 min per mile\n' +\
-                         '  Step: "Cool down"\n' +\
-                         '    0:10:00  at  0:10:00 min per mile\n' +\
+            cmp_string = '"Week 1 Key-run 1"\n' + \
+                         '  Sat 2017-06-24\n' + \
+                         '  scheduled\n' + \
+                         '  Step: "Warm up"\n' + \
+                         '    0:15:00  at  0:10:00 min per mile\n' + \
+                         '  Step: "Intervals"\n' + \
+                         '    Step: "Fast"\n' + \
+                         '      400.0 m  at  0:08:00 min per mile\n' + \
+                         '    Step: "Rest"\n' + \
+                         '      400.0 m  at  0:10:00 min per mile\n' + \
+                         '  Step: "Cool down"\n' + \
+                         '    0:10:00  at  0:10:00 min per mile\n' + \
                          '  Totals: distance = 6.48 miles   duration = 60.73 minutes\n'
             self.assertEqual(cmp_string, wo.details(level=2))
-            total_distance_miles = 15.0/10 + 8*(800/1609.344) + 10.0/10
+            total_distance_miles = 15.0 / 10 + 8 * (800 / 1609.344) + 10.0 / 10
             self.assertAlmostEqual(total_distance_miles, wo.total(), 5)
             total_distance_km = total_distance_miles * 1.609344
             self.assertAlmostEqual(total_distance_km, wo.total(unit='km'), 5)
-            total_time_minutes = 15.0 + 8*(round(400/1609.344*8*60)/60 + round(400/1609.344*10*60)/60) + 10.0
+            total_time_minutes = 15.0 + 8 * (
+                    round(400 / 1609.344 * 8 * 60) / 60 + round(400 / 1609.344 * 10 * 60) / 60) + 10.0
             self.assertAlmostEqual(total_time_minutes, wo.total(what='time', unit='minute'), 5)
             total_time_hours = total_time_minutes / 60.0
             self.assertAlmostEqual(total_time_hours, wo.total(what='time', unit='hour'))
@@ -140,6 +143,61 @@ class TestFirstWorkout(unittest.TestCase):
                               '</Workout>')
             cmp_string = tcx_string + tcx_string_end
             self.assertEqual(cmp_string, wo.tcx().indented_str())
+            steps = [{'name': 'Warm up',
+                      'pace': {'length_unit': 'mile',
+                               'pace': '0:10:00 min per mile',
+                               'time': {'seconds': 600, 'time': '0:10:00'}},
+                      'time': {'seconds': 900, 'time': '0:15:00'}},
+                     {'name': 'Intervals',
+                      'repeat': 8,
+                      'steps': [{'distance': {'distance': 400.0, 'unit': 'm'},
+                                 'name': 'Fast',
+                                 'pace': {'length_unit': 'mile',
+                                          'pace': '0:08:00 min per mile',
+                                          'time': {'seconds': 480, 'time': '0:08:00'}}},
+                                {'distance': {'distance': 400.0, 'unit': 'm'},
+                                 'name': 'Rest',
+                                 'pace': {'length_unit': 'mile',
+                                          'pace': '0:10:00 min per mile',
+                                          'time': {'seconds': 600, 'time': '0:10:00'}}}]},
+                     {'name': 'Cool down',
+                      'pace': {'length_unit': 'mile',
+                               'pace': '0:10:00 min per mile',
+                               'time': {'seconds': 600, 'time': '0:10:00'}},
+                      'time': {'seconds': 600, 'time': '0:10:00'}}]
+            cmp_json = {'date': '2017-06-24',
+                        'name': 'Week 1 Key-run 1',
+                        'note': None,
+                        'status': 'scheduled',
+                        'steps': steps,
+                        'total_distance': {'distance': 6.47678, 'unit': 'mile'},
+                        'total_time': {'time': 60.73333, 'unit': 'minute'}}
+            FirstUtils.assert_deep_almost_equal(self, cmp_json, wo.to_json(), 5)
+            km_steps = [{'name': 'Warm up',
+                         'pace': {'length_unit': 'km',
+                                  'pace': '0:06:13 min per km',
+                                  'time': {'seconds': 373, 'time': '0:06:13'}},
+                         'time': {'seconds': 900, 'time': '0:15:00'}},
+                        {'name': 'Intervals',
+                         'repeat': 8,
+                         'steps': [{'distance': {'distance': 0.4, 'unit': 'km'},
+                                    'name': 'Fast',
+                                    'pace': {'length_unit': 'km',
+                                             'pace': '0:04:58 min per km',
+                                             'time': {'seconds': 298, 'time': '0:04:58'}}},
+                                   {'distance': {'distance': 0.4, 'unit': 'km'},
+                                    'name': 'Rest',
+                                    'pace': {'length_unit': 'km',
+                                             'pace': '0:06:13 min per km',
+                                             'time': {'seconds': 373, 'time': '0:06:13'}}}]},
+                        {'name': 'Cool down',
+                         'pace': {'length_unit': 'km',
+                                  'pace': '0:06:13 min per km',
+                                  'time': {'seconds': 373, 'time': '0:06:13'}},
+                         'time': {'seconds': 600, 'time': '0:10:00'}}]
+            cmp_json['steps'] = km_steps
+            cmp_json['total_distance'] = {'distance': 10.42336, 'unit': 'km'}
+            FirstUtils.assert_deep_almost_equal(self, cmp_json, wo.to_json(output_unit='km'), 5)
 
             wo.add_step(step=s_warmup)
             cmp_string = ('Week 1 Key-run 1\n' +
@@ -157,6 +215,23 @@ class TestFirstWorkout(unittest.TestCase):
                           'type - body  pace - 0:10:00 min per mile\n' +
                           'Time - 0:15:00\n')
             self.assertEqual(cmp_string, str(wo))
+            steps.append({'name': 'Warm up',
+                          'pace': {'length_unit': 'mile',
+                                   'pace': '0:10:00 min per mile',
+                                   'time': {'seconds': 600, 'time': '0:10:00'}},
+                          'time': {'seconds': 900, 'time': '0:15:00'}})
+            cmp_json['steps'] = steps
+            cmp_json['total_distance'] = {'distance': 7.97678, 'unit': 'mile'}
+            cmp_json['total_time'] = {'time': 75.73333, 'unit': 'minute'}
+            FirstUtils.assert_deep_almost_equal(self, cmp_json, wo.to_json(), 5)
+            km_steps.append({'name': 'Warm up',
+                             'pace': {'length_unit': 'km',
+                                      'pace': '0:06:13 min per km',
+                                      'time': {'seconds': 373, 'time': '0:06:13'}},
+                             'time': {'seconds': 900, 'time': '0:15:00'}})
+            cmp_json['steps'] = km_steps
+            cmp_json['total_distance'] = {'distance': 12.83738, 'unit': 'km'}
+            FirstUtils.assert_deep_almost_equal(self, cmp_json, wo.to_json(output_unit='km'), 5)
         except ValueError as vex:
             self.fail(str(vex))
         except TypeError as tex:
@@ -176,7 +251,7 @@ class TestFirstWorkout(unittest.TestCase):
         except ValueError as ex:
             self.assertEqual("Status not in ['scheduled', 'done', 'skipped']", str(ex))
 
-    def test_from_instructions_new(self):
+    def test_from_instructions(self):
 
         rp = FirstPace.from_string(str_input='0:09:35 min per mile')
         ti = 50
@@ -248,11 +323,23 @@ class TestFirstWorkout(unittest.TestCase):
             self.assertAlmostEqual(50.25, wo1.total(what='time', unit='minute'), 5)
             self.assertAlmostEqual(6.01970, wo1.total(what='distance', unit='mile'), 5)
 
+            # tcx
             file_name = 'cmp_workout1.tcx'
-            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name))
+            from_file = open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r')
             cmp_string = from_file.read()
             from_file.close()
             self.assertEqual(cmp_string, wo1.tcx().indented_str())
+
+            # json
+            file_name = 'cmp_workout1.json'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_json = json.load(from_file)
+                FirstUtils.assert_deep_almost_equal(self, cmp_json, wo1.to_json(), 5)
+
+            file_name = 'cmp_workout1_km.json'
+            with open('{}/{}'.format(Config.TEST_RESOURCE_DIR, file_name), 'r') as from_file:
+                cmp_json = json.load(from_file)
+                FirstUtils.assert_deep_almost_equal(self, cmp_json, wo1.to_json(output_unit='km'), 5)
 
         except ValueError as ex:
             self.fail(str(ex))

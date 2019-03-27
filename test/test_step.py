@@ -1,6 +1,5 @@
 import unittest
 
-
 # so i don't forget - decided to put the 'repeat' feature in the workout instead recursively here
 from first_distance import FirstDistance
 from first_pace import FirstPace
@@ -57,6 +56,18 @@ class TestFirstStepNew(unittest.TestCase):
                           '  </Target>\n' +
                           '</Step>')
             self.assertEqual(tcx_string, step_b.tcx(delta_seconds=3).indented_str())
+            cmp_json = {'distance': {'distance': 3.0, 'unit': 'mile'},
+                        'name': '3 miles @ 10 minutes per mile',
+                        'pace': {'length_unit': 'mile',
+                                 'pace': '0:10:00 min per mile',
+                                 'time': {'seconds': 600, 'time': '0:10:00'}}}
+            self.assertEqual(cmp_json, step_b.to_json())
+            cmp_json = {'distance': {'distance': 4.828032, 'unit': 'km'},
+                        'name': '3 miles @ 10 minutes per mile',
+                        'pace': {'length_unit': 'km',
+                                 'pace': '0:06:13 min per km',
+                                 'time': {'seconds': 373, 'time': '0:06:13'}}}
+            self.assertEqual(cmp_json, step_b.to_json(output_unit='km'))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -84,6 +95,18 @@ class TestFirstStepNew(unittest.TestCase):
                           '  </Target>\n' +
                           '</Step>')
             self.assertEqual(tcx_string, step_b.tcx().indented_str())
+            cmp_json = {'name': '15 minutes @ 10 minutes per mile',
+                        'pace': {'length_unit': 'mile',
+                                 'pace': '0:10:00 min per mile',
+                                 'time': {'seconds': 600, 'time': '0:10:00'}},
+                        'time': {'seconds': 900, 'time': '0:15:00'}}
+            self.assertEqual(cmp_json, step_b.to_json())
+            cmp_json = {'name': '15 minutes @ 10 minutes per mile',
+                        'pace': {'length_unit': 'km',
+                                 'pace': '0:06:13 min per km',
+                                 'time': {'seconds': 373, 'time': '0:06:13'}},
+                        'time': {'seconds': 900, 'time': '0:15:00'}}
+            self.assertEqual(cmp_json, step_b.to_json(output_unit='km'))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:
@@ -133,10 +156,10 @@ class TestFirstStepNew(unittest.TestCase):
             step_r.add_step(step_b2)
             short = 'Step: "' + name + '"  id = 0\ntype - repeat  repeat - 3\n'
             self.assertEqual(short, str(step_r))
-            detail = 'Step: "3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)"\n' +\
-                     '  Step: "3 mile @ 10 min per mile"\n' +\
-                     '    3.0 mile  at  0:10:00 min per mile\n' +\
-                     '  Step: "15 minutes @ 19 min per mile"\n' +\
+            detail = 'Step: "3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)"\n' + \
+                     '  Step: "3 mile @ 10 min per mile"\n' + \
+                     '    3.0 mile  at  0:10:00 min per mile\n' + \
+                     '  Step: "15 minutes @ 19 min per mile"\n' + \
                      '    0:15:00  at  0:10:00 min per mile\n'
             self.assertEqual(detail, step_r.details())
             self.assertAlmostEqual(13.5, step_r.total(unit='mile'), 5)
@@ -175,6 +198,32 @@ class TestFirstStepNew(unittest.TestCase):
                           '  </Child>\n'
                           '</Step>')
             self.assertEqual(tcx_string, step_r.tcx(delta_seconds=10).indented_str())
+            cmp_json = {'name': '3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)',
+                        'repeat': 3,
+                        'steps': [{'distance': {'distance': 3.0, 'unit': 'mile'},
+                                   'name': '3 mile @ 10 min per mile',
+                                   'pace': {'length_unit': 'mile',
+                                            'pace': '0:10:00 min per mile',
+                                            'time': {'seconds': 600, 'time': '0:10:00'}}},
+                                  {'name': '15 minutes @ 19 min per mile',
+                                   'pace': {'length_unit': 'mile',
+                                            'pace': '0:10:00 min per mile',
+                                            'time': {'seconds': 600, 'time': '0:10:00'}},
+                                   'time': {'seconds': 900, 'time': '0:15:00'}}]}
+            self.assertEqual(cmp_json, step_r.to_json())
+            cmp_json = {'name': '3 X (3 mile @ 10 min per mile + 15 minutes @ 19 min per mile)',
+                        'repeat': 3,
+                        'steps': [{'distance': {'distance': 4.828032, 'unit': 'km'},
+                                   'name': '3 mile @ 10 min per mile',
+                                   'pace': {'length_unit': 'km',
+                                            'pace': '0:06:13 min per km',
+                                            'time': {'seconds': 373, 'time': '0:06:13'}}},
+                                  {'name': '15 minutes @ 19 min per mile',
+                                   'pace': {'length_unit': 'km',
+                                            'pace': '0:06:13 min per km',
+                                            'time': {'seconds': 373, 'time': '0:06:13'}},
+                                   'time': {'seconds': 900, 'time': '0:15:00'}}]}
+            self.assertEqual(cmp_json, step_r.to_json(output_unit='km'))
         except TypeError as tex:
             self.fail(str(tex))
         except ValueError as vex:

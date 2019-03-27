@@ -1,0 +1,52 @@
+{
+  "name": "My first marathon training plan",
+  "weekly_schedule": ["mon", "wed", "sat"],
+  "race":
+  {
+    "Name": "SFM",
+    "race_date": "2017-07-29",
+    "race_type": {"name": "Marathon", "distance": {"distance": 42.195, "unit": "km"}}, "status": "scheduled"
+  },
+  "runner": {"name": "DBD", "length_unit": "mile"},
+  "workouts":
+  [
+    {
+      "name": "Week 1 Key-run 1",
+      "note": null,
+      "status": "scheduled",
+      "date": "2017-06-24",
+      "steps":
+      [
+        {
+          "name": "Warm up",
+          "time": {"time": "0:15:00", "seconds": 900},
+          "pace": {"pace": "0:10:00 min per mile", "length_unit": "mile", "time": {"time": "0:10:00", "seconds": 600}}
+        },
+        {
+          "name": "repeat X 8",
+          "repeat": 8,
+          "steps":
+          [
+            {
+              "name": "Fast",
+              "distance": {"distance": 400.0, "unit": "m"},
+              "pace": {"pace": "0:08:00 min per mile", "length_unit": "mile", "time": {"time": "0:08:00", "seconds": 480}}
+            },
+            {
+              "name": "Rest",
+              "distance": {"distance": 400.0, "unit": "m"},
+              "pace": {"pace": "0:10:00 min per mile", "length_unit": "mile", "time": {"time": "0:10:00", "seconds": 600}}
+            }
+          ]
+        },
+        {
+          "name": "Cool down",
+          "time": {"time": "0:10:00", "seconds": 600},
+          "pace": {"pace": "0:10:00 min per mile", "length_unit": "mile", "time": {"time": "0:10:00", "seconds": 600}}
+        }
+      ],
+      "total_distance": {"distance": 6.476775630318937, "unit": "mile"},
+      "total_time": {"time": 60.733333333333334, "unit": "minute"}
+    }
+  ]
+}
